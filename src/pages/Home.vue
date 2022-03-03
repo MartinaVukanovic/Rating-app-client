@@ -5,12 +5,10 @@
 </template>
 
 <script>
-import SampleBox from '@/components/SampleBox';
 
 export default {
   name: 'home',
   components: {
-    SampleBox,
   },
 };
 </script>
