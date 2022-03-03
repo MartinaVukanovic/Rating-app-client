@@ -1,29 +1,31 @@
 <template>
   <div id="app">
     <h1>Welcome to Your Vue.js App</h1>
-    <TemplateDefault></TemplateDefault>
   </div>
 </template>
 
 <script>
-import TemplateDefault from '@/layouts/TemplateDefault';
 
 export default {
   name: 'App',
+  methods: {
+    submit() {
+      //
+    },
+  },
   components: {
-    TemplateDefault,
   },
 };
 </script>
 
 <style lang="scss">
+@import 'styles/reset';
 html,
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
