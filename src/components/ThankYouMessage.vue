@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container2">
     <img src="../../public/assets/check.svg" alt="checkedIcon" />
     <p class="TMessage">Thank you for your rating!</p>
   </div>
@@ -10,7 +10,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.container {
+.container2 {
   position: fixed;
   z-index: 10;
   display: flex;

@@ -12,8 +12,8 @@
       <SmileyFace type="dissatisfied" color="--smile-grey" @click="myMethod"></SmileyFace>
       <SmileyFace type="very_dissatisfied" color="--smile-yellow" @click="myMethod"></SmileyFace>
       <SmileyFace type="bad" color="--smile-red" @click="myMethod"></SmileyFace>
-      <ThankYouMessage v-if="show"></ThankYouMessage>
     </div>
+    <ThankYouMessage v-if="show"></ThankYouMessage>
   </div>
 </template>
 
