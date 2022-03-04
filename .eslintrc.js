@@ -7,6 +7,7 @@ module.exports = {
   extends: ['plugin:vue/essential', '@vue/airbnb'],
   rules: {
     'linebreak-style': 0,
+
     'import/extensions': [
       'error',
       {
