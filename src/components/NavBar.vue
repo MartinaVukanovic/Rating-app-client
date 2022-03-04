@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navbar desktop">
+    <div class="navbar desktop" :class="{ show: show }">
       <img src="../assets/logo.png" class="logo" />
       <router-link to="/today" class="navigation">
         <img src="../assets/dashboard.svg" class="icon" />
@@ -11,7 +11,7 @@
         <p>Reports</p>
       </router-link>
     </div>
-    <div class="mobile">
+    <div class="mobile" v-if="mobile">
       <div class="navbar-mobile">
         <img src="../assets/logo.png" class="logo" />
         <div class="hamburger" :class="{ active: active }" @click="toggleHamburger">
@@ -28,17 +28,21 @@ export default {
     return {
       mobile: true,
       active: false,
+      show: false,
     };
   },
   methods: {
     toggleHamburger() {
       this.active = !this.active;
+      this.show = !this.show;
     },
     handleResize() {
       if (window.innerWidth <= 768) {
         this.mobile = true;
+        this.show = false;
       } else {
         this.mobile = false;
+        this.show = true;
       }
     },
   },
@@ -54,11 +58,12 @@ export default {
   width: 100px;
   height: 100%;
   position: fixed;
-  left: 0;
+  left: -100px;
   background-color: var(--stat-background);
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.3s ease;
 }
 
 .navigation {
@@ -96,8 +101,9 @@ export default {
 .icon-note {
   padding-bottom: 2px;
 }
-.desktop {
-  display: none;
+.show {
+  left: 0;
+  transition: 0.3s ease;
 }
 /*mobile navigation*/
 
@@ -145,12 +151,17 @@ export default {
 .bar::after {
   top: -0.75rem;
 }
+.hamburger.active .bar {
+  background-color: var(--stat-background);
+}
 .hamburger.active .bar::before {
   transition: 0.3s ease;
   top: 0;
+  transform: rotate(45deg);
 }
 .hamburger.active .bar::after {
   transition: 0.3s ease;
   top: 0;
+  transform: rotate(-45deg);
 }
 </style>
