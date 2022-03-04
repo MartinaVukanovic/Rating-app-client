@@ -1,1 +1,5 @@
-export default {};
+import hexToRGB from './hexToRgb';
+
+export default {
+  hexToRGB,
+};

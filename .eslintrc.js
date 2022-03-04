@@ -9,6 +9,7 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
+    'linebreak-style': 0,
     'import/extensions': ['error', {
       'js': 'never',
       'vue': 'never',
