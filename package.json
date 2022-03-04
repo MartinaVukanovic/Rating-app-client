@@ -64,5 +64,8 @@
     "last 2 versions",
     "not dead"
   ],
-  "contributors": []
+  "contributors": [],
+  "prettier": {
+    "singleQuote": true
+  }
 }
