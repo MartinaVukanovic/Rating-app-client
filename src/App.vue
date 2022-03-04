@@ -7,10 +7,10 @@
 <script>
 import TemplateDefault from '@/layouts/TemplateDefault';
 
+
 export default {
   name: 'App',
-  methods: {
-  },
+  methods: {},
   components: {
     TemplateDefault,
   },
