@@ -39,8 +39,8 @@ export default {
       }, 5000);
     },
   },
-  
-  </script>
+};
+</script>
 
 <style lang="css" scoped>
 .container {
