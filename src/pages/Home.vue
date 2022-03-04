@@ -1,14 +1,10 @@
 <template>
-  <div class="home">
-    <SampleBox></SampleBox>
-  </div>
+  <div class="home"></div>
 </template>
 
 <script>
-
 export default {
   name: 'home',
-  components: {
-  },
+  components: {},
 };
 </script>
