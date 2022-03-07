@@ -1,6 +1,15 @@
 import { createApp } from 'vue';
+import VueChartkick from 'vue-chartkick';
+import 'chartkick/chart.js';
+import Datepicker from 'vue3-date-time-picker';
+import 'vue3-date-time-picker/dist/main.css';
 import App from './App';
 import router from './router';
 import store from './store';
 
-createApp(App).use(router).use(store).mount('#app');
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.use(VueChartkick);
+app.component('Datepicker', Datepicker);
+app.mount('#app');
