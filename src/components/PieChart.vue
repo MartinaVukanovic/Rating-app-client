@@ -18,7 +18,6 @@ export default {
 
 <style lang="scss" scoped>
 .chart {
->>>>>>> main
   background-color: var(--stat-background);
 }
 </style>
