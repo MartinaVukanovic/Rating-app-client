@@ -31,7 +31,9 @@ export default {
   --stat-red: #f9585a;
   --stat-grey: #b0b0b2;
   --stat-background: #2d3038;
-  --white-text: rgba(255, 255, 255, 0.8);
+  --settings-text: rgba(255, 255, 255, 0.5);
+  --settings-text-light: rgba(255, 255, 255, 0.85);
+  --settings-border: rgba(255, 255, 255, 0.2);
 }
 html,
 body {

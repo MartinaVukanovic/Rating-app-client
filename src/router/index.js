@@ -18,5 +18,10 @@ export default createRouter({
       name: 'Reports',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Reports'),
     },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import(/* webpackChunkName: "home" */ '@/pages/Settings'),
+    },
   ],
 });

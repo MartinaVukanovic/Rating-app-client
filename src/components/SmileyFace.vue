@@ -1,5 +1,7 @@
 <template>
-  <div class="smiley" :style="imageStyles"><img class="imgS" :src="imageSrc" /></div>
+  <div class="smiley" :style="imageStyles">
+    <img class="imgS" :src="imageSrc" />
+  </div>
 </template>
 
 <script>
@@ -37,13 +39,15 @@ export default {
     },
   },
   mounted() {
-    console.log(this.getCssVariable(this.color));
+    //  console.log(this.getCssVariable(this.color));
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .imgS {
+  height: calc(100% * 0.45);
+  width: calc(100% * 0.65);
   display: block;
   margin: auto;
 }
@@ -53,11 +57,7 @@ export default {
   justify-content: center;
   align-content: center;
   border-radius: 3px;
-  background-color: rgb(0, 168, 107, 0.1);
   width: 189px;
   height: 141px;
-  margin-bottom: 20px;
-  margin-right: 1%;
-  border-left: 3.5px rgb(0, 168, 107) solid;
 }
 </style>
