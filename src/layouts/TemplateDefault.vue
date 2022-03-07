@@ -14,8 +14,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.template {
-  background: grey;
-}
-</style>
+<style scoped lang="scss"></style>

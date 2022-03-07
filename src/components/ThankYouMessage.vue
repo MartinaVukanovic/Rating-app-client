@@ -21,11 +21,12 @@ export default {};
   top: 0px;
   height: 100vh;
   width: 100vw;
-  background-color: #1b1e24;
+  background-color: var(--background-black);
 }
 
 .TMessage {
-  color: rgb(255, 255, 255, 0.7);
+  color: white;
   font-size: 32px;
+  text-align: center;
 }
 </style>

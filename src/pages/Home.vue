@@ -49,11 +49,12 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
+  margin-bottom: 10vh;
 }
 
 .welcomeText {
   margin: auto;
-  margin-top: 10%;
+  margin-top: 31px;
   width: 250px;
   color: rgb(255, 255, 255, 0.7);
   font-size: 32px;
@@ -65,12 +66,24 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  margin-bottom: 5vh;
+  margin-bottom: 67px;
+}
+
+@media only screen and (max-width: 1145px) {
+  .likeIcon {
+    height: 40vh;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .likeIcon {
+    height: 35vh;
+  }
 }
 
 .body {
   background-color: #1b1e24;
   min-height: 100vh;
-  height: fit-content;
+  width: 100%;
+  display: table;
 }
 </style>
