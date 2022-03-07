@@ -16,5 +16,6 @@ export default {};
 <style scoped lang="scss">
 .line-chart {
   background-color: var(--stat-background);
+  font-size: 18px;
 }
 </style>
