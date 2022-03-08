@@ -12,7 +12,7 @@
       <OvalArtwork class="artwork"></OvalArtwork>
     </div>
     <div class="grafs">
-      <LineChart></LineChart>
+      <AreaChart></AreaChart>
       <PieChart></PieChart>
     </div>
   </div>
@@ -20,12 +20,12 @@
 
 <script>
 import OvalArtwork from '../components/OvalArtwork';
-import LineChart from '../components/LineChart';
+import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 
 export default {
   name: 'today',
-  components: { OvalArtwork, LineChart, PieChart },
+  components: { OvalArtwork, AreaChart, PieChart },
 };
 </script>
 <style lang="scss" scoped>
@@ -135,9 +135,6 @@ export default {
 @media all and (min-width: 1440px) {
   .today {
     .top-row {
-      .artwork {
-      }
-
       .text-content {
         .title {
           p {
