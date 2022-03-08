@@ -1,17 +1,24 @@
 <template>
   <div id="app">
+    <Spinner v-if="spin"></Spinner>
     <TemplateDefault></TemplateDefault>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import TemplateDefault from '@/layouts/TemplateDefault';
+import Spinner from './components/Spinner';
 
 export default {
   name: 'App',
   methods: {},
   components: {
     TemplateDefault,
+    Spinner,
+  },
+  computed: {
+    ...mapGetters(['spin']),
   },
 };
 </script>
