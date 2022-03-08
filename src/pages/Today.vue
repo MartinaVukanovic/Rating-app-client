@@ -13,8 +13,8 @@
     </div>
     <div class="margin-div"></div>
     <div class="grafs">
-      <LineChart class="line-chart"></LineChart>
-      <PieChart class="pie-chart"></PieChart>
+      <AreaChart></AreaChart>
+      <PieChart></PieChart>
     </div>
     <div class="stats-count">
       <ul>
@@ -33,12 +33,12 @@
 
 <script>
 import OvalArtwork from '../components/OvalArtwork';
-import LineChart from '../components/LineChart';
+import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 
 export default {
   name: 'today',
-  components: { OvalArtwork, LineChart, PieChart },
+  components: { OvalArtwork, AreaChart, PieChart },
   data() {
     return {
       smiles: [
@@ -225,9 +225,6 @@ export default {
 @media all and (min-width: 1440px) {
   .today {
     .top-row {
-      .artwork {
-      }
-
       .text-content {
         .title {
           p {
