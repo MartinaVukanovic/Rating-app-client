@@ -11,9 +11,22 @@
       </div>
       <OvalArtwork class="artwork"></OvalArtwork>
     </div>
+    <div class="margin-div"></div>
     <div class="grafs">
       <AreaChart></AreaChart>
       <PieChart></PieChart>
+    </div>
+    <div class="stats-count">
+      <ul>
+        <li>
+          <div class="list-field list-field-title">Emotion</div>
+          <div class="list-field list-field-title">Count</div>
+        </li>
+        <li v-for="smile in smiles" :key="smile.type">
+          <div class="list-field">{{ smile.type }}</div>
+          <div class="list-field">{{ smile.count }}</div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -26,6 +39,17 @@ import PieChart from '../components/PieChart';
 export default {
   name: 'today',
   components: { OvalArtwork, AreaChart, PieChart },
+  data() {
+    return {
+      smiles: [
+        { count: 26, type: 'very_satisfied' },
+        { count: 14, type: 'satisfied' },
+        { count: 35, type: 'dissatisfied' },
+        { count: 8, type: 'very_dissatisfied' },
+        { count: 155, type: 'bad' },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -34,6 +58,7 @@ export default {
   min-height: 100vh;
   width: 100%;
   padding-top: 80px;
+  display: table;
 
   .top-row {
     display: flex;
@@ -72,8 +97,51 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 20px;
     margin: 0 20px;
+
+    .line-chart {
+    }
+
+    .pie-chart {
+      max-width: 425px;
+    }
+  }
+
+  .stats-count {
+    display: flex;
+    justify-content: center;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    width: 708px;
+    background-color: var(--stat-background);
+    margin: 20px 20px;
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      border-bottom: 1px solid rgb(85, 85, 85);
+      display: flex;
+      list-style-type: none;
+
+      .list-field {
+        width: 50%;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 12px;
+        height: 47px;
+        line-height: 47px;
+        padding-left: calc(20px + 0.5vw);
+      }
+
+      .list-field-title {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+    }
   }
 }
 
@@ -105,6 +173,10 @@ export default {
   .today {
     padding-top: 0;
 
+    .stats-count {
+      justify-content: left;
+    }
+
     .top-row {
       flex-direction: row;
 
@@ -130,6 +202,24 @@ export default {
         }
       }
     }
+
+    .margin-div {
+      width: 100%;
+      height: 2.5vw;
+    }
+
+    .grafs {
+      flex-direction: row;
+      margin-top: -300px;
+
+      .line-chart {
+        width: 60%;
+      }
+
+      .pie-chart {
+        width: 30%;
+      }
+    }
   }
 }
 @media all and (min-width: 1440px) {
@@ -149,6 +239,11 @@ export default {
           }
         }
       }
+    }
+
+    .margin-div {
+      width: 100%;
+      height: 5vw;
     }
   }
 }
