@@ -75,7 +75,7 @@ export default {
 .areaChart {
   border-radius: 4px;
   background-color: var(--stat-background);
-  height: 400px !important;
-  width: 800px !important;
+  height: 300px !important;
+  width: 600px !important;
 }
 </style>
