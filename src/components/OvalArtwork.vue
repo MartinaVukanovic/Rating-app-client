@@ -54,8 +54,6 @@ export default {};
     .oval {
     }
     .artwork {
-      width: 70%;
-      height: 70%;
     }
   }
 }
