@@ -20,16 +20,16 @@ export default {
     this.gradient2 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 400);
     this.gradient3 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 400);
 
-    this.gradient.addColorStop(0, 'rgba(4, 210,124, 0.35)');
-    this.gradient.addColorStop(0.5, 'rgba(4, 210,124, 0.25)');
+    this.gradient.addColorStop(0, 'rgba(4, 210,124, 0.25)');
+    this.gradient.addColorStop(0.5, 'rgba(4, 210,124, 0.1)');
     this.gradient.addColorStop(1, 'rgba(4, 210,124, 0)');
 
-    this.gradient2.addColorStop(0, 'rgba(249, 88, 90, 0.35)');
-    this.gradient2.addColorStop(0.5, 'rgba(249, 88, 90, 0.25)');
+    this.gradient2.addColorStop(0, 'rgba(249, 88, 90, 0.25)');
+    this.gradient2.addColorStop(0.5, 'rgba(249, 88, 90, 0.1)');
     this.gradient2.addColorStop(1, 'rgba(249, 88, 90, 0)');
 
-    this.gradient3.addColorStop(0, 'rgba(176, 176, 178, 0.35)');
-    this.gradient3.addColorStop(0.5, 'rgba(176, 176, 178, 0.25)');
+    this.gradient3.addColorStop(0, 'rgba(176, 176, 178, 0.25)');
+    this.gradient3.addColorStop(0.5, 'rgba(176, 176, 178, 0.1)');
     this.gradient3.addColorStop(1, 'rgba(176, 176, 178, 0)');
 
     this.renderChart(
@@ -38,7 +38,7 @@ export default {
         datasets: [
           {
             label: 'Data One',
-            borderColor: '#04D27C',
+            borderColor: 'rgba(4, 210,124, 0.8)',
             pointBackgroundColor: 'white',
             borderWidth: 1.5,
             pointBorderColor: 'black',
@@ -47,7 +47,7 @@ export default {
           },
           {
             label: 'Data Two',
-            borderColor: '#F9585A',
+            borderColor: 'rgba(249, 88, 90, 0.8)',
             pointBackgroundColor: 'white',
             pointBorderColor: 'black',
             borderWidth: 1.5,
@@ -56,7 +56,7 @@ export default {
           },
           {
             label: 'Data tri',
-            borderColor: '#B0B0B2',
+            borderColor: 'rgba(176, 176, 178, 0.8)',
             pointBackgroundColor: 'white',
             pointBorderColor: 'black',
             borderWidth: 1.5,
@@ -74,8 +74,7 @@ export default {
 <style lang="scss" scoped>
 .areaChart {
   border-radius: 4px;
+  padding: 20px 5px 20px 5px;
   background-color: var(--stat-background);
-  height: 300px !important;
-  width: 600px !important;
 }
 </style>

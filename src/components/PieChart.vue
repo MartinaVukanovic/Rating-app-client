@@ -18,6 +18,10 @@ export default {
 
 <style lang="scss" scoped>
 .chart {
+  height: 300px !important;
+  width: 360px !important;
   background-color: var(--stat-background);
+  border-radius: 4px;
+  padding: 25px 0px 25px 0px;
 }
 </style>
