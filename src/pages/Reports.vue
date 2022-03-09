@@ -9,7 +9,6 @@
 
 <script>
 import { mapActions } from 'vuex';
-
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 

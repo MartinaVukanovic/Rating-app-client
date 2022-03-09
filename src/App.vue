@@ -6,19 +6,25 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import TemplateDefault from '@/layouts/TemplateDefault';
 import Spinner from './components/Spinner';
 
 export default {
   name: 'App',
-  methods: {},
   components: {
     TemplateDefault,
     Spinner,
   },
+  methods: {
+    ...mapActions(['settingsGet', 'smilesGet']),
+  },
   computed: {
     ...mapGetters(['spin']),
+  },
+  mounted() {
+    this.smilesGet();
+    /* this.settingsGet(); */
   },
 };
 </script>

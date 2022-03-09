@@ -7,17 +7,25 @@
       </div>
     </div>
     <div class="container">
-      <SmileyFace type="very_satisfied" color="--smile-green" @click="myMethod"></SmileyFace>
+      <!-- <SmileyFace type="very_satisfied" color="--smile-green" @click="myMethod"></SmileyFace>
       <SmileyFace type="satisfied" color="--smile-blue" @click="myMethod"></SmileyFace>
       <SmileyFace type="dissatisfied" color="--smile-grey" @click="myMethod"></SmileyFace>
       <SmileyFace type="very_dissatisfied" color="--smile-yellow" @click="myMethod"></SmileyFace>
-      <SmileyFace type="bad" color="--smile-red" @click="myMethod"></SmileyFace>
+      <SmileyFace type="bad" color="--smile-red" @click="myMethod"></SmileyFace> -->
+      <SmileyFace
+        v-for="emotion in emotionList"
+        :key="emotion.name"
+        :type="emotion.name"
+        :color="emotion.color"
+        >{{ emotion.name }}</SmileyFace
+      >
     </div>
-    <ThankYouMessage v-if="show"></ThankYouMessage>
+    <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
 
@@ -38,6 +46,9 @@ export default {
         this.show = false;
       }, 5000);
     },
+  },
+  computed: {
+    ...mapGetters(['emotionList', 'welcomePage']),
   },
 };
 </script>
