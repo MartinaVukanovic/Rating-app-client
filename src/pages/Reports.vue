@@ -3,12 +3,11 @@
     <div class="charts">
       <AreaChart class="areachart"></AreaChart>
       <PieChart class="piechart"></PieChart>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 
@@ -22,13 +21,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container{
+.container {
   height: 100vh;
   background-color: var(--background-black);
   width: 100%;
   display: table;
 }
-.charts{
+.charts {
   margin-top: 50px;
   width: 100vw;
   display: flex;
@@ -36,19 +35,19 @@ export default {
   flex-wrap: wrap;
   gap: 20px;
 }
-.areachart{
+.areachart {
   margin-left: 15px;
   margin-right: 15px;
   height: 300px !important;
   width: 940px !important;
 }
-.piechart{
+.piechart {
   width: 340px !important;
   height: 300px !important;
 }
 @media all and (max-width: 1000px) {
-.charts{
-  margin-top: 100px;
+  .charts {
+    margin-top: 100px;
   }
 }
 </style>

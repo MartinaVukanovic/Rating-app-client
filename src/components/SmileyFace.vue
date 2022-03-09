@@ -1,11 +1,12 @@
 <template>
-  <div class="smiley" :style="imageStyles">
+  <div class="smiley" :style="imageStyles" @click="submit">
     <img class="imgS" :src="imageSrc" />
   </div>
 </template>
 
 <script>
 import utils from '@/utility';
+import { mapActions } from 'vuex';
 
 export default {
   props: {
@@ -34,12 +35,17 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['submitEmotion', 'toggleWelcomePage', 'toggleSpin']),
     getCssVariable(color) {
       return getComputedStyle(document.documentElement).getPropertyValue(color);
     },
-  },
-  mounted() {
-    //  console.log(this.getCssVariable(this.color));
+    submit() {
+      this.toggleSpin();
+      this.submitEmotion(this.type);
+      this.toggleSpin();
+      this.toggleWelcomePage();
+      setTimeout(this.toggleWelcomePage, 5000);
+    },
   },
 };
 </script>
