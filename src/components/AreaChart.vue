@@ -73,6 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 .areaChart {
+  min-width: 320px;
   border-radius: 4px;
   padding: 20px 5px 20px 5px;
   background-color: var(--stat-background);

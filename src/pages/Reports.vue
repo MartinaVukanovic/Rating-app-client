@@ -1,13 +1,14 @@
 <template>
   <div id="app" class="container">
     <div class="charts">
-      <AreaChart class="areachart"></AreaChart>
+      <AreaChart class="areachart" @click="somePrint"></AreaChart>
       <PieChart class="piechart"></PieChart>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 
@@ -16,6 +17,9 @@ export default {
   components: {
     AreaChart,
     PieChart,
+  },
+  methods: {
+    ...mapActions(['somePrint']),
   },
 };
 </script>
