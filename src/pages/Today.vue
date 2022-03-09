@@ -2,19 +2,18 @@
   <div class="today">
     <div class="top-row">
       <div class="text-content">
-        <div class="title"><p>Today is a new day. Check your ratings!</p></div>
-        <div class="subtitle">
-          <p>
+        <div><p class="title">Today is a new day. Check your ratings!</p></div>
+        <div>
+          <p class="subtitle">
             Graphs presents you rating results. Today you have 225 rates, check it on dashboard.
           </p>
         </div>
       </div>
       <OvalArtwork class="artwork"></OvalArtwork>
     </div>
-    <div class="margin-div"></div>
-    <div class="grafs">
-      <AreaChart></AreaChart>
-      <PieChart></PieChart>
+    <div class="charts">
+      <AreaChart class="areachart"></AreaChart>
+      <PieChart class="piechart"></PieChart>
     </div>
     <div class="stats-count">
       <ul>
@@ -53,199 +52,110 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  height: 60vh;
+}
+.artwork {
+  width: 48vw;
+}
+.text-content {
+  margin-top: 50px;
+  margin-left: 150px;
+}
 .today {
   background-color: var(--background-black);
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  padding-top: 80px;
   display: table;
-
-  .top-row {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .text-content {
-    padding: 0 1rem 5rem;
-
-    .title {
-      max-width: 610px;
-      margin: 0 auto;
-
-      p {
-        color: rgba(255, 255, 255, 0.7);
-        text-align: center;
-        font-size: 28px;
-        font-weight: bold;
-        margin: 1rem 0 24px 0;
-      }
-    }
-    .subtitle {
-      max-width: 610px;
-      margin: 0 auto;
-
-      p {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
-        margin: 0 0 24px 0;
-        text-align: center;
-      }
-    }
-  }
-
-  .grafs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    margin: 0 20px;
-
-    .line-chart {
-    }
-
-    .pie-chart {
-      max-width: 425px;
-    }
-  }
-
+}
+.title {
+  font-size: 48px;
+  max-width: 610px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.charts {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.areachart {
+  margin-left: 50px;
+  height: 300px !important;
+  min-width: 320px !important;
+  width: 60vw !important;
+}
+.subtitle {
+  margin-top: -30px;
+  font-size: 18px;
+  max-width: 630px;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media all and (max-width: 768px) {
   .stats-count {
+    margin-left: 0px !important;
     display: flex;
-    justify-content: center;
+    justify-content: space-around !important;
   }
 
   ul {
+    width: 82vw !important;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    margin-top: -20px;
+    font-size: 12px;
+    padding-right: 5px;
+  }
+  .text-content {
+    margin-top: 80px;
+    margin-left: 20px;
+  }
+  .artwork {
+    width: 80vw;
+  }
+  .areachart {
+    margin-left: 0px !important;
+  }
+}
+
+.stats-count {
+  min-width: 320px;
+  margin-left: 130px;
+  display: flex;
+  justify-content: left;
+}
+ul {
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 50vw;
+  background-color: var(--stat-background);
+  margin: 20px 20px;
+  list-style-type: none;
+  padding: 0;
+  li {
+    border-bottom: 1px solid rgb(85, 85, 85);
     display: flex;
-    flex-direction: column;
-    justify-self: center;
-    width: 708px;
-    background-color: var(--stat-background);
-    margin: 20px 20px;
     list-style-type: none;
-    padding: 0;
-
-    li {
-      border-bottom: 1px solid rgb(85, 85, 85);
-      display: flex;
-      list-style-type: none;
-
-      .list-field {
-        width: 50%;
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 12px;
-        height: 47px;
-        line-height: 47px;
-        padding-left: calc(20px + 0.5vw);
-      }
-
-      .list-field-title {
-        background-color: rgba(255, 255, 255, 0.03);
-      }
+    .list-field {
+      width: 50%;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      height: 47px;
+      line-height: 47px;
+      padding-left: calc(20px + 0.5vw);
+    }
+    .list-field-title {
+      background-color: rgba(255, 255, 255, 0.03);
     }
   }
 }
-
-/*media querry*/
-@media all and (min-width: 769px) {
-  .today {
-    padding-left: 100px;
-    padding-top: 64px;
-
-    .text-content {
-      padding-left: 64px;
-
-      .title {
-        p {
-          text-align: left;
-          font-size: 42px;
-        }
-      }
-      .subtitle {
-        p {
-          text-align: left;
-          font-size: 16px;
-        }
-      }
-    }
-  }
-}
-@media all and (min-width: 1024px) {
-  .today {
-    padding-top: 0;
-
-    .stats-count {
-      justify-content: left;
-    }
-
-    .top-row {
-      flex-direction: row;
-
-      .artwork {
-        flex-grow: 2;
-      }
-
-      .text-content {
-        padding-top: 64px;
-        flex-grow: 1;
-
-        .title {
-          p {
-            text-align: left;
-            font-size: 36px;
-          }
-        }
-        .subtitle {
-          p {
-            text-align: left;
-            font-size: 15px;
-          }
-        }
-      }
-    }
-
-    .margin-div {
-      width: 100%;
-      height: 2.5vw;
-    }
-
-    .grafs {
-      flex-direction: row;
-      margin-top: -300px;
-
-      .line-chart {
-        width: 60%;
-      }
-
-      .pie-chart {
-        width: 30%;
-      }
-    }
-  }
-}
-@media all and (min-width: 1440px) {
-  .today {
-    .top-row {
-      .text-content {
-        .title {
-          p {
-            text-align: left;
-            font-size: 48px;
-          }
-        }
-        .subtitle {
-          p {
-            text-align: left;
-            font-size: 18px;
-          }
-        }
-      }
-    }
-
-    .margin-div {
-      width: 100%;
-      height: 5vw;
-    }
-  }
-}
-/*end of media querry*/
 </style>
