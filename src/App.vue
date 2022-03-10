@@ -31,6 +31,7 @@ export default {
 
 <style lang="scss">
 @import 'styles/reset';
+@import 'styles/datepicker';
 
 :root {
   --smile-green: #00a86b;
