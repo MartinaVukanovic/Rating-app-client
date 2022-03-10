@@ -20,15 +20,15 @@ export default {
     this.gradient2 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 400);
     this.gradient3 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 400);
 
-    this.gradient.addColorStop(0, 'rgba(4, 210,124, 0.25)');
+    this.gradient.addColorStop(0, 'rgba(4, 210,124, 0.38)');
     this.gradient.addColorStop(0.5, 'rgba(4, 210,124, 0.1)');
     this.gradient.addColorStop(1, 'rgba(4, 210,124, 0)');
 
-    this.gradient2.addColorStop(0, 'rgba(249, 88, 90, 0.25)');
+    this.gradient2.addColorStop(0, 'rgba(249, 88, 90, 0.38)');
     this.gradient2.addColorStop(0.5, 'rgba(249, 88, 90, 0.1)');
     this.gradient2.addColorStop(1, 'rgba(249, 88, 90, 0)');
 
-    this.gradient3.addColorStop(0, 'rgba(176, 176, 178, 0.25)');
+    this.gradient3.addColorStop(0, 'rgba(176, 176, 178, 0.38)');
     this.gradient3.addColorStop(0.5, 'rgba(176, 176, 178, 0.1)');
     this.gradient3.addColorStop(1, 'rgba(176, 176, 178, 0)');
 

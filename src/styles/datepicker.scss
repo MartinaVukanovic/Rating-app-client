@@ -1,0 +1,41 @@
+.db__calendar_header {
+  color: rgb(0, 107, 245, 0.8);
+}
+.dp__calendar_header_separator {
+  height: 0px;
+}
+
+.dp__input {
+  background-color: var(--background-black);
+  color: var(--settings-text-light);
+  border-radius: 4px;
+  width: 90%;
+  margin-left: 30px;
+}
+.dp__instance_calendar {
+  background-color: var(--stat-background);
+}
+.dp__range_end,
+.dp__active_date {
+  background-color: #006bf5;
+}
+.dp__range_between {
+  border-radius: 6px;
+  background-color: var(--background-black);
+  border: none;
+}
+.dp__cell_inner {
+  border-radius: 5px;
+  height: 35px;
+  margin: 0px 1px -3px 1px;
+  width: 35px;
+}
+.dp__range_start {
+  background-color: var(--background-black);
+}
+.dp__input_icon_pad {
+  padding-left: 12px;
+}
+.dp__input_icons {
+  padding: 6px 2px;
+}
