@@ -4,9 +4,9 @@ export function fetchSettings() {
   const response = axios.get('http://localhost:3000/settings');
   return response;
 }
-export function getSmiles() {
+export function getSmiles(numberOfEmotions) {
   const response = axios.post('http://localhost:3000/smiles', {
-    numOfEmotions: 3,
+    numOfEmotions: numberOfEmotions,
   });
   return response;
 }
