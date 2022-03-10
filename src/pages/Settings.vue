@@ -27,13 +27,13 @@
             required="required"
             v-model="thankYouMessage"
           />
-          <label class="txt" @click="focusInput(messageInput)">Thank you message</label>
+          <label class="txt" @click="focusMessageInput">Thank you message</label>
         </div>
       </div>
 
       <div class="other">
         <div class="numberSelect first">
-          <select class="inp" id="foo-thing" required="required" v-model="numberOfEmotions">
+          <select class="inp" required="required" v-model="numberOfEmotions">
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
@@ -51,7 +51,7 @@
             required="required"
             v-model="messageTimeout"
           />
-          <label class="txt" @click="focusInput(timeoutInput)">Message timeout </label>
+          <label class="txt" @click="focusTimeoutInput">Message timeout </label>
           <label class="txtUnder">Can be from 0-15 </label>
         </div>
       </div>
@@ -76,22 +76,17 @@ export default {
     SmileyFace,
   },
   methods: {
-    /* myMethod1() {
-      document.getElementById('foo-M').focus();
+    focusMessageInput() {
+      this.$refs.messageInput.focus();
     },
-    myMethod2() {
-      document.getElementById('foo-T').focus();
-    }, */
-    focusInput(x) {
-      console.log(this.$refs.x);
-      console.log(x);
+    focusTimeoutInput() {
+      this.$refs.timeoutInput.focus();
     },
     debouncedSubmit() {
       return debounce(this.submit, 2000)();
     },
     submit() {
-      console.log(this.messageTimeout);
-      console.log('submited');
+      console.log('message submited', this.thankYouMessage);
     },
   },
   computed: {
@@ -99,6 +94,9 @@ export default {
   },
   watch: {
     messageTimeout() {
+      this.debouncedSubmit();
+    },
+    thankYouMessage() {
       this.debouncedSubmit();
     },
   },
@@ -125,20 +123,13 @@ export default {
     }
   }
 }
-#foo-M:valid + .txt {
+.inp:valid + .txt {
   font-size: 12px;
   top: -11px;
   transition: 0.35s;
 }
-#foo-T:valid + .txt {
-  font-size: 12px;
-  top: -11px;
-  transition: 0.35s;
-}
-#foo-thing:valid + .txt {
-  font-size: 12px;
-  top: -11px;
-  transition: 0.35s;
+select option {
+  background-color: var(--stat-background);
 }
 hr {
   border: 0;
