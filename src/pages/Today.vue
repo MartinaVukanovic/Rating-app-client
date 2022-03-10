@@ -2,16 +2,6 @@
   <div class="today">
     <div class="top-row">
       <div class="text-content">
-        <Datepicker
-          v-model="date"
-          autoApply
-          class="datepicker"
-          range
-          :enableTimePicker="false"
-          dark
-          noToday
-        >
-        </Datepicker>
         <div><p class="title">Today is a new day. Check your ratings!</p></div>
         <div>
           <p class="subtitle">
@@ -41,7 +31,6 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
@@ -60,21 +49,6 @@ export default {
       ],
     };
   },
-  setup() {
-    const date = ref();
-
-    // For demo purposes assign range from the current date
-    onMounted(() => {
-      const startDate = new Date();
-      const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
-      date.value = [startDate, endDate];
-      console.log(date);
-    });
-
-    return {
-      date,
-    };
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -84,7 +58,7 @@ export default {
   height: 60vh;
 }
 .artwork {
-  width: 48vw;
+  width: 50%;
 }
 .text-content {
   margin-top: 50px;
