@@ -1,1 +1,5 @@
-export default {};
+export default {
+  message: '',
+  messageTime: null,
+  numberOfEmotions: null,
+};

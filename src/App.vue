@@ -17,14 +17,13 @@ export default {
     Spinner,
   },
   methods: {
-    ...mapActions(['settingsGet', 'smilesGet']),
+    ...mapActions('admin', ['settingsGet']),
   },
   computed: {
     ...mapGetters(['spin']),
   },
   mounted() {
-    this.smilesGet();
-    /* this.settingsGet(); */
+    this.settingsGet();
   },
 };
 </script>

@@ -6,8 +6,8 @@ export default {
 
     commit('submitEmotion', response);
   },
-  async smilesGet({ commit }) {
-    const response = await getSmiles();
+  async smilesGet({ commit }, numberOfEmotions) {
+    const response = await getSmiles(numberOfEmotions);
 
     commit('smilesGet', response.data);
   },
