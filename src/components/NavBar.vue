@@ -1,19 +1,29 @@
 <template>
   <div>
     <div class="navbar desktop" :class="{ show: show }">
-      <img src="../assets/logo.png" class="logo" />
+      <div>
+      <router-link to="/">
+      <img src="../../public/assets/logo.png" class="logo" />
+      </router-link>
       <router-link to="/today" class="navigation">
-        <img src="../assets/dashboard.svg" class="icon" />
-        <p>Today</p>
+        <img src="../../public/assets/todayreport.svg" class="icon" />
+        <p class="txt">Today</p>
       </router-link>
       <router-link to="/reports" class="navigation">
-        <img src="../assets/note.svg" class="icon icon-note" />
-        <p>Reports</p>
+        <img src="../../public/assets/allreports.svg" class="icon icon-note" />
+        <p class="txt">Reports</p>
       </router-link>
+      </div>
+      <div class="down">
+         <router-link to="/settings" class="navigation">
+        <img src="../../public/assets/settings.svg" class="icon icon-note" />
+        <p class="txt">Settings</p>
+      </router-link>
+      </div>
     </div>
     <div class="mobile" v-if="mobile">
       <div class="navbar-mobile">
-        <img src="../assets/logo.png" class="logo" />
+        <img src="../../public/assets/logo.png" class="logo" />
         <div class="hamburger" :class="{ active: active }" @click="toggleHamburger">
           <span class="bar"></span>
         </div>
@@ -54,7 +64,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.txt{
+  margin-top: 4px !important;
+}
+.down{
+  margin-bottom: 20px;
+    width: 65%;
+}
 .navbar {
+  z-index: 1 !important;
   width: 100px;
   height: 100%;
   position: fixed;
@@ -63,6 +81,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   transition: 0.3s ease;
 }
 
@@ -108,6 +127,7 @@ export default {
 /*mobile navigation*/
 
 .navbar-mobile {
+  z-index: 1 !important;
   width: 100%;
   position: fixed;
   height: 80px;
