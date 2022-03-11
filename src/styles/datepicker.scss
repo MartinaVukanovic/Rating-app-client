@@ -8,6 +8,7 @@
 .dp__input {
   background-color: var(--background-black);
   color: var(--settings-text-light);
+  border: 1px solid rgb(255, 255, 255, 0.2);
   border-radius: 4px;
   width: 90%;
   margin-left: 30px;
@@ -38,4 +39,9 @@
 }
 .dp__input_icons {
   padding: 6px 2px;
+}
+.dp__input_icon {
+  height: 21px !important;
+  width: 21px;
+  color: rgb(255, 255, 255, 0.6);
 }

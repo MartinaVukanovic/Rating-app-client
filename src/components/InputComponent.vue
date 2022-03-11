@@ -1,8 +1,8 @@
 <template>
   <div class="containerInp">
     <div>
-      <input :type="type" class="nameInp" ref="inputtt" required />
-      <p class="labelName" @click="fokusiraj">{{ labelInp }}</p>
+      <input :type="type" class="nameInp" ref="refInp" required maxlength="120" />
+      <p class="labelName" @click="focusInp">{{ labelInp }}</p>
     </div>
   </div>
 </template>
@@ -10,8 +10,8 @@
 <script>
 export default {
   methods: {
-    fokusiraj() {
-      this.$refs.inputtt.focus();
+    focusInp() {
+      this.$refs.refInp.focus();
     },
   },
   props: ['type', 'labelInp'],
