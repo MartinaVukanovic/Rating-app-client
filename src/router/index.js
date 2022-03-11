@@ -5,7 +5,7 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Home'),
     },
     {
@@ -22,6 +22,11 @@ export default createRouter({
       path: '/settings',
       name: 'Settings',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Settings'),
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import(/* webpackChunkName: "home" */ '@/pages/Login'),
     },
   ],
 });

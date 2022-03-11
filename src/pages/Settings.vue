@@ -3,7 +3,7 @@
     <div class="settings">
       <div class="fisrtTxt">
         <p class="settingsTxt">Settings</p>
-        <p class="settingsTxt x">x</p>
+        <p class="settingsTxt x" @click="$router.go(-1)">x</p>
       </div>
       <hr />
       <div class="emojiPreview other">
@@ -268,7 +268,7 @@ hr {
 
 @media only screen and (max-width: 840px) {
   .settings {
-    width: 45vw !important;
+    margin-top: 80px;
     padding: 0px !important;
   }
   .other {
