@@ -10,21 +10,34 @@
         <div>
           <p class="emotionsTxt">Emotions preview</p>
           <div class="smileyFaceContainer">
-            <SmileyFace :type="item.imgType" v-for="item in items" :key="item.id"></SmileyFace>
+            <SmileyFace
+              :type="emotion.name"
+              v-for="emotion in emotionList"
+              :key="emotion.name"
+              :color="emotion.color"
+            ></SmileyFace>
           </div>
         </div>
         <div class="numberSelect thankYou">
-          <input class="inp" type="text" maxlength="120" id="foo-M" required="required" />
-          <label class="txt" @click="myMethod1">Thank you message</label>
+          <input
+            class="inp"
+            type="text"
+            maxlength="120"
+            ref="thankYouMessage"
+            required="required"
+            v-model="thankYouMessage"
+          />
+          <label class="txt" @click="focusMessageInput">Thank you message</label>
+          <p class="error">{{ thankYouMessageError }}</p>
         </div>
       </div>
 
       <div class="other">
         <div class="numberSelect first">
-          <select class="inp" id="foo-thing" required="required">
-            <option value="Option 1">3</option>
-            <option value="Option 2">4</option>
-            <option value="Option 3">5</option>
+          <select class="inp" required="required" v-model="numberOfEmotions" ref="numberOfEmotions">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
           </select>
           <label class="txt">Number of emotions</label>
           <label class="txtUnder">Enter number from 3-5 </label>
@@ -32,14 +45,13 @@
         <div class="numberSelect second">
           <input
             class="inp"
-            type="text"
-            minlength="1"
-            maxlength="2"
-            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-            id="foo-T"
+            type="number"
+            ref="messageTimeout"
             required="required"
+            v-model="messageTimeout"
           />
-          <label class="txt" @click="myMethod2">Message timeout </label>
+          <label class="txt" @click="focusTimeoutInput">Message timeout </label>
+          <p class="error">{{ messageTimeoutError }}</p>
           <label class="txtUnder">Can be from 0-15 </label>
         </div>
       </div>
@@ -48,49 +60,122 @@
 </template>
 
 <script>
+import { debounce } from 'lodash';
+import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 
 export default {
   data() {
     return {
-      items: [
-        { id: 1, imgType: 'very_satisfied' },
-        { id: 2, imgType: 'satisfied' },
-        { id: 3, imgType: 'dissatisfied' },
-        { id: 4, imgType: 'very_dissatisfied' },
-        { id: 5, imgType: 'bad' },
-      ],
+      thankYouMessage: '',
+      numberOfEmotions: 3,
+      messageTimeout: null,
+      thankYouMessageError: '',
+      messageTimeoutError: '',
+      debouncedSubmit: null,
     };
   },
   components: {
     SmileyFace,
   },
   methods: {
-    myMethod1() {
-      document.getElementById('foo-M').focus();
+    ...mapActions('admin', ['settingsPost']),
+    focusMessageInput() {
+      this.$refs.thankYouMessage.focus();
     },
-    myMethod2() {
-      document.getElementById('foo-T').focus();
+    focusTimeoutInput() {
+      this.$refs.messageTimeout.focus();
     },
+    blurthankYouMessage() {
+      this.$refs.thankYouMessage.blur();
+    },
+    blurnumberOfEmotions() {
+      this.$refs.numberOfEmotions.blur();
+    },
+    blurmessageTimeout() {
+      this.$refs.messageTimeout.blur();
+    },
+    submit(value) {
+      if (!value) {
+        return;
+      }
+      if (value === this.thankYouMessage) {
+        if (this.thankYouMessage.length < 3 || this.thankYouMessage.length > 120) {
+          this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
+        } else {
+          this.thankYouMessageError = '';
+          this.settingsPost(value);
+          this.thankYouMessage = '';
+          this.blurthankYouMessage();
+        }
+      } else if (value === this.messageTimeout) {
+        if (this.messageTimeout < 0 || this.messageTimeout > 15) {
+          this.messageTimeoutError = 'message timeout needs to be between 0 and 15';
+        } else {
+          this.messageTimeoutError = '';
+          this.settingsPost(value);
+          this.messageTimeout = null;
+          this.blurmessageTimeout();
+        }
+      }
+      /* this.settingsPost(value); */
+      this.blurnumberOfEmotions();
+    },
+  },
+  computed: {
+    ...mapGetters(['emotionList']),
+  },
+  watch: {
+    messageTimeout(value) {
+      this.debouncedSubmit(value);
+    },
+    thankYouMessage(value) {
+      this.debouncedSubmit(value);
+    },
+    numberOfEmotions(value) {
+      this.debouncedSubmit(value);
+    },
+  },
+  mounted() {
+    this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#foo-M:valid + .txt {
+.error {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--stat-red);
+  margin: 5px 0 0 5px;
+  max-width: 220px;
+}
+.settingsContainer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--stat-background);
+
+  .settings {
+    padding: 4vh 5vw 0 5vw;
+    height: 100vh;
+    width: 65vw;
+
+    .settingsTxt {
+      color: var(--settings-text-light);
+      font-size: 24px;
+    }
+    .x {
+      color: var(--settings-text);
+    }
+  }
+}
+.inp:valid + .txt {
   font-size: 12px;
   top: -11px;
   transition: 0.35s;
 }
-#foo-T:valid + .txt {
-  font-size: 12px;
-  top: -11px;
-  transition: 0.35s;
-}
-#foo-thing:valid + .txt {
-  font-size: 12px;
-  top: -11px;
-  transition: 0.35s;
+select option {
+  background-color: var(--stat-background);
 }
 hr {
   border: 0;
@@ -104,6 +189,12 @@ hr {
 .fisrtTxt {
   display: flex;
   justify-content: space-between;
+}
+.fisrtTxt .x {
+  cursor: pointer;
+}
+.fisrtTxt .x:hover {
+  color: white;
 }
 .other {
   display: flex;
@@ -125,6 +216,7 @@ hr {
   margin-top: 20px;
   position: relative;
   .txt {
+    cursor: pointer;
     color: var(--settings-text);
     background-color: var(--stat-background);
     padding: 0 10px 0 10px;
@@ -144,6 +236,7 @@ hr {
     bottom: -21px;
   }
   .inp {
+    cursor: pointer;
     overflow: hidden;
     padding: 10px 16px 10px 16px;
     height: 40px;
@@ -152,7 +245,8 @@ hr {
     border: 1px var(--settings-border) solid;
     color: var(--settings-text-light);
     border-radius: 4px;
-    background-color: var(--stat-background);
+    background: transparent;
+    z-index: 2;
   }
   .inputContainer {
     display: flex;
@@ -169,23 +263,6 @@ hr {
 .emotionsTxt {
   color: var(--settings-text);
   font-size: 12px;
-}
-.settingsTxt {
-  color: var(--settings-text-light);
-  font-size: 24px;
-}
-.x {
-  color: var(--settings-text);
-}
-.settingsContainer {
-  display: flex;
-  justify-content: center;
-  background-color: var(--stat-background);
-  .settings {
-    padding: 4vh 5vw 0 5vw;
-    height: 100vh;
-    width: 65vw;
-  }
 }
 
 @media only screen and (max-width: 840px) {

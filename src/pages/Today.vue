@@ -52,6 +52,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  height: 60vh;
+}
+.artwork {
+  width: 50%;
+}
+.text-content {
+  margin-top: 50px;
+  margin-left: 150px;
+}
 .today {
   background-color: var(--background-black);
   min-height: 100vh;
