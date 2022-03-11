@@ -12,8 +12,9 @@ export default {};
 
 <style scoped lang="scss">
 .wrapper {
+  z-index: 0;
   max-width: 1012px;
-  max-height: 674px;
+  max-height: 450px;
   width: 100%;
   height: auto;
   height: 70vw;
@@ -21,7 +22,7 @@ export default {};
 
   .oval {
     max-width: 1012px;
-    max-height: 674px;
+    max-height: 455px;
     height: 100%;
     background-image: url('../../public/assets/Oval-copy.svg');
     background-repeat: no-repeat;
