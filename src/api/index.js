@@ -16,6 +16,11 @@ export function emotionSubmit(name) {
   });
   return response;
 }
+/* export function postSettings(value){
+  const response = axios.post(`http://localhost:3000/settings/${value}`, {
+
+  })
+} */
 
 /* export default {
   fetchSettings() {

@@ -10,4 +10,11 @@ export default {
       console.log(error);
     }
   },
+  async settingsPost(_, type) {
+    try {
+      console.log('poslali ste: ', type, ' vrijednosti: ');
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

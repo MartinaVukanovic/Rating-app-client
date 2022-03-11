@@ -23,17 +23,18 @@
             class="inp"
             type="text"
             maxlength="120"
-            ref="messageInput"
+            ref="thankYouMessage"
             required="required"
             v-model="thankYouMessage"
           />
           <label class="txt" @click="focusMessageInput">Thank you message</label>
+          <p class="error">{{ thankYouMessageError }}</p>
         </div>
       </div>
 
       <div class="other">
         <div class="numberSelect first">
-          <select class="inp" required="required" v-model="numberOfEmotions">
+          <select class="inp" required="required" v-model="numberOfEmotions" ref="numberOfEmotions">
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
@@ -45,13 +46,12 @@
           <input
             class="inp"
             type="number"
-            minlength="1"
-            maxlength="2"
-            ref="timeoutInput"
+            ref="messageTimeout"
             required="required"
             v-model="messageTimeout"
           />
           <label class="txt" @click="focusTimeoutInput">Message timeout </label>
+          <p class="error">{{ messageTimeoutError }}</p>
           <label class="txtUnder">Can be from 0-15 </label>
         </div>
       </div>
@@ -61,7 +61,7 @@
 
 <script>
 import { debounce } from 'lodash';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 
 export default {
@@ -70,40 +70,86 @@ export default {
       thankYouMessage: '',
       numberOfEmotions: 3,
       messageTimeout: null,
+      thankYouMessageError: '',
+      messageTimeoutError: '',
+      debouncedSubmit: null,
     };
   },
   components: {
     SmileyFace,
   },
   methods: {
+    ...mapActions('admin', ['settingsPost']),
     focusMessageInput() {
-      this.$refs.messageInput.focus();
+      this.$refs.thankYouMessage.focus();
     },
     focusTimeoutInput() {
-      this.$refs.timeoutInput.focus();
+      this.$refs.messageTimeout.focus();
     },
-    debouncedSubmit() {
-      return debounce(this.submit, 2000)();
+    blurthankYouMessage() {
+      this.$refs.thankYouMessage.blur();
     },
-    submit() {
-      console.log('message submited', this.thankYouMessage);
+    blurnumberOfEmotions() {
+      this.$refs.numberOfEmotions.blur();
+    },
+    blurmessageTimeout() {
+      this.$refs.messageTimeout.blur();
+    },
+    submit(value) {
+      if (!value) {
+        return;
+      }
+      if (value === this.thankYouMessage) {
+        if (this.thankYouMessage.length < 3 || this.thankYouMessage.length > 120) {
+          this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
+        } else {
+          this.thankYouMessageError = '';
+          this.settingsPost(value);
+          this.thankYouMessage = '';
+          this.blurthankYouMessage();
+        }
+      } else if (value === this.messageTimeout) {
+        if (this.messageTimeout < 0 || this.messageTimeout > 15) {
+          this.messageTimeoutError = 'message timeout needs to be between 0 and 15';
+        } else {
+          this.messageTimeoutError = '';
+          this.settingsPost(value);
+          this.messageTimeout = null;
+          this.blurmessageTimeout();
+        }
+      }
+      /* this.settingsPost(value); */
+      this.blurnumberOfEmotions();
     },
   },
   computed: {
     ...mapGetters(['emotionList']),
   },
   watch: {
-    messageTimeout() {
-      this.debouncedSubmit();
+    messageTimeout(value) {
+      this.debouncedSubmit(value);
     },
-    thankYouMessage() {
-      this.debouncedSubmit();
+    thankYouMessage(value) {
+      this.debouncedSubmit(value);
     },
+    numberOfEmotions(value) {
+      this.debouncedSubmit(value);
+    },
+  },
+  mounted() {
+    this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.error {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--stat-red);
+  margin: 5px 0 0 5px;
+  max-width: 220px;
+}
 .settingsContainer {
   display: flex;
   justify-content: center;
