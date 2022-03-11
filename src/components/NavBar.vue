@@ -2,23 +2,23 @@
   <div>
     <div class="navbar desktop" :class="{ show: show }">
       <div>
-      <router-link to="/">
-      <img src="../../public/assets/logo.png" class="logo" />
-      </router-link>
-      <router-link to="/today" class="navigation">
-        <img src="../../public/assets/todayreport.svg" class="icon" />
-        <p class="txt">Today</p>
-      </router-link>
-      <router-link to="/reports" class="navigation">
-        <img src="../../public/assets/allreports.svg" class="icon icon-note" />
-        <p class="txt">Reports</p>
-      </router-link>
+        <router-link to="/">
+          <img src="../../public/assets/logo.png" class="logo" />
+        </router-link>
+        <router-link to="/today" class="navigation">
+          <img src="../../public/assets/todayreport.svg" class="icon" />
+          <p class="txt">Today</p>
+        </router-link>
+        <router-link to="/reports" class="navigation">
+          <img src="../../public/assets/allreports.svg" class="icon icon-note" />
+          <p class="txt">Reports</p>
+        </router-link>
       </div>
       <div class="down">
-         <router-link to="/settings" class="navigation">
-        <img src="../../public/assets/settings.svg" class="icon icon-note" />
-        <p class="txt">Settings</p>
-      </router-link>
+        <router-link to="/settings" class="navigation">
+          <img src="../../public/assets/settings.svg" class="icon icon-note" />
+          <p class="txt">Settings</p>
+        </router-link>
       </div>
     </div>
     <div class="mobile" v-if="mobile">
@@ -64,12 +64,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.txt{
+.txt {
   margin-top: 4px !important;
 }
-.down{
+.down {
   margin-bottom: 20px;
-    width: 65%;
+  width: 65%;
 }
 .navbar {
   z-index: 1 !important;

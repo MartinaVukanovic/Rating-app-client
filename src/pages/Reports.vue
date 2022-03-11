@@ -36,6 +36,8 @@ export default {
   data() {
     return {
       date: [],
+      startDate: [],
+      endDate: [],
     };
   },
   methods: {
@@ -43,10 +45,9 @@ export default {
   },
   computed() {},
   mounted() {
-    const endDate = new Date();
-    const startDate = new Date(new Date().setDate(endDate.getDate() - 7));
-    this.date.value = [startDate, endDate];
-    console.log(this.date);
+    this.endDate = new Date();
+    this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
+    this.date = [this.startDate, this.endDate];
   },
 };
 </script>
@@ -62,6 +63,8 @@ export default {
   width: 250px;
 }
 .container {
+  max-width: 100%;
+  overflow-x: hidden;
   height: 100vh;
   background-color: var(--background-black);
   width: 100%;
