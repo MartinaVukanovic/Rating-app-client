@@ -7,11 +7,6 @@
       </div>
     </div>
     <div class="container">
-      <!-- <SmileyFace type="very_satisfied" color="--smile-green" @click="myMethod"></SmileyFace>
-      <SmileyFace type="satisfied" color="--smile-blue" @click="myMethod"></SmileyFace>
-      <SmileyFace type="dissatisfied" color="--smile-grey" @click="myMethod"></SmileyFace>
-      <SmileyFace type="very_dissatisfied" color="--smile-yellow" @click="myMethod"></SmileyFace>
-      <SmileyFace type="bad" color="--smile-red" @click="myMethod"></SmileyFace> -->
       <SmileyFace
         v-for="emotion in emotionList"
         :key="emotion.name"

@@ -1,12 +1,18 @@
 <template>
   <div class="container2">
     <img src="../../public/assets/check.svg" alt="checkedIcon" />
-    <p class="TMessage">Thank you for your rating!</p>
+    <p class="TMessage">{{ thankYouMessage }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters('admin', ['thankYouMessage']),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

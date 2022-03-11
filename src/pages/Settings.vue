@@ -104,7 +104,7 @@ export default {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         } else {
           this.thankYouMessageError = '';
-          this.settingsPost(value);
+          this.settingsPost({ type: 'message', value });
           this.thankYouMessage = '';
           this.blurthankYouMessage();
         }
@@ -113,13 +113,14 @@ export default {
           this.messageTimeoutError = 'message timeout needs to be between 0 and 15';
         } else {
           this.messageTimeoutError = '';
-          this.settingsPost(value);
+          this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
         }
+      } else if (value === this.numberOfEmotions) {
+        this.settingsPost({ type: 'numberOfEmotions', value });
+        this.blurnumberOfEmotions();
       }
-      /* this.settingsPost(value); */
-      this.blurnumberOfEmotions();
     },
   },
   computed: {

@@ -16,11 +16,13 @@ export function emotionSubmit(name) {
   });
   return response;
 }
-/* export function postSettings(value){
-  const response = axios.post(`http://localhost:3000/settings/${value}`, {
-
-  })
-} */
+export function postSettings(type, value) {
+  console.log('primili smo: ', type, 'vrijednosti: ', value);
+  const response = axios.patch(`http://localhost:3000/settings/${type}`, {
+    [type]: value,
+  });
+  return response;
+}
 
 /* export default {
   fetchSettings() {
