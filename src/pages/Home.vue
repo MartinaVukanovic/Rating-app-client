@@ -12,7 +12,7 @@
         :key="emotion.name"
         :type="emotion.name"
         :color="emotion.color"
-        >{{ emotion.name }}</SmileyFace
+        ></SmileyFace
       >
     </div>
     <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
