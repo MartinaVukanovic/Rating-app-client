@@ -13,7 +13,7 @@
       </Datepicker>
     </div>
     <div class="charts">
-      <AreaChart class="areachart" @click="somePrint"></AreaChart>
+      <AreaChart class="areachart"></AreaChart>
       <PieChart class="piechart"></PieChart>
     </div>
   </div>
@@ -41,13 +41,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['somePrint']),
+    ...mapActions('admin', ['reportsPost']),
   },
   computed() {},
   mounted() {
     this.endDate = new Date();
     this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
     this.date = [this.startDate, this.endDate];
+    this.reportsPost(this.startDate, this.endDate);
   },
 };
 </script>
