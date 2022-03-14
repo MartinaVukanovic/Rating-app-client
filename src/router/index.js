@@ -12,11 +12,13 @@ export default createRouter({
       path: '/today',
       name: 'Today',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Today'),
+      meta: { transition: 'route' },
     },
     {
       path: '/reports',
       name: 'Reports',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Reports'),
+      meta: { transition: 'route-up' },
     },
     {
       path: '/settings',
@@ -27,6 +29,11 @@ export default createRouter({
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Login'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import(/* webpackChunkName: "home" */ '@/pages/NotFound'),
     },
   ],
 });
