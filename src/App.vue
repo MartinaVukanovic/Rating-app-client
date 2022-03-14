@@ -45,9 +45,22 @@ export default {
   --stat-grey: #b0b0b2;
   --stat-background: #2d3038;
   --settings-text: rgba(255, 255, 255, 0.5);
-  --settings-text-light: rgba(255, 255, 255, 0.85);
+  --settings-text-light: rgba(255, 255, 255, 0.7);
   --settings-border: rgba(255, 255, 255, 0.2);
 }
+:root.dark-theme {
+  --smile-green: #00a86b;
+  --smile-red: #f9585a;
+  --smile-blue: #41b3e9;
+  --smile-grey: #7a7a7a;
+  --smile-yellow: #ffba13;
+  --background-black: #ececec;
+  --stat-background: #dddddd;
+  --settings-text-light: rgba(0, 0, 0, 0.85);
+  --settings-text: rgba(0, 0, 0, 0.85);
+  --settings-border: rgba(0, 0, 0, 0.3);
+}
+
 html,
 body {
   padding: 0;
@@ -55,7 +68,6 @@ body {
   box-sizing: border-box;
 }
 #app {
-  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

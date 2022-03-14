@@ -12,15 +12,16 @@
         :key="emotion.name"
         :type="emotion.name"
         :color="emotion.color"
-        ></SmileyFace
-      >
+      ></SmileyFace>
     </div>
-    <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
+    <transition name="fade">
+      <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
 
@@ -35,20 +36,32 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['toggleWelcomePage']),
     myMethod() {
-      this.show = true;
+      this.toggleWelcomePage();
       setTimeout(() => {
-        this.show = false;
-      }, 5000);
+        this.toggleWelcomePage();
+      }, this.MessageTime);
     },
   },
   computed: {
     ...mapGetters(['emotionList', 'welcomePage']),
+    ...mapGetters('admin', ['MessageTime']),
   },
 };
 </script>
 
 <style lang="css" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -62,7 +75,7 @@ export default {
   margin: auto;
   margin-top: 31px;
   width: 250px;
-  color: rgb(255, 255, 255, 0.7);
+  color: var(--settings-text-light);
   font-size: 32px;
 }
 
@@ -84,10 +97,17 @@ export default {
   .likeIcon {
     height: 35vh;
   }
+  .welcomeText {
+    font-size: 26px;
+  }
+  img {
+    width: 120px !important;
+  }
 }
 
 .body {
-  background-color: #1b1e24;
+  font-weight: 400;
+  background-color: var(--background-black);
   min-height: 100vh;
   width: 100%;
   display: table;

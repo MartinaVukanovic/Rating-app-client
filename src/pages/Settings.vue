@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     ...mapActions('admin', ['settingsPost']),
+    ...mapActions(['toggleSpin']),
     focusMessageInput() {
       this.$refs.thankYouMessage.focus();
     },
@@ -104,7 +105,9 @@ export default {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         } else {
           this.thankYouMessageError = '';
+          this.toggleSpin();
           this.settingsPost({ type: 'message', value });
+          this.toggleSpin();
           this.thankYouMessage = '';
           this.blurthankYouMessage();
         }

@@ -6,7 +6,7 @@
 
 <script>
 import utils from '@/utility';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -20,7 +20,21 @@ export default {
       type: String,
     },
   },
+  methods: {
+    ...mapActions(['submitEmotion', 'toggleWelcomePage', 'toggleSpin']),
+    getCssVariable(color) {
+      return getComputedStyle(document.documentElement).getPropertyValue(color);
+    },
+    submit() {
+      this.toggleSpin();
+      this.submitEmotion(this.type);
+      this.toggleSpin();
+      this.toggleWelcomePage();
+      setTimeout(this.toggleWelcomePage, this.MessageTime * 1000);
+    },
+  },
   computed: {
+    ...mapGetters('admin', ['MessageTime']),
     imageType() {
       return this.type;
     },
@@ -32,19 +46,6 @@ export default {
         backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.1),
         borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
       };
-    },
-  },
-  methods: {
-    ...mapActions(['submitEmotion', 'toggleWelcomePage', 'toggleSpin']),
-    getCssVariable(color) {
-      return getComputedStyle(document.documentElement).getPropertyValue(color);
-    },
-    submit() {
-      this.toggleSpin();
-      this.submitEmotion(this.type);
-      this.toggleSpin();
-      this.toggleWelcomePage();
-      setTimeout(this.toggleWelcomePage, 5000);
     },
   },
 };
