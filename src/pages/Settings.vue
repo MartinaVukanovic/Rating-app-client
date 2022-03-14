@@ -11,6 +11,7 @@
           <p class="emotionsTxt">Emotions preview</p>
           <div class="smileyFaceContainer">
             <SmileyFace
+              class="smiley-face"
               :type="emotion.name"
               v-for="emotion in emotionList"
               :key="emotion.name"
@@ -26,6 +27,7 @@
             ref="thankYouMessage"
             required="required"
             v-model="thankYouMessage"
+            :class="{ inputError: thankYouMessageError }"
           />
           <label class="txt" @click="focusMessageInput">Thank you message</label>
           <p class="error">{{ thankYouMessageError }}</p>
@@ -35,7 +37,7 @@
       <div class="other">
         <div class="numberSelect first">
           <select class="inp" required="required" v-model="numberOfEmotions" ref="numberOfEmotions">
-            <option value="3">3</option>
+            <option value="3" selected>3</option>
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
@@ -49,6 +51,7 @@
             ref="messageTimeout"
             required="required"
             v-model="messageTimeout"
+            :class="{ inputError: messageTimeoutError }"
           />
           <label class="txt" @click="focusTimeoutInput">Message timeout </label>
           <p class="error">{{ messageTimeoutError }}</p>
@@ -60,6 +63,7 @@
 </template>
 
 <script>
+import utils from '@/utility';
 import { debounce } from 'lodash';
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
@@ -68,7 +72,7 @@ export default {
   data() {
     return {
       thankYouMessage: '',
-      numberOfEmotions: 3,
+      numberOfEmotions: this.emotionNumber,
       messageTimeout: null,
       thankYouMessageError: '',
       messageTimeoutError: '',
@@ -100,22 +104,22 @@ export default {
         return;
       }
       if (value === this.thankYouMessage) {
-        if (this.thankYouMessage.length < 3 || this.thankYouMessage.length > 120) {
-          this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
-        } else {
+        if (utils.validateString(value, 3, 120)) {
           this.thankYouMessageError = '';
           this.settingsPost({ type: 'message', value });
           this.thankYouMessage = '';
           this.blurthankYouMessage();
+        } else {
+          this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
       } else if (value === this.messageTimeout) {
-        if (this.messageTimeout < 0 || this.messageTimeout > 15) {
-          this.messageTimeoutError = 'message timeout needs to be between 0 and 15';
-        } else {
+        if (utils.validateNumber(value, 0, 15)) {
           this.messageTimeoutError = '';
           this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
+        } else {
+          this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 15';
         }
       } else if (value === this.numberOfEmotions) {
         this.settingsPost({ type: 'numberOfEmotions', value });
@@ -125,12 +129,15 @@ export default {
   },
   computed: {
     ...mapGetters(['emotionList']),
+    ...mapGetters('admin', ['emotionNumber']),
   },
   watch: {
     messageTimeout(value) {
+      this.messageTimeoutError = '';
       this.debouncedSubmit(value);
     },
     thankYouMessage(value) {
+      this.thankYouMessageError = '';
       this.debouncedSubmit(value);
     },
     numberOfEmotions(value) {
@@ -138,6 +145,7 @@ export default {
     },
   },
   mounted() {
+    this.numberOfEmotions = this.emotionNumber;
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };
@@ -264,6 +272,12 @@ hr {
 .emotionsTxt {
   color: var(--settings-text);
   font-size: 12px;
+}
+.inp:focus.inputError {
+  outline: 1px var(--stat-red) solid;
+}
+.smiley-face {
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 840px) {
