@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
@@ -52,6 +53,14 @@ export default {
         { count: 155, type: 'bad' },
       ],
     };
+  },
+  methods: {
+    ...mapActions('admin', ['todayPost']),
+  },
+  mounted() {
+    const today = new Date();
+    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    this.todayPost(date);
   },
 };
 </script>
