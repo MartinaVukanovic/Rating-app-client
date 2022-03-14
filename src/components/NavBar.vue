@@ -77,7 +77,7 @@ export default {
   height: 100%;
   position: fixed;
   left: -100px;
-  background-color: var(--stat-background);
+  background-color: #2d3038;
   display: flex;
   flex-direction: column;
   align-items: center;

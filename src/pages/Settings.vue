@@ -84,6 +84,7 @@ export default {
   },
   methods: {
     ...mapActions('admin', ['settingsPost']),
+    ...mapActions(['toggleSpin']),
     focusMessageInput() {
       this.$refs.thankYouMessage.focus();
     },
@@ -106,7 +107,9 @@ export default {
       if (value === this.thankYouMessage) {
         if (utils.validateString(value, 3, 120)) {
           this.thankYouMessageError = '';
+          this.toggleSpin();
           this.settingsPost({ type: 'message', value });
+          this.toggleSpin();
           this.thankYouMessage = '';
           this.blurthankYouMessage();
         } else {

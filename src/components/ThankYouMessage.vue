@@ -31,7 +31,7 @@ export default {
 }
 
 .TMessage {
-  color: white;
+  color: var(--settings-text-light);
   font-size: 32px;
   text-align: center;
 }

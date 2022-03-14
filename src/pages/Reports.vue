@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container" :class="theme === 'light' ? 'light-theme' : 'dark-theme'">
     <div class="datepickerContainer">
       <Datepicker
         v-model="date"
@@ -16,6 +16,7 @@
       <AreaChart class="areachart"></AreaChart>
       <PieChart class="piechart"></PieChart>
     </div>
+    <!--   <button class="botun" @click="changeTheme">switch</button> -->
   </div>
 </template>
 
@@ -38,10 +39,14 @@ export default {
       date: [],
       startDate: [],
       endDate: [],
+      theme: 'light',
     };
   },
   methods: {
     ...mapActions('admin', ['reportsPost']),
+    changeTheme() {
+      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    },
   },
   computed() {},
   mounted() {
@@ -54,6 +59,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* .botun {
+  margin-left: 200px;
+}
+.light-theme {
+  background-color: white !important;
+  color: black !important;
+}
+.dark-theme {
+  background-color: black !important;
+  color: white !important;
+} */
 .datepickerContainer {
   display: flex;
   justify-content: left;
