@@ -6,17 +6,29 @@
           <img src="../../public/assets/logo.png" class="logo" />
         </router-link>
         <router-link to="/today" class="navigation">
-          <img src="../../public/assets/todayreport.svg" class="icon" />
+          <img
+            src="../../public/assets/todayreport.svg"
+            class="icon"
+            :class="{ dark: this.theme == 'light' }"
+          />
           <p class="txt">Today</p>
         </router-link>
         <router-link to="/reports" class="navigation">
-          <img src="../../public/assets/allreports.svg" class="icon icon-note" />
+          <img
+            src="../../public/assets/allreports.svg"
+            class="icon icon-note"
+            :class="{ dark: this.theme == 'light' }"
+          />
           <p class="txt">Reports</p>
         </router-link>
       </div>
       <div class="down">
         <router-link to="/settings" class="navigation">
-          <img src="../../public/assets/settings.svg" class="icon icon-note" />
+          <img
+            src="../../public/assets/settings.svg"
+            class="icon icon-note"
+            :class="{ dark: this.theme == 'light' }"
+          />
           <p class="txt">Settings</p>
         </router-link>
       </div>
@@ -39,6 +51,7 @@ export default {
       mobile: true,
       active: false,
       show: false,
+      theme: '',
     };
   },
   methods: {
@@ -60,6 +73,9 @@ export default {
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   },
+  mounted() {
+    this.theme = localStorage.getItem('theme');
+  },
 };
 </script>
 
@@ -71,13 +87,16 @@ export default {
   margin-bottom: 20px;
   width: 65%;
 }
+.dark {
+  filter: invert(0.55);
+}
 .navbar {
   z-index: 1 !important;
   width: 100px;
   height: 100%;
   position: fixed;
   left: -100px;
-  background-color: #2d3038;
+  background-color: var(--stat-background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +122,7 @@ export default {
   font-size: 12px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--settings-text-light);
 }
 
 .logo {
@@ -116,6 +135,9 @@ export default {
   height: 30px;
   padding: 0;
   margin: 0;
+}
+.iconDark {
+  filter: invert(0.6);
 }
 .icon-note {
   padding-bottom: 2px;

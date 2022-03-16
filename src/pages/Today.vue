@@ -88,7 +88,7 @@ export default {
   .text-content {
     padding: 10px;
     .title {
-      max-width: 640px;
+      max-width: 660px;
       margin: 0 auto;
       p {
         color: var(--settings-text-light);

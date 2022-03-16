@@ -16,9 +16,14 @@ export default {
       type: String,
     },
     color: {
-      required: true,
+      required: false,
       type: String,
     },
+  },
+  data() {
+    return {
+      theme: '',
+    };
   },
   methods: {
     ...mapActions(['submitEmotion', 'toggleWelcomePage', 'toggleSpin']),
@@ -42,11 +47,20 @@ export default {
       return `../../assets/${this.imageType}.svg`;
     },
     imageStyles() {
+      if (this.theme === 'light') {
+        return {
+          backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.65),
+          borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
+        };
+      }
       return {
         backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.1),
         borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
       };
     },
+  },
+  mounted() {
+    this.theme = localStorage.getItem('theme');
   },
 };
 </script>
