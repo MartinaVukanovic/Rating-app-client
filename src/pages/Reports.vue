@@ -59,17 +59,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* .botun {
-  margin-left: 200px;
-}
-.light-theme {
-  background-color: white !important;
-  color: black !important;
-}
-.dark-theme {
-  background-color: black !important;
-  color: white !important;
-} */
 .datepickerContainer {
   display: flex;
   justify-content: left;

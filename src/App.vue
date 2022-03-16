@@ -24,6 +24,8 @@ export default {
   },
   mounted() {
     this.settingsGet();
+    const localTheme = localStorage.getItem('theme');
+    document.documentElement.setAttribute('data-theme', localTheme);
   },
 };
 </script>
@@ -47,18 +49,27 @@ export default {
   --settings-text: rgba(255, 255, 255, 0.5);
   --settings-text-light: rgba(255, 255, 255, 0.7);
   --settings-border: rgba(255, 255, 255, 0.2);
+  --calendar: #2d3038;
+  --calendar-header: rgb(0, 107, 245, 0.8);
+  --calendar-month: white;
+  --calendar-end: #006bf5;
+  --calendar-text-color: white;
+  --background-black-calendar: var(--background-black);
 }
-:root.dark-theme {
-  --smile-green: #00a86b;
-  --smile-red: #f9585a;
-  --smile-blue: #41b3e9;
-  --smile-grey: #7a7a7a;
-  --smile-yellow: #ffba13;
+
+[data-theme='light'] {
   --background-black: #ececec;
   --stat-background: #dddddd;
   --settings-text-light: rgba(0, 0, 0, 0.85);
   --settings-text: rgba(0, 0, 0, 0.85);
   --settings-border: rgba(0, 0, 0, 0.3);
+  --calendar: #f0e5e5;
+  --calendar-white: white;
+  --calendar-header: rgba(214, 100, 33, 0.8);
+  --calendar-month: black;
+  --calendar-end: #e96d47;
+  --calendar-text-color: rgb(70, 70, 70);
+  --background-black-calendar: rgba(233, 109, 71, 0.4);
 }
 
 html,

@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <SmileyFace type="very_dissatisfied"></SmileyFace>
+    <div>
+      <SmileyFace type="very_dissatisfied" :class="{ dark: this.theme == 'light' }"></SmileyFace>
+    </div>
     <div>404 - page not found</div>
   </div>
 </template>
@@ -12,11 +14,20 @@ export default {
   components: {
     SmileyFace,
   },
+  data() {
+    return {
+      theme: '',
+    };
+  },
+  mounted() {
+    this.theme = localStorage.getItem('theme');
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
+  font-weight: 300;
   text-align: center;
   font-size: 30px;
   display: flex;
@@ -30,6 +41,10 @@ export default {
 }
 .smiley {
   margin-top: -40px;
+}
+.dark {
+  margin-top: -40px;
+  filter: invert(1);
 }
 
 @media all and (max-width: 760px) {
