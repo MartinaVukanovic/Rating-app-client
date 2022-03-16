@@ -13,7 +13,13 @@
     </div>
     <div class="margin-div"></div>
     <div class="grafs">
-      <AreaChart class="area-chart"></AreaChart>
+      <AreaChart
+        v-if="todayHours.length"
+        class="area-chart"
+        :hours="todayHours"
+        :values="todayValues"
+        :smiles="smiles"
+      ></AreaChart>
       <PieChart class="pie-chart"></PieChart>
     </div>
     <div class="stats-count">
@@ -31,7 +37,7 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
@@ -45,17 +51,21 @@ export default {
   },
   data() {
     return {
-      smiles: [
+      /* smiles: [
         { count: 26, type: 'very_satisfied' },
         { count: 14, type: 'satisfied' },
         { count: 35, type: 'dissatisfied' },
         { count: 8, type: 'very_dissatisfied' },
         { count: 155, type: 'bad' },
-      ],
+      ], */
     };
   },
   methods: {
     ...mapActions('admin', ['todayPost']),
+  },
+  computed: {
+    ...mapGetters('admin', ['todayHours', 'todayValues']),
+    ...mapGetters(['smiles']),
   },
   mounted() {
     const today = new Date();

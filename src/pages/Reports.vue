@@ -13,7 +13,13 @@
       </Datepicker>
     </div>
     <div class="charts">
-      <AreaChart class="areachart"></AreaChart>
+      <AreaChart
+        v-if="reportsValues.length"
+        class="areachart"
+        :hours="reportsHours"
+        :values="reportsValues"
+        :smiles="smiles"
+      ></AreaChart>
       <PieChart class="piechart"></PieChart>
     </div>
   </div>
@@ -22,7 +28,7 @@
 <script>
 import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 
@@ -43,12 +49,15 @@ export default {
   methods: {
     ...mapActions('admin', ['reportsPost']),
   },
-  computed() {},
+  computed: {
+    ...mapGetters('admin', ['reportsHours', 'reportsValues']),
+    ...mapGetters(['smiles']),
+  },
   mounted() {
     this.endDate = new Date();
     this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
     this.date = [this.startDate, this.endDate];
-    this.reportsPost(this.startDate, this.endDate);
+    this.reportsPost(this.date);
   },
 };
 </script>

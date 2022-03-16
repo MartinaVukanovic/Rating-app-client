@@ -12,8 +12,7 @@
         :key="emotion.name"
         :type="emotion.name"
         :color="emotion.color"
-        ></SmileyFace
-      >
+      ></SmileyFace>
     </div>
     <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
   </div>

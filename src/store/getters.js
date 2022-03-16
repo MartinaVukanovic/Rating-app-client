@@ -8,4 +8,7 @@ export default {
   welcomePage(state) {
     return state.showWelcomePage;
   },
+  smiles(state) {
+    return state.smiles;
+  },
 };
