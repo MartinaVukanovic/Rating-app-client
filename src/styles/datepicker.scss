@@ -1,5 +1,5 @@
 .db__calendar_header {
-  color: rgb(0, 107, 245, 0.8);
+  color: var(--calendar-header);
 }
 .dp__calendar_header_separator {
   height: 0px;
@@ -8,13 +8,17 @@
 .dp__input {
   background-color: var(--background-black);
   color: var(--settings-text-light);
-  border: 1px solid rgb(255, 255, 255, 0.2);
+  border: 1px solid var(--settings-border);
   border-radius: 4px;
   width: 90%;
   margin-left: 30px;
 }
+.dp__overlay_cell_active {
+  background: var(--calendar-end);
+}
 .dp__instance_calendar {
-  background-color: var(--stat-background);
+  background-color: var(--calendar);
+  padding: 10px;
 }
 .dp__range_end,
 .dp__active_date {
@@ -32,7 +36,8 @@
   width: 35px;
 }
 .dp__range_start {
-  background-color: var(--background-black);
+  background-color: var(--background-black-calendar);
+  color: white;
 }
 .dp__input_icon_pad {
   padding-left: 12px;
@@ -43,5 +48,39 @@
 .dp__input_icon {
   height: 21px !important;
   width: 21px;
-  color: rgb(255, 255, 255, 0.6);
+}
+.dp__month_year_select {
+  color: var(--calendar-month);
+}
+.dp__month_year_select:hover {
+  background-color: var(--background-black-calendar);
+}
+.dp__inner_nav:hover {
+  color: var(--calendar-white);
+  background-color: var(--background-black-calendar);
+}
+.dp__range_end,
+.dp__active_date {
+  background-color: var(--calendar-end);
+}
+.dp__calendar_item {
+  color: var(--calendar-text-color);
+}
+.dp__button {
+  background: var(--calendar);
+}
+.dp__overlay {
+  background: var(--calendar);
+  color: var(--calendar-text-color);
+}
+.dp__arrow_top {
+  background-color: var(--calendar);
+  border-left: 1px solid var(--dp-menu-border-color);
+  border-top: 1px solid var(--dp-menu-border-color);
+}
+.dp__overlay_cell:hover {
+  background-color: var(--background-black-calendar);
+}
+.dp__button:hover {
+  background-color: var(--calendar-end);
 }

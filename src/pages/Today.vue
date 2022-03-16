@@ -2,7 +2,9 @@
   <div class="today">
     <div class="top-row">
       <div class="text-content">
-        <div class="title"><p>Today is a new day. Check your ratings!</p></div>
+        <div class="title">
+          <p><b> Today is a new day. Check your ratings!</b></p>
+        </div>
         <div class="subtitle">
           <p>
             Graphs presents you rating results. Today you have 225 rates, check it on dashboard.
@@ -93,10 +95,10 @@ export default {
   .text-content {
     padding: 10px;
     .title {
-      max-width: 610px;
+      max-width: 660px;
       margin: 0 auto;
       p {
-        color: rgba(255, 255, 255, 0.7);
+        color: var(--settings-text-light);
         text-align: center;
         font-size: 28px;
         font-weight: bold;
@@ -108,7 +110,7 @@ export default {
       margin: 0 auto;
       p {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
+        color: var(--settings-text);
         margin: 0 0 24px 0;
         text-align: center;
       }
@@ -147,16 +149,22 @@ export default {
       list-style-type: none;
       .list-field {
         width: 50%;
-        color: rgba(255, 255, 255, 0.85);
+        color: var(--settings-text);
         font-size: 12px;
         height: 47px;
         line-height: 47px;
         padding-left: calc(20px + 0.5vw);
       }
       .list-field-title {
-        background-color: rgba(255, 255, 255, 0.03);
+        background-color: var(--stat-background);
       }
     }
+  }
+}
+@media all and (max-width: 1020px) {
+  .stats-count {
+    justify-content: center !important;
+    margin-left: -40px;
   }
 }
 /*media querry*/

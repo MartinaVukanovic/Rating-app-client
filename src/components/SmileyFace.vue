@@ -6,7 +6,7 @@
 
 <script>
 import utils from '@/utility';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -16,23 +16,14 @@ export default {
       type: String,
     },
     color: {
-      required: true,
+      required: false,
       type: String,
     },
   },
-  computed: {
-    imageType() {
-      return this.type;
-    },
-    imageSrc() {
-      return `../../assets/${this.imageType}.svg`;
-    },
-    imageStyles() {
-      return {
-        backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.1),
-        borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
-      };
-    },
+  data() {
+    return {
+      theme: '',
+    };
   },
   methods: {
     ...mapActions(['submitEmotion', 'toggleWelcomePage', 'toggleSpin']),
@@ -44,8 +35,32 @@ export default {
       this.submitEmotion(this.type);
       this.toggleSpin();
       this.toggleWelcomePage();
-      setTimeout(this.toggleWelcomePage, 5000);
+      setTimeout(this.toggleWelcomePage, this.MessageTime * 1000);
     },
+  },
+  computed: {
+    ...mapGetters('admin', ['MessageTime']),
+    imageType() {
+      return this.type;
+    },
+    imageSrc() {
+      return `../../assets/${this.imageType}.svg`;
+    },
+    imageStyles() {
+      if (this.theme === 'light') {
+        return {
+          backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.65),
+          borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
+        };
+      }
+      return {
+        backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.1),
+        borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
+      };
+    },
+  },
+  mounted() {
+    this.theme = localStorage.getItem('theme');
   },
 };
 </script>

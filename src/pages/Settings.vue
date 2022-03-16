@@ -9,13 +9,20 @@
       <div class="emojiPreview other">
         <div>
           <p class="emotionsTxt">Emotions preview</p>
-          <div class="smileyFaceContainer">
+          <div class="smileyFaceContainer light" v-if="this.theme == 'light'">
             <SmileyFace
               class="smiley-face"
               :type="emotion.name"
               v-for="emotion in emotionList"
               :key="emotion.name"
-              :color="emotion.color"
+            ></SmileyFace>
+          </div>
+          <div class="smileyFaceContainer" v-else>
+            <SmileyFace
+              class="smiley-face"
+              :type="emotion.name"
+              v-for="emotion in emotionList"
+              :key="emotion.name"
             ></SmileyFace>
           </div>
         </div>
@@ -55,9 +62,12 @@
           />
           <label class="txt" @click="focusTimeoutInput">Message timeout </label>
           <p class="error">{{ messageTimeoutError }}</p>
-          <label class="txtUnder">Can be from 0-15 </label>
+          <label class="txtUnder">Can be from 0-10 </label>
         </div>
       </div>
+    </div>
+    <div class="theme">
+      <ToggleSwitch @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
     </div>
   </div>
 </template>
@@ -67,6 +77,7 @@ import utils from '@/utility';
 import { debounce } from 'lodash';
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 export default {
   data() {
@@ -77,13 +88,16 @@ export default {
       thankYouMessageError: '',
       messageTimeoutError: '',
       debouncedSubmit: null,
+      theme: '',
     };
   },
   components: {
     SmileyFace,
+    ToggleSwitch,
   },
   methods: {
     ...mapActions('admin', ['settingsPost']),
+    ...mapActions(['toggleSpin']),
     focusMessageInput() {
       this.$refs.thankYouMessage.focus();
     },
@@ -106,25 +120,32 @@ export default {
       if (value === this.thankYouMessage) {
         if (utils.validateString(value, 3, 120)) {
           this.thankYouMessageError = '';
+          this.toggleSpin();
           this.settingsPost({ type: 'message', value });
+          this.toggleSpin();
           this.thankYouMessage = '';
           this.blurthankYouMessage();
         } else {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
       } else if (value === this.messageTimeout) {
-        if (utils.validateNumber(value, 0, 15)) {
+        if (utils.validateNumber(value, 0, 10)) {
           this.messageTimeoutError = '';
           this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
         } else {
-          this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 15';
+          this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
         this.settingsPost({ type: 'numberOfEmotions', value });
         this.blurnumberOfEmotions();
       }
+    },
+    toggleTheme() {
+      this.theme = this.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
     },
   },
   computed: {
@@ -145,6 +166,7 @@ export default {
     },
   },
   mounted() {
+    this.theme = localStorage.getItem('theme');
     this.numberOfEmotions = this.emotionNumber;
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
@@ -152,6 +174,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.light {
+  filter: invert(1);
+}
+.theme {
+  margin-bottom: 35vh;
+}
 .error {
   font-size: 12px;
   letter-spacing: 1px;
@@ -162,11 +190,14 @@ export default {
 .settingsContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: var(--stat-background);
+  flex-direction: column;
+  height: 100vh;
 
   .settings {
     padding: 4vh 5vw 0 5vw;
-    height: 100vh;
+    height: 80vh;
     width: 65vw;
 
     .settingsTxt {
@@ -181,7 +212,6 @@ export default {
 .inp:valid + .txt {
   font-size: 12px;
   top: -11px;
-  transition: 0.35s;
 }
 select option {
   background-color: var(--stat-background);
@@ -217,7 +247,6 @@ hr {
   .smiley {
     height: 55px;
     width: 38px;
-    background-color: var(--stat-background) !important;
     border: none !important;
   }
 }
@@ -233,7 +262,6 @@ hr {
     left: 8px;
     position: absolute;
     font-size: 16px;
-    transition: 0.4s;
   }
   .txtUnder {
     color: var(--settings-text);
@@ -284,6 +312,7 @@ hr {
   .settings {
     margin-top: 80px;
     padding: 0px !important;
+    width: 40vw !important;
   }
   .other {
     justify-content: center;
@@ -298,6 +327,14 @@ hr {
   }
   .thankYou {
     margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .settings {
+    width: 60vw !important;
+  }
+  .theme {
+    margin-bottom: 15vh;
   }
 }
 </style>

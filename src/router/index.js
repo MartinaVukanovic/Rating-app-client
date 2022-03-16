@@ -26,9 +26,8 @@ export default createRouter({
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Settings'),
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: () => import(/* webpackChunkName: "home" */ '@/pages/Login'),
+      path: '/admin',
+      redirect: '/today',
     },
     {
       path: '/:pathMatch(.*)*',
