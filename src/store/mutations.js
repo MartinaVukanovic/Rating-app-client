@@ -1,6 +1,6 @@
 export default {
   submitEmotion(_, response) {
-    console.log('emotion submited, ', response);
+    console.log('emotion submited, ', response.data);
   },
   smilesGet(state, response) {
     state.smiles = response;
@@ -10,5 +10,8 @@ export default {
   },
   toggleWelcomePage(state) {
     state.showWelcomePage = !state.showWelcomePage;
+  },
+  changeLanguage(state, language) {
+    state.language = language;
   },
 };

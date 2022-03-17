@@ -2,13 +2,13 @@
   <div class="settingsContainer">
     <div class="settings">
       <div class="fisrtTxt">
-        <p class="settingsTxt">Settings</p>
+        <p class="settingsTxt">{{ $t('Settings') }}</p>
         <p class="settingsTxt x" @click="$router.go(-1)">x</p>
       </div>
       <hr />
       <div class="emojiPreview other">
         <div>
-          <p class="emotionsTxt">Emotions preview</p>
+          <p class="emotionsTxt">{{ $t('settings.EmotionPreview') }}</p>
           <div class="smileyFaceContainer light" v-if="this.theme == 'light'">
             <SmileyFace
               class="smiley-face"
@@ -36,8 +36,10 @@
             v-model="thankYouMessage"
             :class="{ inputError: thankYouMessageError }"
           />
-          <label class="txt" @click="focusMessageInput">Thank you message</label>
-          <p class="error">{{ thankYouMessageError }}</p>
+          <label class="txt" @click="focusMessageInput">{{
+            $t('settings.MessagePlaceholder')
+          }}</label>
+          <p class="error" v-if="thankYouMessageError">{{ $t('MessageError') }}</p>
         </div>
       </div>
 
@@ -48,8 +50,8 @@
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <label class="txt">Number of emotions</label>
-          <label class="txtUnder">Enter number from 3-5 </label>
+          <label class="txt">{{ $t('settings.EmotionsNumberPlaceHolder') }}</label>
+          <label class="txtUnder">{{ $t('settings.EmotionsNumberLimit') }} </label>
         </div>
         <div class="numberSelect second">
           <input
@@ -60,14 +62,19 @@
             v-model="messageTimeout"
             :class="{ inputError: messageTimeoutError }"
           />
-          <label class="txt" @click="focusTimeoutInput">Message timeout </label>
-          <p class="error">{{ messageTimeoutError }}</p>
-          <label class="txtUnder">Can be from 0-10 </label>
+          <label class="txt" @click="focusTimeoutInput"
+            >{{ $t('settings.MessageTimeoutPlaceholder') }}
+          </label>
+          <p class="error" v-if="messageTimeoutError">{{ $t('MessageTimeoutError') }}</p>
+          <label class="txtUnder">{{ $t('settings.MessageTimeoutLimit') }} </label>
         </div>
       </div>
     </div>
     <div class="theme">
       <ToggleSwitch @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
+    </div>
+    <div class="lang">
+      <LanguageSwitch></LanguageSwitch>
     </div>
   </div>
 </template>
@@ -78,6 +85,7 @@ import { debounce } from 'lodash';
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ToggleSwitch from '../components/ToggleSwitch';
+import LanguageSwitch from '../components/LanguageSwitch';
 
 export default {
   data() {
@@ -94,6 +102,7 @@ export default {
   components: {
     SmileyFace,
     ToggleSwitch,
+    LanguageSwitch,
   },
   methods: {
     ...mapActions('admin', ['settingsPost']),
@@ -177,9 +186,6 @@ export default {
 .light {
   filter: invert(1);
 }
-.theme {
-  margin-bottom: 35vh;
-}
 .error {
   font-size: 12px;
   letter-spacing: 1px;
@@ -189,7 +195,6 @@ export default {
 }
 .settingsContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
   background-color: var(--stat-background);
   flex-direction: column;
@@ -197,7 +202,6 @@ export default {
 
   .settings {
     padding: 4vh 5vw 0 5vw;
-    height: 80vh;
     width: 65vw;
 
     .settingsTxt {
@@ -307,10 +311,18 @@ hr {
 .smiley-face {
   pointer-events: none;
 }
-
-@media only screen and (max-width: 840px) {
+.theme {
+  margin-top: 90px;
+}
+@media only screen and (max-width: 842px) {
+  .theme {
+    margin-top: 90px;
+  }
+  .lang {
+    margin-top: 60px !important;
+  }
   .settings {
-    margin-top: 80px;
+    margin-top: 50px;
     padding: 0px !important;
     width: 40vw !important;
   }
@@ -333,8 +345,8 @@ hr {
   .settings {
     width: 60vw !important;
   }
-  .theme {
-    margin-bottom: 15vh;
-  }
+}
+.lang {
+  margin-top: 28vh;
 }
 </style>

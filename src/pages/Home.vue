@@ -3,7 +3,7 @@
     <div class="likeIcon">
       <div class="likeIconImage">
         <img src="../../public/assets/positive-vote.svg" />
-        <p class="welcomeText">Rate our service!</p>
+        <p class="welcomeText">{{ $t('HomeScreenMessage') }}</p>
       </div>
     </div>
     <div class="container">
@@ -74,7 +74,7 @@ export default {
 .welcomeText {
   margin: auto;
   margin-top: 31px;
-  width: 250px;
+  width: 350px;
   color: var(--settings-text-light);
   font-size: 32px;
 }

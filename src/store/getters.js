@@ -11,4 +11,7 @@ export default {
   smiles(state) {
     return state.smiles;
   },
+  language(state) {
+    return state.language;
+  },
 };

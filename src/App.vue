@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Spinner v-if="spin"></Spinner>
-    <TemplateDefault></TemplateDefault>
+    <TemplateDefault> </TemplateDefault>
   </div>
 </template>
 

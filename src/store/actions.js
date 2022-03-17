@@ -18,4 +18,9 @@ export default {
   toggleSpin({ commit }) {
     commit('toggleSpin');
   },
+
+  changeLanguage({ commit }, language) {
+    console.log(language);
+    commit('changeLanguage', language);
+  },
 };

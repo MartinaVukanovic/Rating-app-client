@@ -3,12 +3,14 @@
     <div class="top-row">
       <div class="text-content">
         <div class="title">
-          <p><b> Today is a new day. Check your ratings!</b></p>
+          <p>
+            <b>
+              <p>{{ $t('TodayTitle') }}</p></b
+            >
+          </p>
         </div>
         <div class="subtitle">
-          <p>
-            Graphs presents you rating results. Today you have 225 rates, check it on dashboard.
-          </p>
+          <p>{{ $t('TodaySubTitleFirst') }} {{ $t('TodaySubTitleSecond') }}</p>
         </div>
       </div>
       <OvalArtwork class="artwork"></OvalArtwork>
@@ -27,8 +29,8 @@
     <div class="stats-count">
       <ul>
         <li>
-          <div class="list-field list-field-title">Emotion</div>
-          <div class="list-field list-field-title">Count</div>
+          <div class="list-field list-field-title">{{ $t('Emotion') }}</div>
+          <div class="list-field list-field-title">{{ $t('Count') }}</div>
         </li>
         <li v-for="smile in smiles" :key="smile.type">
           <div class="list-field">{{ smile.type }}</div>

@@ -11,7 +11,7 @@
             class="icon"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">Today</p>
+          <p class="txt">{{ $t('Today') }}</p>
         </router-link>
         <router-link to="/reports" class="navigation">
           <img
@@ -19,7 +19,7 @@
             class="icon icon-note"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">Reports</p>
+          <p class="txt">{{ $t('Reports') }}</p>
         </router-link>
       </div>
       <div class="down">
@@ -29,7 +29,7 @@
             class="icon icon-note"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">Settings</p>
+          <p class="txt">{{ $t('Settings') }}</p>
         </router-link>
       </div>
     </div>

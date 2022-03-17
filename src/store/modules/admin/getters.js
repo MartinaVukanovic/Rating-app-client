@@ -7,7 +7,7 @@ export default {
   },
   MessageTime(state) {
     return state.messageTime;
-},
+  },
   emotionNumber(state) {
     return state.numberOfEmotions;
   },
