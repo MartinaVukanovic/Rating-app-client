@@ -33,7 +33,7 @@ export default {
       console.log(error);
     }
   },
-  async reportsPost({ commit }, startDate, endDate) {
+  async reportsPost({ commit }, { startDate, endDate }) {
     try {
       const response = await postReports(startDate, endDate);
       commit('reportsPost', response.data);
