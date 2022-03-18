@@ -2,7 +2,7 @@ export default {
   HomeScreenMessage: 'Ocijenite našu uslugu!',
   TodayTitle: 'Danas je novi dan. Pogledajte svoje ocjene!',
   TodaySubTitleFirst: 'Grafovi prikazuju rezultate ocjenjivanja. Danas imate',
-  TodaySubTitleSecond: ' ocijena, provjerite na nadzornoj ploči.',
+  TodaySubTitleSecond: ' ocjena, provjerite na nadzornoj ploči.',
   settings: {
     EmotionPreview: 'Pregled emotikona',
     MessagePlaceholder: 'Poruka zahvale',

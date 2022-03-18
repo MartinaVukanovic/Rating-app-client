@@ -1,5 +1,5 @@
 export default {
-  HomeScreenMessage: 'Rate our servie!',
+  HomeScreenMessage: 'Rate our service!',
   TodayTitle: 'Today is a new day. Check your ratings!',
   TodaySubTitleFirst: 'Graphs presents you rating results. Today you have ',
   TodaySubTitleSecond: ' rates, check it on dashboard.',

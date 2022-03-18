@@ -1,20 +1,10 @@
 <template>
   <div class="buttonContaier">
-    <button
-      @click="
-        changeLocal('en');
-        changeLanguageTo('en');
-      "
-    >
+    <button @click="changeLocal('en')">
       {{ $t('english') }}
     </button>
 
-    <button
-      @click="
-        changeLocal('ba');
-        changeLanguageTo('ba');
-      "
-    >
+    <button @click="changeLocal('ba')">
       {{ $t('bosnian') }}
     </button>
   </div>
@@ -31,12 +21,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['changeLanguage']),
-    changeLanguageTo(language) {
-      this.changeLanguage(language);
-    },
+    ...mapActions(['changeLanguage', 'changeLanguageRucno']),
     changeLocal(locale) {
       this.$i18n.locale = locale;
+      this.changeLanguage(locale);
+      localStorage.setItem('language', locale);
+      this.changeLanguageRucno(locale);
+      /*  console.log(locale, 'in method'); */
+      /* console.log(localStorage.getItem('language'), 'from local storage'); */
     },
   },
   computed: {

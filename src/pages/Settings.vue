@@ -2,13 +2,13 @@
   <div class="settingsContainer">
     <div class="settings">
       <div class="fisrtTxt">
-        <p class="settingsTxt">{{ $t('Settings') }}</p>
+        <p class="settingsTxt">{{ getTranslation('Settings') }}</p>
         <p class="settingsTxt x" @click="$router.go(-1)">x</p>
       </div>
       <hr />
       <div class="emojiPreview other">
         <div>
-          <p class="emotionsTxt">{{ $t('settings.EmotionPreview') }}</p>
+          <p class="emotionsTxt"></p>
           <div class="smileyFaceContainer light" v-if="this.theme == 'light'">
             <SmileyFace
               class="smiley-face"
@@ -86,6 +86,7 @@ import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ToggleSwitch from '../components/ToggleSwitch';
 import LanguageSwitch from '../components/LanguageSwitch';
+/* import Localization from '../components/Localization'; */
 
 export default {
   data() {
@@ -103,6 +104,7 @@ export default {
     SmileyFace,
     ToggleSwitch,
     LanguageSwitch,
+    /*  Localization, */
   },
   methods: {
     ...mapActions('admin', ['settingsPost']),
@@ -158,7 +160,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['emotionList']),
+    ...mapGetters(['emotionList', 'getTranslation']),
     ...mapGetters('admin', ['emotionNumber']),
   },
   watch: {

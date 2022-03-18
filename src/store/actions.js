@@ -1,4 +1,5 @@
 import { getSmiles, emotionSubmit } from '../api/index';
+/* import getLanguageFile from '../locales/index'; */
 
 export default {
   async submitEmotion({ commit }, name) {
@@ -20,7 +21,12 @@ export default {
   },
 
   changeLanguage({ commit }, language) {
-    console.log(language);
     commit('changeLanguage', language);
+  },
+
+  changeLanguageRucno({ commit }, language) {
+    /*  const lang = getLanguageFile(localStorage.getItem('language')); */
+    console.log(language, 'akcija');
+    commit('changeLanguageRucno', language);
   },
 };

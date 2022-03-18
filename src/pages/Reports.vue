@@ -5,6 +5,7 @@
         v-model="date"
         range
         autoApply
+        maxRange="5"
         class="datepicker"
         :enableTimePicker="false"
         dark
