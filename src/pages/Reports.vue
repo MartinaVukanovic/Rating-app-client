@@ -18,20 +18,16 @@
         class="area-chart"
         :hours="days"
         :values="reportsValues"
-        v-if="!reportsSum.every((item) => item === 0)"
+        v-if="!checkData"
       ></AreaChart>
       <PieChart
         :key="reportsSum"
         class="pie-chart"
         :values="reportsSum"
-        v-if="!reportsSum.every((item) => item === 0)"
+        v-if="!checkData"
       ></PieChart>
     </div>
-    <SmilesOverview
-      :key="reportsSum"
-      :sum="reportsSum"
-      v-if="!reportsSum.every((item) => item === 0)"
-    ></SmilesOverview>
+    <SmilesOverview :key="reportsSum" :sum="reportsSum" v-if="!checkData"></SmilesOverview>
   </div>
 </template>
 
@@ -72,6 +68,9 @@ export default {
   },
   computed: {
     ...mapGetters('admin', ['reportsValues', 'reportsSum']),
+    checkData() {
+      return this.reportsSum.every((item) => item === 0);
+    },
   },
   watch: {
     date(value) {

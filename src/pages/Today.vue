@@ -20,15 +20,11 @@
         class="area-chart"
         :hours="hours"
         :values="todayValues"
-        v-if="!todaySum.every((item) => item === 0)"
+        v-if="!checkData"
       ></AreaChart>
-      <PieChart
-        class="pie-chart"
-        :values="todaySum"
-        v-if="!todaySum.every((item) => item === 0)"
-      ></PieChart>
+      <PieChart class="pie-chart" :values="todaySum" v-if="!checkData"></PieChart>
     </div>
-    <SmilesOverview :sum="todaySum" v-if="!todaySum.every((item) => item === 0)"></SmilesOverview>
+    <SmilesOverview :sum="todaySum" v-if="!checkData"></SmilesOverview>
   </div>
 </template>
 <script>
@@ -73,6 +69,9 @@ export default {
     ...mapGetters('admin', ['todayValues', 'todaySum']),
     emotionsSum() {
       return this.todaySum.reduce((partialSum, a) => partialSum + a, 0);
+    },
+    checkData() {
+      return this.todaySum.every((item) => item === 0);
     },
   },
   mounted() {
