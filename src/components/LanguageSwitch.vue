@@ -1,34 +1,39 @@
 <template>
   <div class="buttonContaier">
-    <button @click="changeLocal('en')">
-      {{ $t('english') }}
-    </button>
-
-    <button @click="changeLocal('ba')">
-      {{ $t('bosnian') }}
-    </button>
+    <div class="dropdown">
+      <button class="dropbtn"><Translated text="TranslationButton"></Translated></button>
+      <div class="dropdown-content">
+        <div class="languageContainer" @click="changeLocal('en')">
+          <Translated text="english"></Translated>
+          <img src="../../public/assets/american-flag.png" style="width 15px; height: 15px;" />
+        </div>
+        <div class="languageContainer" @click="changeLocal('ba')">
+          <Translated text="bosnian"></Translated>
+          <img src="../../public/assets/bosnian-flag.png" style="width 15px; height: 15px;" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Translated from './Translated';
 
 export default {
+  components: {
+    Translated,
+  },
   data() {
-    return {
-      en: 'en',
-      ba: 'ba',
-    };
+    return {};
   },
   methods: {
-    ...mapActions(['changeLanguage', 'changeLanguageRucno']),
+    ...mapActions(['changeLanguage']),
     changeLocal(locale) {
-      this.$i18n.locale = locale;
       this.changeLanguage(locale);
-      localStorage.setItem('language', locale);
-      this.changeLanguageRucno(locale);
-      /*  console.log(locale, 'in method'); */
-      /* console.log(localStorage.getItem('language'), 'from local storage'); */
+    },
+    handleChange(event) {
+      console.log(event.target.value);
     },
   },
   computed: {
@@ -38,13 +43,64 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.languageContainer {
+  display: flex !important;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
 button {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border: 0px solid white;
   background-color: var(--stat-background);
-  color: rgb(131, 131, 131) !important;
-  width: 100px;
-  height: 65px;
-  border-radius: 4px;
+  color: var(--settings-text);
+  width: 150px;
+  height: 55px;
+  border-radius: 6px;
+}
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: var(--stat-background);
+  color: var(--settings-text);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer !important;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--stat-background);
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  cursor: pointer !important;
+}
+
+/* Links inside the dropdown */
+.dropdown-content div {
+  color: var(--settings-text-light);
+  padding: 14px 0px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content div:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 </style>

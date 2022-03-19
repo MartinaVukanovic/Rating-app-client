@@ -3,7 +3,7 @@
     <div class="likeIcon">
       <div class="likeIconImage">
         <img src="../../public/assets/positive-vote.svg" />
-        <p class="welcomeText">{{ $t('HomeScreenMessage') }}</p>
+        <p class="welcomeText"><Translated text="HomeScreenMessage"></Translated></p>
       </div>
     </div>
     <div class="container">
@@ -24,11 +24,13 @@
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
+import Translated from '../components/Translated';
 
 export default {
   components: {
     SmileyFace,
     ThankYouMessage,
+    Translated,
   },
   data() {
     return {

@@ -20,13 +20,12 @@ export default {
     commit('toggleSpin');
   },
 
-  changeLanguage({ commit }, language) {
+  /*   changeLanguage({ commit }, language) {
     commit('changeLanguage', language);
-  },
+  }, */
 
-  changeLanguageRucno({ commit }, language) {
+  changeLanguage({ commit }, language) {
     /*  const lang = getLanguageFile(localStorage.getItem('language')); */
-    console.log(language, 'akcija');
-    commit('changeLanguageRucno', language);
+    commit('changeLanguage', language);
   },
 };

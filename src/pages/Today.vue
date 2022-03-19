@@ -5,12 +5,15 @@
         <div class="title">
           <p>
             <b>
-              <p>{{ $t('TodayTitle') }}</p></b
-            >
+              <p><Translated text="TodayTitle"></Translated></p
+            ></b>
           </p>
         </div>
         <div class="subtitle">
-          <p>{{ $t('TodaySubTitleFirst') }} {{ $t('TodaySubTitleSecond') }}</p>
+          <p>
+            <Translated text="TodaySubTitleFirst"></Translated
+            ><Translated text="TodaySubTitleSecond"></Translated>
+          </p>
         </div>
       </div>
       <OvalArtwork class="artwork"></OvalArtwork>
@@ -29,8 +32,8 @@
     <div class="stats-count">
       <ul>
         <li>
-          <div class="list-field list-field-title">{{ $t('Emotion') }}</div>
-          <div class="list-field list-field-title">{{ $t('Count') }}</div>
+          <div class="list-field list-field-title"><Translated text="Emotion"></Translated></div>
+          <div class="list-field list-field-title"><Translated text="Count"></Translated></div>
         </li>
         <li v-for="smile in smiles" :key="smile.type">
           <div class="list-field">{{ smile.type }}</div>
@@ -45,6 +48,7 @@ import { mapActions, mapGetters } from 'vuex';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
+import Translated from '../components/Translated';
 
 export default {
   name: 'today',
@@ -52,17 +56,10 @@ export default {
     OvalArtwork,
     AreaChart,
     PieChart,
+    Translated,
   },
   data() {
-    return {
-      /* smiles: [
-        { count: 26, type: 'very_satisfied' },
-        { count: 14, type: 'satisfied' },
-        { count: 35, type: 'dissatisfied' },
-        { count: 8, type: 'very_dissatisfied' },
-        { count: 155, type: 'bad' },
-      ], */
-    };
+    return {};
   },
   methods: {
     ...mapActions('admin', ['todayPost']),

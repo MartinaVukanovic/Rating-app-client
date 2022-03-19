@@ -1,11 +1,12 @@
 <template>
-  <span>{{ getTranslation(HomeScreenMessage) }}</span>
+  <span>{{ getTranslation(text) }}</span>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 
 export default {
+  props: ['text'],
   computed: {
     ...mapGetters(['getTranslation']),
   },

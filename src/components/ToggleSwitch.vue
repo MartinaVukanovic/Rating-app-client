@@ -42,7 +42,7 @@ input[type='checkbox']::before {
 }
 input:checked[type='checkbox']::before {
   left: 40px;
-  background: linear-gradient(0deg, #9b9489, #dddddd);
+  background: linear-gradient(0deg, #b6aea2, #dddddd);
 }
 input[type='checkbox']::after {
   content: '';
@@ -58,12 +58,12 @@ input[type='checkbox']::after {
 input:checked[type='checkbox']::after {
   background: #e4e3d3;
   left: 105px;
-  box-shadow: 0 0 5px #ffffff, 0 0 15px #d4d4d4;
+  box-shadow: 0 0 5px #ffffff, 0 0 15px #eeec6e;
 }
 input:checked[type='checkbox'] {
   background: linear-gradient(0deg, #e9e8e8, #c9c9c9);
-  box-shadow: 0 0 2px #cecece, 0 0 0 4px #c4c4c4, 0 0 0 5px #b3b3b3,
-    inset 0 0 20px rgb(143, 143, 143), 0 5px 20px rgba(136, 136, 136, 0.5),
+  box-shadow: 0 0 2px #cecece, 0 0 0 4px #d3d2d2, 0 0 0 5px #c2c1c1,
+    inset 0 0 20px rgb(163, 163, 163), 0 5px 20px rgba(136, 136, 136, 0.5),
     inset 0 0 15px rgba(228, 227, 227, 0.3);
 }
 </style>

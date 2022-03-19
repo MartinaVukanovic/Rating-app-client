@@ -11,7 +11,7 @@
             class="icon"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">{{ $t('Today') }}</p>
+          <p class="txt"><Translated text="Today"></Translated></p>
         </router-link>
         <router-link to="/reports" class="navigation">
           <img
@@ -19,7 +19,7 @@
             class="icon icon-note"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">{{ $t('Reports') }}</p>
+          <p class="txt"><Translated text="Reports"></Translated></p>
         </router-link>
       </div>
       <div class="down">
@@ -29,7 +29,7 @@
             class="icon icon-note"
             :class="{ dark: this.theme == 'light' }"
           />
-          <p class="txt">{{ $t('Settings') }}</p>
+          <p class="txt"><Translated text="Settings"></Translated></p>
         </router-link>
       </div>
     </div>
@@ -45,7 +45,12 @@
 </template>
 
 <script>
+import Translated from './Translated';
+
 export default {
+  components: {
+    Translated,
+  },
   data() {
     return {
       mobile: true,

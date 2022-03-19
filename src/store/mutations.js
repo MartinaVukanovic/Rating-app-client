@@ -1,6 +1,7 @@
 /* eslint-disable */
 import ba from '../locales/ba';
 import en from '../locales/en';
+
 function findLanguage(language) {
   if (language == 'ba') {
     return ba;
@@ -22,15 +23,13 @@ export default {
   toggleWelcomePage(state) {
     state.showWelcomePage = !state.showWelcomePage;
   },
-  changeLanguage(state, language) {
+  /* changeLanguage(state, language) {
     state.language = language;
-  },
+  }, */
 
-  changeLanguageRucno(state, translation) {
-    console.log(translation, 'mutacija');
+  changeLanguage(state, translation) {
     const newLanguage = findLanguage(translation);
     localStorage.setItem('translation', translation);
     state.translation = JSON.parse(JSON.stringify(newLanguage));
-    console.log(state.translation, 'provjera kod mutacija');
   },
 };
