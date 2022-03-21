@@ -132,6 +132,7 @@ export default {
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
 }
 .navigation:focus {
   background-color: rgba(255, 255, 255, 0.08);
