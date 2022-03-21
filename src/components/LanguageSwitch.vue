@@ -58,7 +58,6 @@ button {
   height: 55px;
   border-radius: 6px;
 }
-/* Style The Dropdown Button */
 .dropbtn {
   background-color: var(--stat-background);
   color: var(--settings-text);
@@ -68,14 +67,10 @@ button {
   cursor: pointer !important;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
 }
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -85,21 +80,15 @@ button {
   z-index: 1;
   cursor: pointer !important;
 }
-
-/* Links inside the dropdown */
 .dropdown-content div {
   color: var(--settings-text-light);
   padding: 14px 0px;
   text-decoration: none;
   display: block;
 }
-
-/* Change color of dropdown links on hover */
 .dropdown-content div:hover {
   background-color: rgba(0, 0, 0, 0.06);
 }
-
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }

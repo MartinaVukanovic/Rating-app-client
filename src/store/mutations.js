@@ -23,10 +23,6 @@ export default {
   toggleWelcomePage(state) {
     state.showWelcomePage = !state.showWelcomePage;
   },
-  /* changeLanguage(state, language) {
-    state.language = language;
-  }, */
-
   changeLanguage(state, translation) {
     const newLanguage = findLanguage(translation);
     localStorage.setItem('translation', translation);

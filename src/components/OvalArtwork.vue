@@ -48,15 +48,4 @@ export default {};
     }
   }
 }
-/* media querry */
-
-@media all and (min-width: 1024px) {
-  .wrapper {
-    .oval {
-    }
-    .artwork {
-    }
-  }
-}
-/* end of media querry */
 </style>

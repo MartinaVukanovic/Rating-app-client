@@ -19,13 +19,7 @@ export default {
   toggleSpin({ commit }) {
     commit('toggleSpin');
   },
-
-  /*   changeLanguage({ commit }, language) {
-    commit('changeLanguage', language);
-  }, */
-
   changeLanguage({ commit }, language) {
-    /*  const lang = getLanguageFile(localStorage.getItem('language')); */
     commit('changeLanguage', language);
   },
 };

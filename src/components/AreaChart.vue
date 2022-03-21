@@ -11,9 +11,6 @@ export default {
   props: ['hours', 'values', 'smiles'],
   data() {
     return {
-      /* gradient0: null,
-      gradient1: null,
-      gradient2: null, */
       gradient: [],
       colors: [],
       array: [],
@@ -73,41 +70,6 @@ export default {
       },
       { responsive: true, maintainAspectRatio: false },
     );
-    /* this.renderChart(
-      {
-        labels: this.hours,
-        datasets: [
-          {
-            label: 'data one',
-            borderColor: 'rgba(4, 210,124, 0.8)',
-            pointBackgroundColor: 'white',
-            borderWidth: 1.5,
-            pointBorderColor: 'black',
-            backgroundColor: this.gradient,
-            data: this.values[0],
-          },
-          {
-            label: 'data two',
-            borderColor: 'rgba(249, 88, 90, 0.8)',
-            pointBackgroundColor: 'white',
-            pointBorderColor: 'black',
-            borderWidth: 1.5,
-            backgroundColor: this.gradient2,
-            data: this.values[1],
-          },
-          {
-            label: 'Data tri',
-            borderColor: 'rgba(176, 176, 178, 0.8)',
-            pointBackgroundColor: 'white',
-            pointBorderColor: 'black',
-            borderWidth: 1.5,
-            backgroundColor: this.gradient3,
-            data: this.values[2],
-          },
-        ],
-      },
-      { responsive: true, maintainAspectRatio: false },
-    ); */
   },
 };
 </script>

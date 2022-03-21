@@ -23,7 +23,6 @@
       ></AreaChart>
       <PieChart class="piechart"></PieChart>
     </div>
-    <!--   <button class="botun" @click="changeTheme">switch</button> -->
   </div>
 </template>
 
