@@ -1,9 +1,12 @@
 <template>
   <div class="settingsContainer">
+    <transition name="modal">
+      <SettingsModal class="modal" v-if="showModal"></SettingsModal>
+    </transition>
     <div class="settings">
       <div class="fisrtTxt">
         <div class="settingsTxt">
-          <p><Translated text="Settings"></Translated></p>
+          <p class="settingsTxt"><Translated text="Settings"></Translated></p>
           <img
             src="../../public/assets/info.svg"
             class="info-icon"
@@ -113,6 +116,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 import SettingsInfo from '../components/SettingsInfo';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Translated from '../components/Translated';
+import SettingsModal from '../components/SettingsModal';
 
 export default {
   data() {
@@ -125,6 +129,7 @@ export default {
       debouncedSubmit: null,
       theme: '',
       themeUser: '',
+      showModal: false,
     };
   },
   components: {
@@ -133,6 +138,7 @@ export default {
     SettingsInfo,
     LanguageSwitch,
     Translated,
+    SettingsModal,
   },
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
@@ -164,6 +170,7 @@ export default {
           this.toggleSpin();
           this.thankYouMessage = '';
           this.blurthankYouMessage();
+          this.toggleModal();
         } else {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
@@ -173,12 +180,14 @@ export default {
           this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
+          this.toggleModal();
         } else {
           this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
         this.settingsPost({ type: 'numberOfEmotions', value });
         this.blurnumberOfEmotions();
+        this.toggleModal();
       }
     },
     toggleTheme() {
@@ -189,6 +198,11 @@ export default {
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
       localStorage.setItem('themeUser', this.themeUser);
+    toggleModal() {
+      this.showModal = !this.showModal;
+      setTimeout(() => {
+        this.showModal = !this.showModal;
+      }, 1000);
     },
   },
   computed: {
@@ -219,6 +233,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* Modal */
+
+.modal {
+  position: absolute;
+  top: 50px;
+  z-index: 10;
+}
+.modal-enter-active {
+  animation: bounce-in 0.5s;
+}
+.modal-leave-active {
+  opacity: 0;
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* End of modal */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;

@@ -7,7 +7,7 @@ export default {
   EmotionPreview: 'Emotions preview',
   MessagePlaceholder: 'Thank you message',
   EmotionsNumberPlaceHolder: 'Number of emotions',
-  EmotionsNumberLimit: 'Enter number from 3-5',
+  EmotionsNumberLimit: 'Select number from 3-5',
   MessageTimeoutPlaceholder: 'Message timeout',
   MessageTimeoutLimit: 'Can be from 0-10',
   NotFoundError: 'page not found',

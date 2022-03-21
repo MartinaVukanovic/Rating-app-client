@@ -7,7 +7,7 @@ export default {
   EmotionPreview: 'Pregled emotikona',
   MessagePlaceholder: 'Poruka zahvale',
   EmotionsNumberPlaceHolder: 'Broj emotikona',
-  EmotionsNumberLimit: 'Unesite broj od 3 do 5',
+  EmotionsNumberLimit: 'Izaberite broj od 3 do 5',
   MessageTimeoutPlaceholder: 'Istek poruke',
   MessageTimeoutLimit: 'Može biti od 0 do 10',
   NotFoundError: 'stranica nije pronađena',
