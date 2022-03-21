@@ -3,7 +3,7 @@
     <div class="likeIcon">
       <div class="likeIconImage">
         <img src="../../public/assets/positive-vote.svg" />
-        <p class="welcomeText">Rate our service!</p>
+        <p class="welcomeText"><Translated text="HomeScreenMessage"></Translated></p>
       </div>
     </div>
     <div class="container">
@@ -24,11 +24,13 @@
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
+import Translated from '../components/Translated';
 
 export default {
   components: {
     SmileyFace,
     ThankYouMessage,
+    Translated,
   },
   data() {
     return {
@@ -74,7 +76,7 @@ export default {
 .welcomeText {
   margin: auto;
   margin-top: 31px;
-  width: 250px;
+  width: 350px;
   color: var(--settings-text-light);
   font-size: 32px;
 }

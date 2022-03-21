@@ -2,8 +2,8 @@
   <div class="settingsContainer">
     <div class="settings">
       <div class="fisrtTxt">
-        <div class="settingsTxt">
-          <p>Settings</p>
+        <div>
+          <p class="settingsTxt"><Translated text="Settings"></Translated></p>
           <img
             src="../../public/assets/info.svg"
             class="info-icon"
@@ -19,7 +19,7 @@
       <hr />
       <div class="emojiPreview other">
         <div>
-          <p class="emotionsTxt">Emotions preview</p>
+          <p class="emotionsTxt"><Translated text="EmotionPreview"></Translated></p>
           <div class="smileyFaceContainer light" v-if="this.theme == 'light'">
             <SmileyFace
               class="smiley-face"
@@ -47,8 +47,12 @@
             v-model="thankYouMessage"
             :class="{ inputError: thankYouMessageError }"
           />
-          <label class="txt" @click="focusMessageInput">Thank you message</label>
-          <p class="error">{{ thankYouMessageError }}</p>
+          <label class="txt" @click="focusMessageInput"
+            ><Translated text="MessagePlaceholder"></Translated
+          ></label>
+          <p class="error" v-if="thankYouMessageError">
+            <Translated text="MessageError"></Translated>
+          </p>
         </div>
       </div>
 
@@ -59,8 +63,8 @@
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <label class="txt">Number of emotions</label>
-          <label class="txtUnder">Enter number from 3-5 </label>
+          <label class="txt"><Translated text="EmotionsNumberPlaceHolder"></Translated></label>
+          <label class="txtUnder"><Translated text="EmotionsNumberLimit"></Translated> </label>
         </div>
         <div class="numberSelect second">
           <input
@@ -71,14 +75,23 @@
             v-model="messageTimeout"
             :class="{ inputError: messageTimeoutError }"
           />
-          <label class="txt" @click="focusTimeoutInput">Message timeout </label>
-          <p class="error">{{ messageTimeoutError }}</p>
-          <label class="txtUnder">Can be from 0-10 </label>
+          <label class="txt" @click="focusTimeoutInput"
+            ><Translated text="MessageTimeoutPlaceholder"></Translated>
+          </label>
+          <p class="error" v-if="messageTimeoutError">
+            <Translated text="MessageTimeoutError"></Translated>
+          </p>
+          <label class="txtUnder"><Translated text="MessageTimeoutLimit"></Translated> </label>
         </div>
       </div>
     </div>
-    <div class="theme">
-      <ToggleSwitch @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
+    <div class="pickContainer">
+      <div class="lang">
+        <LanguageSwitch></LanguageSwitch>
+      </div>
+      <div class="theme">
+        <ToggleSwitch @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
+      </div>
     </div>
   </div>
 </template>
@@ -90,6 +103,8 @@ import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ToggleSwitch from '../components/ToggleSwitch';
 import SettingsInfo from '../components/SettingsInfo';
+import LanguageSwitch from '../components/LanguageSwitch';
+import Translated from '../components/Translated';
 
 export default {
   data() {
@@ -107,6 +122,8 @@ export default {
     SmileyFace,
     ToggleSwitch,
     SettingsInfo,
+    LanguageSwitch,
+    Translated,
   },
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
@@ -214,7 +231,6 @@ export default {
 }
 .settingsContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
   background-color: var(--stat-background);
   flex-direction: column;
@@ -222,7 +238,6 @@ export default {
 
   .settings {
     padding: 4vh 5vw 0 5vw;
-    height: 80vh;
     width: 65vw;
 
     .settingsTxt {
@@ -342,10 +357,9 @@ hr {
 .smiley-face {
   pointer-events: none;
 }
-
-@media only screen and (max-width: 840px) {
+@media only screen and (max-width: 842px) {
   .settings {
-    margin-top: 80px;
+    margin-top: 50px;
     padding: 0px !important;
     width: 40vw !important;
   }
@@ -363,13 +377,24 @@ hr {
   .thankYou {
     margin-top: 10px;
   }
+  .pickContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px !important;
+    margin-top: 55px !important;
+  }
 }
 @media only screen and (max-width: 550px) {
   .settings {
     width: 60vw !important;
   }
-  .theme {
-    margin-bottom: 15vh;
-  }
+}
+.pickContainer {
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22vw;
+  margin-top: 60px;
 }
 </style>
