@@ -2,7 +2,18 @@
   <div class="settingsContainer">
     <div class="settings">
       <div class="fisrtTxt">
-        <p class="settingsTxt"><Translated text="Settings"></Translated></p>
+        <div>
+          <p class="settingsTxt"><Translated text="Settings"></Translated></p>
+          <img
+            src="../../public/assets/info.svg"
+            class="info-icon"
+            :class="{ dark: this.theme == 'light' }"
+            @click="toggleInfo"
+          />
+          <transition>
+            <SettingsInfo v-if="getInfo"></SettingsInfo>
+          </transition>
+        </div>
         <p class="settingsTxt x" @click="$router.go(-1)">x</p>
       </div>
       <hr />
@@ -91,6 +102,7 @@ import { debounce } from 'lodash';
 import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ToggleSwitch from '../components/ToggleSwitch';
+import SettingsInfo from '../components/SettingsInfo';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Translated from '../components/Translated';
 
@@ -109,11 +121,12 @@ export default {
   components: {
     SmileyFace,
     ToggleSwitch,
+    SettingsInfo,
     LanguageSwitch,
     Translated,
   },
   methods: {
-    ...mapActions('admin', ['settingsPost']),
+    ...mapActions('admin', ['settingsPost', 'toggleInfo']),
     ...mapActions(['toggleSpin']),
     focusMessageInput() {
       this.$refs.thankYouMessage.focus();
@@ -167,7 +180,7 @@ export default {
   },
   computed: {
     ...mapGetters(['emotionList']),
-    ...mapGetters('admin', ['emotionNumber']),
+    ...mapGetters('admin', ['emotionNumber', 'getInfo']),
   },
   watch: {
     messageTimeout(value) {
@@ -191,8 +204,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 .light {
   filter: invert(1);
+}
+.dark {
+  filter: invert(1);
+}
+.theme {
+  margin-bottom: 35vh;
 }
 .error {
   font-size: 12px;
@@ -215,6 +243,16 @@ export default {
     .settingsTxt {
       color: var(--settings-text-light);
       font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .info-icon {
+        height: 25px;
+        margin-left: 15px;
+        cursor: help;
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
     .x {
       color: var(--settings-text);

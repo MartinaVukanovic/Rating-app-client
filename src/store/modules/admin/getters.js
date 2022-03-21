@@ -4,14 +4,17 @@ export default {
   thankYouMessage(state) {
     return state.message;
   },
-  getToday(state) {
-    return state.today;
-  },
   MessageTime(state) {
     return state.messageTime;
   },
   emotionNumber(state) {
     return state.numberOfEmotions;
+  },
+  getInfo(state) {
+    return state.info;
+  },
+  getToday(state) {
+    return state.today;
   },
   todayValues(state) {
     const { smilesData } = utils.handleTodayData(state.today);

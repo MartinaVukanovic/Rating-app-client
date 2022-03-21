@@ -1,8 +1,5 @@
 <template>
   <pie-chart class="chart" :colors="colors" :data="pieData"></pie-chart>
-  <!-- <div>
-    <canvas ref="canvas" class="pie-chart"></canvas>
-  </div> -->
 </template>
 <script>
 export default {
