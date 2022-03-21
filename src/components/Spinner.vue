@@ -16,7 +16,7 @@ export default {};
   position: fixed;
   height: 100vh;
   width: 100vw;
-  z-index: 100;
+  z-index: 500;
   background-color: var(--stat-background);
   display: flex;
   justify-content: center;

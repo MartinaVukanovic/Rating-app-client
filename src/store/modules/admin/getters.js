@@ -1,3 +1,5 @@
+import utils from '@/utility';
+
 export default {
   thankYouMessage(state) {
     return state.message;
@@ -11,38 +13,20 @@ export default {
   emotionNumber(state) {
     return state.numberOfEmotions;
   },
-  todayHours(state) {
-    const hours = [];
-    state.today.forEach((hour) => {
-      hours.push(Object.keys(hour)[0]);
-    });
-    return hours;
-  },
   todayValues(state) {
-    const emotions = [[], [], [], [], []];
-    state.today.forEach((emotion) => {
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < 5; i++) {
-        emotions[i].push(Object.values(Object.values(emotion)[0])[i]);
-      }
-    });
-    return emotions;
+    const { smilesData } = utils.handleTodayData(state.today);
+    return smilesData;
   },
-  reportsHours(state) {
-    const hours = [];
-    state.reports.forEach((hour) => {
-      hours.push(Object.keys(hour)[0]);
-    });
-    return hours;
+  todaySum(state) {
+    const { smilesSum } = utils.handleTodayData(state.today);
+    return smilesSum;
   },
   reportsValues(state) {
-    const emotions = [[], [], [], [], []];
-    state.reports.forEach((emotion) => {
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < 5; i++) {
-        emotions[i].push(Object.values(Object.values(emotion)[0])[i]);
-      }
-    });
-    return emotions;
+    const { smilesData } = utils.handleReportsData(state.reports);
+    return smilesData;
+  },
+  reportsSum(state) {
+    const { smilesSum } = utils.handleReportsData(state.reports);
+    return smilesSum;
   },
 };

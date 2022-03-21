@@ -12,7 +12,7 @@
         <div class="subtitle">
           <p>
             <Translated text="TodaySubTitleFirst"></Translated
-            ><Translated text="TodaySubTitleSecond"></Translated>
+            >{{ emotionsSum }}<Translated text="TodaySubTitleSecond"></Translated>
           </p>
         </div>
       </div>
@@ -21,26 +21,14 @@
     <div class="margin-div"></div>
     <div class="grafs">
       <AreaChart
-        v-if="todayHours.length"
         class="area-chart"
-        :hours="todayHours"
+        :hours="hours"
         :values="todayValues"
-        :smiles="smiles"
+        v-if="!checkData"
       ></AreaChart>
-      <PieChart class="pie-chart"></PieChart>
+      <PieChart class="pie-chart" :values="todaySum" v-if="!checkData"></PieChart>
     </div>
-    <div class="stats-count">
-      <ul>
-        <li>
-          <div class="list-field list-field-title"><Translated text="Emotion"></Translated></div>
-          <div class="list-field list-field-title"><Translated text="Count"></Translated></div>
-        </li>
-        <li v-for="smile in smiles" :key="smile.type">
-          <div class="list-field">{{ smile.type }}</div>
-          <div class="list-field">{{ smile.count }}</div>
-        </li>
-      </ul>
-    </div>
+    <SmilesOverview :sum="todaySum" v-if="!checkData"></SmilesOverview>
   </div>
 </template>
 <script>
@@ -49,6 +37,7 @@ import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
 import Translated from '../components/Translated';
+import SmilesOverview from '../components/smilesOverview';
 
 export default {
   name: 'today',
@@ -56,22 +45,46 @@ export default {
     OvalArtwork,
     AreaChart,
     PieChart,
-    Translated,
+    SmilesOverview,
   },
   data() {
-    return {};
+    return {
+      hours: [
+        '00:00',
+        '02:00',
+        '04:00',
+        '06:00',
+        '08:00',
+        '10:00',
+        '12:00',
+        '14:00',
+        '16:00',
+        '18:00',
+        '20:00',
+        '22:00',
+      ],
+      sum: 0,
+    };
   },
   methods: {
     ...mapActions('admin', ['todayPost']),
+    ...mapActions(['toggleSpin']),
   },
   computed: {
-    ...mapGetters('admin', ['todayHours', 'todayValues']),
-    ...mapGetters(['smiles']),
+    ...mapGetters('admin', ['todayValues', 'todaySum']),
+    emotionsSum() {
+      return this.todaySum.reduce((partialSum, a) => partialSum + a, 0);
+    },
+    checkData() {
+      return this.todaySum.every((item) => item === 0);
+    },
   },
   mounted() {
     const today = new Date();
     const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    this.toggleSpin();
     this.todayPost(date);
+    this.toggleSpin();
   },
 };
 </script>
@@ -85,11 +98,6 @@ export default {
   .top-row {
     display: flex;
     flex-direction: column;
-  }
-  .area-chart {
-    min-width: 320px;
-    width: 60vw !important;
-    height: 300px !important;
   }
   .text-content {
     padding: 10px;
@@ -122,60 +130,29 @@ export default {
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    margin: 0 40px;
+    margin: 0 20px;
+
+    .area-chart {
+      min-width: 320px;
+      width: 100%;
+      height: 300px !important;
+      z-index: 5;
+    }
     .pie-chart {
-      max-width: 425px;
+      z-index: 5;
+      max-width: 550px;
+      width: 100%;
     }
-  }
-  .stats-count {
-    display: flex;
-    justify-content: left;
-  }
-  ul {
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    width: 50vw;
-    min-width: 320px;
-    background-color: var(--stat-background);
-    margin: 20px 0px 20px 40px;
-    list-style-type: none;
-    padding: 0;
-    li {
-      border-bottom: 1px solid rgb(85, 85, 85);
-      display: flex;
-      list-style-type: none;
-      .list-field {
-        width: 50%;
-        color: var(--settings-text);
-        font-size: 12px;
-        height: 47px;
-        line-height: 47px;
-        padding-left: calc(20px + 0.5vw);
-      }
-      .list-field-title {
-        background-color: var(--stat-background);
-      }
-    }
-  }
-}
-@media all and (max-width: 1020px) {
-  .stats-count {
-    justify-content: center !important;
-    margin-left: -40px;
   }
 }
 /*media querry*/
 @media all and (min-width: 769px) {
-  .today .text-content {
-    padding: 0 1rem 5rem;
-  }
   .today {
     padding-left: 100px;
     padding-top: 64px;
+    padding-right: 64px;
     .text-content {
-      padding-left: 64px;
+      padding: 0 15px 50px 80px;
       .title {
         p {
           text-align: left;
@@ -201,6 +178,7 @@ export default {
       flex-direction: row;
       .artwork {
         flex-grow: 2;
+        padding-right: 100px;
       }
       .text-content {
         padding-top: 64px;
@@ -227,10 +205,10 @@ export default {
       flex-direction: row;
       margin-top: -100px;
       .line-chart {
-        width: 60%;
+        max-width: 60%;
       }
       .pie-chart {
-        width: 30%;
+        max-width: 30%;
       }
     }
   }
@@ -238,6 +216,9 @@ export default {
 @media all and (min-width: 1440px) {
   .today {
     .top-row {
+      .artwork {
+        padding-right: 0;
+      }
       .text-content {
         .title {
           p {

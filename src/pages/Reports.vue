@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="container" :class="theme === 'light' ? 'light-theme' : 'dark-theme'">
-    <div class="datepickerContainer">
+  <div id="app" class="container">
+    <div class="date-picker-container">
       <Datepicker
         v-model="date"
         range
@@ -13,16 +13,22 @@
       >
       </Datepicker>
     </div>
-    <div class="charts">
+    <div class="grafs">
       <AreaChart
-        v-if="reportsValues.length"
-        class="areachart"
-        :hours="reportsHours"
+        :key="reportsSum"
+        class="area-chart"
+        :hours="days"
         :values="reportsValues"
-        :smiles="smiles"
+        v-if="!checkData"
       ></AreaChart>
-      <PieChart class="piechart"></PieChart>
+      <PieChart
+        :key="reportsSum"
+        class="pie-chart"
+        :values="reportsSum"
+        v-if="!checkData"
+      ></PieChart>
     </div>
+    <SmilesOverview :key="reportsSum" :sum="reportsSum" v-if="!checkData"></SmilesOverview>
   </div>
 </template>
 
@@ -32,12 +38,14 @@ import 'vue3-date-time-picker/dist/main.css';
 import { mapActions, mapGetters } from 'vuex';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
+import SmilesOverview from '../components/smilesOverview';
 
 export default {
   name: 'App',
   components: {
     AreaChart,
     PieChart,
+    SmilesOverview,
     Datepicker,
   },
   data() {
@@ -45,83 +53,100 @@ export default {
       date: [],
       startDate: [],
       endDate: [],
-      theme: 'light',
+      days: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
     };
   },
   methods: {
     ...mapActions('admin', ['reportsPost']),
-    changeTheme() {
-      this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    convertTime(date) {
+      return date.toISOString().slice(0, 10);
+    },
+    submit(date1, date2) {
+      const startDate = this.convertTime(date1);
+      const endDate = this.convertTime(date2);
+      this.reportsPost({ startDate, endDate });
     },
   },
   computed: {
-    ...mapGetters('admin', ['reportsHours', 'reportsValues']),
-    ...mapGetters(['smiles']),
+    ...mapGetters('admin', ['reportsValues', 'reportsSum']),
+    checkData() {
+      return this.reportsSum.every((item) => item === 0);
+    },
+  },
+  watch: {
+    date(value) {
+      this.submit(value[0], value[1]);
+    },
   },
   mounted() {
-    this.endDate = new Date();
-    this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
+    this.startDate = new Date();
+    this.endDate = new Date(new Date().setDate(this.startDate.getDate() + 7));
     this.date = [this.startDate, this.endDate];
-    this.reportsPost(this.date);
+    this.submit(this.startDate, this.endDate);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.datepickerContainer {
-  display: flex;
-  justify-content: left;
-}
-.datepicker {
-  margin-top: 20px;
-  margin-left: 120px;
-  width: 250px;
-}
 .container {
-  max-width: 100%;
-  overflow-x: hidden;
-  height: 100vh;
-  background-color: var(--background-black);
+  min-height: 100vh;
   width: 100%;
-  display: table;
-}
-.charts {
-  margin-top: 20px;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.areachart {
-  margin-left: 15px;
-  margin-right: 15px;
-  height: 300px !important;
-  width: 940px !important;
-}
-.piechart {
-  width: 340px !important;
-  height: 300px !important;
-}
-@media all and (max-width: 1000px) {
-  .charts {
-    margin-top: 100px;
-  }
-  .datepicker {
-    margin-left: 0px;
-    margin-top: 100px;
-  }
-  .datepickerContainer {
+  padding-top: 80px;
+
+  .date-picker-container {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .grafs {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 20px;
+
+    .area-chart {
+      min-width: 320px;
+      width: 100%;
+      height: 300px !important;
+      z-index: 5;
+    }
+    .pie-chart {
+      z-index: 5;
+      max-width: 550px;
+      width: 100%;
+    }
   }
 }
-@media all and (max-width: 760px) {
-  .charts {
-    margin-top: 20px;
+
+@media all and (min-width: 769px) {
+  .container {
+    padding-left: 100px;
+    padding-top: 20px;
+    padding-right: 64px;
   }
 }
-.dp__input_wrap {
-  margin-left: 10px;
+@media all and (min-width: 1024px) {
+  .container {
+    .date-picker-container {
+      justify-content: start;
+      margin: 0 0 20px 20px;
+    }
+
+    .grafs {
+      flex-direction: row;
+
+      .line-chart {
+        max-width: 70%;
+      }
+      .pie-chart {
+        max-width: 30%;
+      }
+    }
+  }
 }
 </style>

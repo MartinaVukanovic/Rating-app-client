@@ -1,11 +1,14 @@
 <template>
   <div>
     <div class="navbar desktop" :class="{ show: show }">
-      <div>
+      <div class="nav-wrapper">
         <router-link to="/">
           <img src="../../public/assets/logo.png" class="logo" />
         </router-link>
-        <router-link to="/today" class="navigation">
+        <div v-if="mobile" class="profile">
+          <img src="../../public/assets/profile-picture.jpg" />
+        </div>
+        <router-link to="/today" class="navigation" @click="closeNav">
           <img
             src="../../public/assets/todayreport.svg"
             class="icon"
@@ -13,7 +16,7 @@
           />
           <p class="txt"><Translated text="Today"></Translated></p>
         </router-link>
-        <router-link to="/reports" class="navigation">
+        <router-link to="/reports" class="navigation" @click="closeNav">
           <img
             src="../../public/assets/allreports.svg"
             class="icon icon-note"
@@ -23,7 +26,7 @@
         </router-link>
       </div>
       <div class="down">
-        <router-link to="/settings" class="navigation">
+        <router-link to="/settings" class="navigation settings">
           <img
             src="../../public/assets/settings.svg"
             class="icon icon-note"
@@ -73,6 +76,11 @@ export default {
         this.show = true;
       }
     },
+    closeNav() {
+      if (this.mobile) {
+        this.toggleHamburger();
+      }
+    },
   },
   created() {
     window.addEventListener('resize', this.handleResize);
@@ -90,13 +98,13 @@ export default {
 }
 .down {
   margin-bottom: 20px;
-  width: 65%;
+  width: 100%;
 }
 .dark {
   filter: invert(0.55);
 }
 .navbar {
-  z-index: 1 !important;
+  z-index: 100 !important;
   width: 100px;
   height: 100%;
   position: fixed;
@@ -108,7 +116,13 @@ export default {
   justify-content: space-between;
   transition: 0.3s ease;
 }
-
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .navigation {
   height: 72px;
   width: 100%;
@@ -133,6 +147,15 @@ export default {
 .logo {
   padding: 15px 0;
 }
+.profile {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  img {
+    border-radius: 50%;
+  }
+}
 
 .icon {
   color: white;
@@ -154,7 +177,7 @@ export default {
 /*mobile navigation*/
 
 .navbar-mobile {
-  z-index: 1 !important;
+  z-index: 100 !important;
   width: 100%;
   position: fixed;
   height: 80px;

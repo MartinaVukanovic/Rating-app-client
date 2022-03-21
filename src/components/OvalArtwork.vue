@@ -24,7 +24,7 @@ export default {};
     max-width: 1012px;
     max-height: 455px;
     height: 100%;
-    background-image: url('../../public/assets/Oval-copy.svg');
+    background-image: transparent;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
@@ -48,4 +48,16 @@ export default {};
     }
   }
 }
+/* media querry */
+
+@media all and (min-width: 1024px) {
+  .wrapper {
+    .oval {
+      background-image: url('../../public/assets/Oval-copy.svg');
+    }
+    .artwork {
+    }
+  }
+}
+/* end of media querry */
 </style>
