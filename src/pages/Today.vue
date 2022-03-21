@@ -3,12 +3,16 @@
     <div class="top-row">
       <div class="text-content">
         <div class="title">
-          <p><b> Today is a new day. Check your ratings!</b></p>
+          <p>
+            <b>
+              <p><Translated text="TodayTitle"></Translated></p
+            ></b>
+          </p>
         </div>
         <div class="subtitle">
           <p>
-            Graphs presents you rating results. Today you have {{ emotionsSum }} rates, check it on
-            dashboard.
+            <Translated text="TodaySubTitleFirst"></Translated
+            >{{ emotionsSum }}<Translated text="TodaySubTitleSecond"></Translated>
           </p>
         </div>
       </div>
@@ -32,6 +36,7 @@ import { mapActions, mapGetters } from 'vuex';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
 import PieChart from '../components/PieChart';
+import Translated from '../components/Translated';
 import SmilesOverview from '../components/smilesOverview';
 
 export default {

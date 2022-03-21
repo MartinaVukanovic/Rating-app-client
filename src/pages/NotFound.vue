@@ -3,7 +3,7 @@
     <div>
       <SmileyFace type="very_dissatisfied" :class="{ dark: this.theme == 'light' }"></SmileyFace>
     </div>
-    <div>404 - page not found</div>
+    <div>404 - {{ $t('NotFoundError') }}</div>
   </div>
 </template>
 
