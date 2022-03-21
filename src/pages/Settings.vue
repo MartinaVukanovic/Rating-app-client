@@ -90,7 +90,15 @@
         <LanguageSwitch></LanguageSwitch>
       </div>
       <div class="theme">
-        <ToggleSwitch @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
+        <div class="themePart">
+          <p class="switchTxt"><Translated text="ChangeThemeAdmin"></Translated></p>
+          <ToggleSwitch @click="toggleTheme" :theme="this.theme" class="switches"> </ToggleSwitch>
+        </div>
+        <div class="themePart">
+          <p class="switchTxt"><Translated text="ChangeThemeUser"></Translated></p>
+          <ToggleSwitch @click="toggleThemeUser" :theme="this.themeUser" class="switches">
+          </ToggleSwitch>
+        </div>
       </div>
     </div>
   </div>
@@ -116,6 +124,7 @@ export default {
       messageTimeoutError: '',
       debouncedSubmit: null,
       theme: '',
+      themeUser: '',
     };
   },
   components: {
@@ -159,7 +168,7 @@ export default {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
       } else if (value === this.messageTimeout) {
-        if (utils.validateNumber(value, 0, 10)) {
+        if (utils.validateNumber(value, 0, 11)) {
           this.messageTimeoutError = '';
           this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
@@ -176,6 +185,10 @@ export default {
       this.theme = this.theme === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', this.theme);
       localStorage.setItem('theme', this.theme);
+    },
+    toggleThemeUser() {
+      this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
+      localStorage.setItem('themeUser', this.themeUser);
     },
   },
   computed: {
@@ -197,6 +210,8 @@ export default {
   },
   mounted() {
     this.theme = localStorage.getItem('theme');
+    this.themeUser = localStorage.getItem('themeUser');
+    document.documentElement.setAttribute('data-theme', this.theme);
     this.numberOfEmotions = this.emotionNumber;
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
@@ -217,7 +232,7 @@ export default {
   filter: invert(1);
 }
 .dark {
-  filter: invert(1);
+  filter: invert(0.8) !important;
 }
 .theme {
   margin-bottom: 10vh;
@@ -248,10 +263,11 @@ export default {
       align-items: center;
 
       .info-icon {
-        height: 25px;
+        height: 18px;
         margin-left: 15px;
         cursor: help;
         color: rgba(255, 255, 255, 0.7);
+        filter: invert(0.3);
       }
     }
     .x {
@@ -358,6 +374,9 @@ hr {
   pointer-events: none;
 }
 @media only screen and (max-width: 842px) {
+  .theme {
+    margin-top: 0px !important;
+  }
   .pickContainer {
     align-items: center;
   }
@@ -393,10 +412,29 @@ hr {
   }
 }
 .pickContainer {
-  width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  width: 52vw;
+}
+
+.theme {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 22vw;
-  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.switchTxt {
+  text-align: center;
+  max-width: 180px;
+  color: var(--settings-text);
+}
+.themePart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

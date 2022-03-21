@@ -11,7 +11,7 @@
         </div>
         <div class="subtitle">
           <p>
-            <Translated text="TodaySubTitleFirst"></Translated>{{ emotionsSum
+            <Translated text="TodaySubTitleFirst"></Translated> {{ emotionsSum
             }}<Translated text="TodaySubTitleSecond"></Translated>
           </p>
         </div>
@@ -24,11 +24,17 @@
         class="area-chart"
         :hours="hours"
         :values="todayValues"
+        :names="checkNames"
         v-if="!checkData"
       ></AreaChart>
-      <PieChart class="pie-chart" :values="todaySum" v-if="!checkData"></PieChart>
+      <PieChart
+        class="pie-chart"
+        :values="todaySum"
+        v-if="!checkData"
+        :names="checkNames"
+      ></PieChart>
     </div>
-    <SmilesOverview :sum="todaySum" v-if="!checkData"></SmilesOverview>
+    <SmilesOverview :sum="todaySum" v-if="!checkData" :names="checkNames"></SmilesOverview>
   </div>
 </template>
 <script>
@@ -79,8 +85,16 @@ export default {
     checkData() {
       return this.todaySum.every((item) => item === 0);
     },
+    checkNames() {
+      if (localStorage.getItem('translation') === 'ba') {
+        return ['Jako zadovoljan', 'Zadovoljan', 'Nezadovoljan', 'Jako nezadovoljan', 'Razočaran'];
+      }
+      return ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'];
+    },
   },
   mounted() {
+    this.theme = localStorage.getItem('theme');
+    document.documentElement.setAttribute('data-theme', this.theme);
     const today = new Date();
     const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     this.toggleSpin();

@@ -3,16 +3,18 @@
     <div>
       <SmileyFace type="very_dissatisfied" :class="{ dark: this.theme == 'light' }"></SmileyFace>
     </div>
-    <div>404 - {{ $t('NotFoundError') }}</div>
+    <div>404 - <Translated text="NotFoundError"></Translated></div>
   </div>
 </template>
 
 <script>
 import SmileyFace from '../components/SmileyFace';
+import Translated from '../components/Translated';
 
 export default {
   components: {
     SmileyFace,
+    Translated,
   },
   data() {
     return {

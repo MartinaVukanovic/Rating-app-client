@@ -3,21 +3,21 @@
 </template>
 <script>
 export default {
-  props: ['values'],
+  props: ['values', 'names'],
   data() {
     return {
-      smiles: ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'],
+      smiles: this.names,
       pieData: [],
       colors: ['#00a86b', '#41b3e9', '#7a7a7a', '#ffba13', '#f9585a'],
     };
   },
   mounted() {
     this.pieData = [
-      ['Very satisfied', this.values[0]],
-      ['Satisfied', this.values[1]],
-      ['Dissatisfied', this.values[2]],
-      ['Very dissatisfied', this.values[3]],
-      ['Bad', this.values[4]],
+      [this.names[0], this.values[0]],
+      [this.names[1], this.values[1]],
+      [this.names[2], this.values[2]],
+      [this.names[3], this.values[3]],
+      [this.names[4], this.values[4]],
     ];
   },
 };

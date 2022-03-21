@@ -8,13 +8,13 @@ import { Line } from 'vue-chartjs';
 
 export default {
   extends: Line,
-  props: ['hours', 'values'],
+  props: ['hours', 'values', 'names'],
   data() {
     return {
       gradient: [],
       colors: [],
       array: [],
-      smiles: ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'],
+      smiles: this.names,
     };
   },
   methods: {
@@ -58,7 +58,7 @@ export default {
           borderColor: this.colors[index],
           pointBackgroundColor: 'white',
           borderWidth: 1.5,
-          pointBorderColor: 'black',
+          pointBorderColor: 'grey',
           backgroundColor: this.gradient[index],
           data: this.values[index],
         });
