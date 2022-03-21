@@ -1,8 +1,11 @@
 <template>
   <div class="settingsContainer">
+    <transition name="modal">
+      <SettingsModal class="modal" v-if="showModal"></SettingsModal>
+    </transition>
     <div class="settings">
       <div class="fisrtTxt">
-        <div>
+        <div class="settingsTxt">
           <p class="settingsTxt"><Translated text="Settings"></Translated></p>
           <img
             src="../../public/assets/info.svg"
@@ -105,6 +108,7 @@ import ToggleSwitch from '../components/ToggleSwitch';
 import SettingsInfo from '../components/SettingsInfo';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Translated from '../components/Translated';
+import SettingsModal from '../components/SettingsModal';
 
 export default {
   data() {
@@ -116,6 +120,7 @@ export default {
       messageTimeoutError: '',
       debouncedSubmit: null,
       theme: '',
+      showModal: false,
     };
   },
   components: {
@@ -124,6 +129,7 @@ export default {
     SettingsInfo,
     LanguageSwitch,
     Translated,
+    SettingsModal,
   },
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
@@ -155,6 +161,7 @@ export default {
           this.toggleSpin();
           this.thankYouMessage = '';
           this.blurthankYouMessage();
+          this.toggleModal();
         } else {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
@@ -164,18 +171,26 @@ export default {
           this.settingsPost({ type: 'messageTime', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
+          this.toggleModal();
         } else {
           this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
         this.settingsPost({ type: 'numberOfEmotions', value });
         this.blurnumberOfEmotions();
+        this.toggleModal();
       }
     },
     toggleTheme() {
       this.theme = this.theme === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', this.theme);
       localStorage.setItem('theme', this.theme);
+    },
+    toggleModal() {
+      this.showModal = !this.showModal;
+      setTimeout(() => {
+        this.showModal = !this.showModal;
+      }, 1000);
     },
   },
   computed: {
@@ -197,13 +212,39 @@ export default {
   },
   mounted() {
     this.theme = localStorage.getItem('theme');
-    this.numberOfEmotions = this.emotionNumber;
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };
 </script>
 
 <style lang="scss" scoped>
+/* Modal */
+
+.modal {
+  position: absolute;
+  top: 50px;
+  z-index: 10;
+}
+.modal-enter-active {
+  animation: bounce-in 0.5s;
+}
+.modal-leave-active {
+  opacity: 0;
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* End of modal */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
