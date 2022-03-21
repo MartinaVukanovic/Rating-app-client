@@ -261,7 +261,7 @@ export default {
   filter: invert(1);
 }
 .theme {
-  margin-bottom: 35vh;
+  margin-bottom: 10vh;
 }
 .error {
   font-size: 12px;
@@ -275,7 +275,7 @@ export default {
   align-items: center;
   background-color: var(--stat-background);
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 
   .settings {
     padding: 4vh 5vw 0 5vw;
@@ -399,6 +399,9 @@ hr {
   pointer-events: none;
 }
 @media only screen and (max-width: 842px) {
+  .pickContainer {
+    align-items: center;
+  }
   .settings {
     margin-top: 50px;
     padding: 0px !important;
@@ -434,7 +437,6 @@ hr {
   width: 320px;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 22vw;
   margin-top: 60px;
 }

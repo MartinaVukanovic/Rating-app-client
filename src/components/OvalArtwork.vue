@@ -55,8 +55,6 @@ export default {};
     .oval {
       background-image: url('../../public/assets/Oval-copy.svg');
     }
-    .artwork {
-    }
   }
 }
 /* end of media querry */
