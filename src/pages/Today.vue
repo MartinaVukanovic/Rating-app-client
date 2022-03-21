@@ -11,8 +11,8 @@
         </div>
         <div class="subtitle">
           <p>
-            <Translated text="TodaySubTitleFirst"></Translated
-            >{{ emotionsSum }}<Translated text="TodaySubTitleSecond"></Translated>
+            <Translated text="TodaySubTitleFirst"></Translated>{{ emotionsSum
+            }}<Translated text="TodaySubTitleSecond"></Translated>
           </p>
         </div>
       </div>
@@ -45,6 +45,7 @@ export default {
     OvalArtwork,
     AreaChart,
     PieChart,
+    Translated,
     SmilesOverview,
   },
   data() {
