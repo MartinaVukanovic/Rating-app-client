@@ -17,7 +17,8 @@
       <AreaChart
         :key="reportsSum"
         class="area-chart"
-        :hours="days"
+        :hours="checkLanguage"
+        :names="checkNames"
         :values="reportsValues"
         v-if="!checkData"
       ></AreaChart>
@@ -25,10 +26,16 @@
         :key="reportsSum"
         class="pie-chart"
         :values="reportsSum"
+        :names="checkNames"
         v-if="!checkData"
       ></PieChart>
     </div>
-    <SmilesOverview :key="reportsSum" :sum="reportsSum" v-if="!checkData"></SmilesOverview>
+    <SmilesOverview
+      :key="reportsSum"
+      :sum="reportsSum"
+      v-if="!checkData"
+      :names="checkNames"
+    ></SmilesOverview>
   </div>
 </template>
 
@@ -53,7 +60,6 @@ export default {
       date: [],
       startDate: [],
       endDate: [],
-      days: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
     };
   },
   methods: {
@@ -71,6 +77,18 @@ export default {
     ...mapGetters('admin', ['reportsValues', 'reportsSum']),
     checkData() {
       return this.reportsSum.every((item) => item === 0);
+    },
+    checkLanguage() {
+      if (localStorage.getItem('translation') === 'ba') {
+        return ['Po', 'Ut', 'Sr', 'Če', 'Pe', 'Su', 'Ne'];
+      }
+      return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+    },
+    checkNames() {
+      if (localStorage.getItem('translation') === 'ba') {
+        return ['Jako zadovoljan', 'Zadovoljan', 'Nezadovoljan', 'Jako nezadovoljan', 'Razočaran'];
+      }
+      return ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'];
     },
   },
   watch: {

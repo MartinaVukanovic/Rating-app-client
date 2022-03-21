@@ -26,6 +26,8 @@
         </router-link>
       </div>
       <div class="down">
+        <!-- <ToggleSwitch class="themeSwitch" @click="toggleTheme" :theme="this.theme">
+        </ToggleSwitch> -->
         <router-link to="/settings" class="navigation settings">
           <img
             src="../../public/assets/settings.svg"
@@ -81,6 +83,11 @@ export default {
       if (this.mobile) {
         this.toggleHamburger();
       }
+    },
+    toggleTheme() {
+      this.theme = this.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      localStorage.setItem('theme', this.theme);
     },
   },
   created() {
@@ -235,5 +242,11 @@ export default {
   transition: 0.3s ease;
   top: 0;
   transform: rotate(-45deg);
+}
+
+.themeSwitch {
+  margin-bottom: 75px;
+  transform: rotate(90deg);
+  width: 100px;
 }
 </style>

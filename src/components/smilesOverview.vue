@@ -2,8 +2,8 @@
   <div class="stats-count">
     <ul>
       <li>
-        <div class="list-field list-field-title">Emotion</div>
-        <div class="list-field list-field-title">Count</div>
+        <div class="list-field list-field-title"><Translated text="Emotion"></Translated></div>
+        <div class="list-field list-field-title"><Translated text="Count"></Translated></div>
       </li>
       <li v-for="smile in smiles" :key="smile.type">
         <div class="list-field">{{ smile.name }}</div>
@@ -14,18 +14,23 @@
 </template>
 
 <script>
+import Translated from './Translated';
+
 export default {
-  props: ['sum'],
+  props: ['sum', 'names'],
   data() {
     return {
       smiles: [
-        { name: 'Very satisfied', sum: this.sum[0] },
-        { name: 'Satisfied', sum: this.sum[1] },
-        { name: 'Dissatisfied', sum: this.sum[2] },
-        { name: 'Very dissatisfied', sum: this.sum[3] },
-        { name: 'Bad', sum: this.sum[4] },
+        { name: this.names[0], sum: this.sum[0] },
+        { name: this.names[1], sum: this.sum[1] },
+        { name: this.names[2], sum: this.sum[2] },
+        { name: this.names[3], sum: this.sum[3] },
+        { name: this.names[4], sum: this.sum[4] },
       ],
     };
+  },
+  components: {
+    Translated,
   },
 };
 </script>

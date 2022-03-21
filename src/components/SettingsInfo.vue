@@ -2,21 +2,21 @@
   <div class="info-wrapper" @click.self="toggleInfo">
     <div class="info">
       <div class="title">
-        <h1>Current settings</h1>
-        <button @click="toggleInfo">X</button>
+        <h1><Translated text="CurrentSettings"></Translated></h1>
+        <button @click="toggleInfo">x</button>
       </div>
       <hr />
       <div class="content">
         <div>
-          <h1>Thank you message:</h1>
+          <h1><Translated text="MessagePlaceholder"></Translated>:</h1>
           <p>{{ thankYouMessage }}</p>
         </div>
         <div>
-          <h1>Message timeout:</h1>
-          <p>{{ MessageTime }}</p>
+          <h1><Translated text="MessageTimeoutPlaceholder"></Translated>:</h1>
+          <p>{{ MessageTime }} s</p>
         </div>
         <div>
-          <h1>Emotions number:</h1>
+          <h1><Translated text="EmotionsNumberPlaceHolder"></Translated>:</h1>
           <p>{{ emotionNumber }}</p>
         </div>
       </div>
@@ -26,8 +26,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Translated from './Translated';
 
 export default {
+  components: {
+    Translated,
+  },
   methods: {
     ...mapActions('admin', ['toggleInfo']),
   },
@@ -38,6 +42,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+hr {
+  border: 0px;
+  border-top: 1px solid var(--settings-border);
+  margin: 10px 0px 40px 0;
+  padding: 0;
+}
 .info-wrapper {
   position: absolute;
   z-index: 5;
@@ -51,12 +61,12 @@ export default {
   justify-content: center;
 
   .info {
+    border-radius: 4px;
     background-color: var(--stat-background);
     max-width: 500px;
     max-height: 700px;
     width: 90%;
-    height: 80%;
-    padding: 10px 20px;
+    padding: 30px 35px;
 
     .title {
       width: 100%;
@@ -97,11 +107,11 @@ export default {
           width: 50%;
         }
         p {
-          font-size: 15px;
+          font-size: 18px;
           font-style: italic;
           justify-self: start;
-          margin-left: 30px;
-          width: 50%;
+          margin-left: 40px;
+          width: 48%;
         }
       }
     }

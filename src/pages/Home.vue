@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body" id="Home">
     <div class="likeIcon">
       <div class="likeIconImage">
         <img src="../../public/assets/positive-vote.svg" />
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       show: false,
+      localTheme: '',
     };
   },
   methods: {
@@ -49,6 +50,10 @@ export default {
   computed: {
     ...mapGetters(['emotionList', 'welcomePage']),
     ...mapGetters('admin', ['MessageTime']),
+  },
+  mounted() {
+    const localTheme = localStorage.getItem('themeUser');
+    document.documentElement.setAttribute('data-theme', localTheme);
   },
 };
 </script>

@@ -60,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    this.theme = localStorage.getItem('theme');
+    this.theme = localStorage.getItem('themeUser');
   },
 };
 </script>

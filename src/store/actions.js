@@ -1,5 +1,4 @@
 import { getSmiles, emotionSubmit } from '../api/index';
-/* import getLanguageFile from '../locales/index'; */
 
 export default {
   async submitEmotion({ commit }, name) {
