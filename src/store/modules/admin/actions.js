@@ -41,4 +41,7 @@ export default {
       console.log(error);
     }
   },
+  toggleInfo({ commit }) {
+    commit('toggleInfo');
+  },
 };

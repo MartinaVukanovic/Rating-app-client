@@ -38,7 +38,9 @@
     </div>
     <div class="mobile" v-if="mobile">
       <div class="navbar-mobile">
-        <img src="../../public/assets/logo.png" class="logo" />
+        <router-link to="/">
+          <img src="../../public/assets/logo.png" class="logo" />
+        </router-link>
         <div class="hamburger" :class="{ active: active }" @click="toggleHamburger">
           <span class="bar"></span>
         </div>
@@ -46,7 +48,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {

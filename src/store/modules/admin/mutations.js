@@ -10,4 +10,7 @@ export default {
   reportsPost(state, data) {
     state.reports = data;
   },
+  toggleInfo(state) {
+    state.info = !state.info;
+  },
 };

@@ -9,6 +9,7 @@
         :enableTimePicker="false"
         dark
         noToday
+        maxRange="6"
       >
       </Datepicker>
     </div>
@@ -78,8 +79,8 @@ export default {
     },
   },
   mounted() {
-    this.startDate = new Date();
-    this.endDate = new Date(new Date().setDate(this.startDate.getDate() + 7));
+    this.endDate = new Date();
+    this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
     this.date = [this.startDate, this.endDate];
     this.submit(this.startDate, this.endDate);
   },

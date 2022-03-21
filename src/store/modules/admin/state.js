@@ -4,4 +4,5 @@ export default {
   numberOfEmotions: null,
   today: [],
   reports: [],
+  info: false,
 };
