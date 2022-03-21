@@ -9,20 +9,32 @@
       </div>
     </div>
     <div class="modal-message">
-      <p>Success !</p>
+      <p><Translated text="Success"></Translated></p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import Translated from './Translated';
+
+export default {
+  components: {
+    Translated,
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .modal-container {
+  border-radius: 4px;
   height: 150px;
-  width: 250px;
-  background-color: var(--background-black);
+  width: 300px;
+  background: linear-gradient(
+    0.25turn,
+    var(--stat-background),
+    var(--stat-background-success),
+    var(--stat-background)
+  );
 }
 .modal-message {
   height: 50px;
@@ -77,7 +89,6 @@ export default {};
       content: '';
       height: 100px;
       position: absolute;
-      background-color: var(--background-black);
       transform: rotate(-45deg);
     }
 
@@ -126,7 +137,6 @@ export default {};
       height: 85px;
       position: absolute;
       transform: rotate(-45deg);
-      background-color: var(--background-black);
     }
   }
 }

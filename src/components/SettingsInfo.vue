@@ -117,4 +117,9 @@ hr {
     }
   }
 }
+@media only screen and (max-width: 570px) {
+  .info {
+    padding: 20px 20px !important;
+  }
+}
 </style>

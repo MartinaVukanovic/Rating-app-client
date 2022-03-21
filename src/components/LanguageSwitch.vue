@@ -24,16 +24,10 @@ export default {
   components: {
     Translated,
   },
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions(['changeLanguage']),
     changeLocal(locale) {
       this.changeLanguage(locale);
-    },
-    handleChange(event) {
-      console.log(event.target.value);
     },
   },
   computed: {
