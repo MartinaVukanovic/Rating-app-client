@@ -11,6 +11,10 @@
           <Translated text="bosnian"></Translated>
           <img src="../../public/assets/bosnian-flag.png" style="width 15px; height: 15px;" />
         </div>
+        <div class="languageContainer" @click="changeLocal('hi')">
+          <Translated text="hindi"></Translated>
+          <img src="../../public/assets/indian-flag.svg" style="width 15px; height: 15px;" />
+        </div>
       </div>
     </div>
   </div>

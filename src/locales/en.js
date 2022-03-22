@@ -35,4 +35,5 @@ export default {
   Su: 'Su',
   english: 'English',
   bosnian: 'Bosnian',
+  hindi: 'hindi',
 };
