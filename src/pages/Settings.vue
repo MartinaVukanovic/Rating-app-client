@@ -198,6 +198,7 @@ export default {
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
       localStorage.setItem('themeUser', this.themeUser);
+    },
     toggleModal() {
       this.showModal = !this.showModal;
       setTimeout(() => {
@@ -226,7 +227,7 @@ export default {
     this.theme = localStorage.getItem('theme');
     this.themeUser = localStorage.getItem('themeUser');
     document.documentElement.setAttribute('data-theme', this.theme);
-    this.numberOfEmotions = this.emotionNumber;
+    /* this.numberOfEmotions = this.emotionNumber; */
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };

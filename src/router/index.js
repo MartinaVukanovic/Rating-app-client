@@ -24,6 +24,7 @@ export default createRouter({
       path: '/settings',
       name: 'Settings',
       component: () => import(/* webpackChunkName: "home" */ '@/pages/Settings'),
+      meta: { transition: 'route-up' },
     },
     {
       path: '/admin',
