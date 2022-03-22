@@ -53,7 +53,6 @@ export default {
     PieChart,
     Translated,
     SmilesOverview,
-    Translated,
   },
   data() {
     return {
