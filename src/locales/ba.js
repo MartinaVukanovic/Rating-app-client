@@ -35,5 +35,5 @@ export default {
   Su: 'Ne',
   english: 'engleski',
   bosnian: 'bosanski',
-  hindi: 'hindi',
+  hindi: 'Hindi',
 };
