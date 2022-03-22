@@ -18,8 +18,7 @@ export default {
   },
   async settingsPost({ dispatch }, { type, value }) {
     try {
-      const response = await postSettings(type, value);
-      console.log('settingsPost ', response);
+      await postSettings(type, value);
       dispatch('settingsGet');
     } catch (error) {
       console.log(error);
