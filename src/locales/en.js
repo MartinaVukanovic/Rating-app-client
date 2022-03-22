@@ -24,4 +24,5 @@ export default {
   Count: 'Count',
   english: 'English',
   bosnian: 'Bosnian',
+  hindi: 'Hindi',
 };

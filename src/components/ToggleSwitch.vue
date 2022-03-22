@@ -1,5 +1,5 @@
 <template>
-  <div><input type="checkbox" :checked="checkTheme" /></div>
+  <div class="switcher"><input type="checkbox" :checked="checkTheme" /></div>
 </template>
 
 <script>
@@ -17,6 +17,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.switcher,
+input {
+  cursor: pointer;
+}
 input[type='checkbox'] {
   position: relative;
   width: 120px;

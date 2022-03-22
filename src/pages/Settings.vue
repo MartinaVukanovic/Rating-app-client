@@ -42,6 +42,7 @@
         </div>
         <div class="numberSelect thankYou">
           <input
+            :disabled="messageTimeout > 0 || numberOfEmotions"
             class="inp"
             type="text"
             maxlength="120"
@@ -61,7 +62,13 @@
 
       <div class="other">
         <div class="numberSelect first">
-          <select class="inp" required="required" v-model="numberOfEmotions" ref="numberOfEmotions">
+          <select
+            class="inp"
+            required="required"
+            v-model="numberOfEmotions"
+            ref="numberOfEmotions"
+            :disabled="thankYouMessage.length || messageTimeout > 0"
+          >
             <option value="3" selected>3</option>
             <option value="4">4</option>
             <option value="5">5</option>
@@ -71,6 +78,7 @@
         </div>
         <div class="numberSelect second">
           <input
+            :disabled="thankYouMessage.length || numberOfEmotions"
             class="inp"
             type="number"
             ref="messageTimeout"
@@ -116,7 +124,7 @@ export default {
   data() {
     return {
       thankYouMessage: '',
-      numberOfEmotions: this.emotionNumber,
+      numberOfEmotions: null,
       messageTimeout: null,
       thankYouMessageError: '',
       messageTimeoutError: '',
@@ -182,9 +190,9 @@ export default {
         this.settingsPost({ type: 'numberOfEmotions', value });
         this.blurnumberOfEmotions();
         this.toggleModal();
+        this.numberOfEmotions = null;
       }
     },
-
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
       localStorage.setItem('themeUser', this.themeUser);
