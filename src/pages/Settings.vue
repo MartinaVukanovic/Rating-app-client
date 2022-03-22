@@ -102,10 +102,6 @@
       </div>
       <div class="theme">
         <div class="themePart">
-          <p class="switchTxt"><Translated text="ChangeThemeAdmin"></Translated></p>
-          <ToggleSwitch @click="toggleTheme" :theme="this.theme" class="switches"> </ToggleSwitch>
-        </div>
-        <div class="themePart">
           <p class="switchTxt"><Translated text="ChangeThemeUser"></Translated></p>
           <ToggleSwitch @click="toggleThemeUser" :theme="this.themeUser" class="switches">
           </ToggleSwitch>
@@ -199,11 +195,11 @@ export default {
         this.numberOfEmotions = null;
       }
     },
-    toggleTheme() {
+    /* toggleTheme() {
       this.theme = this.theme === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', this.theme);
       localStorage.setItem('theme', this.theme);
-    },
+    }, */
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
       localStorage.setItem('themeUser', this.themeUser);
