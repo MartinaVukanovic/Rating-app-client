@@ -5,7 +5,7 @@
         <div class="list-field list-field-title"><Translated text="Emotion"></Translated></div>
         <div class="list-field list-field-title"><Translated text="Count"></Translated></div>
       </li>
-      <li v-for="smile in smiles" :key="smile.type">
+      <li v-for="smile in smiles" :key="smile.type" ref="table">
         <div class="list-field">{{ smile.name }}</div>
         <div class="list-field">{{ smile.sum }}</div>
       </li>

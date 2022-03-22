@@ -3,11 +3,11 @@
     <div class="dropdown">
       <button class="dropbtn"><Translated text="TranslationButton"></Translated></button>
       <div class="dropdown-content">
-        <div class="languageContainer" @click="changeLocal('en')">
+        <div class="languageContainer" @click="changeLocal('en')" ref="english">
           <Translated text="english"></Translated>
           <img src="../../public/assets/american-flag.png" style="width 15px; height: 15px;" />
         </div>
-        <div class="languageContainer" @click="changeLocal('ba')">
+        <div class="languageContainer bosnian" @click="changeLocal('ba')" ref="bosnian">
           <Translated text="bosnian"></Translated>
           <img src="../../public/assets/bosnian-flag.png" style="width 15px; height: 15px;" />
         </div>
@@ -17,28 +17,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 import Translated from './Translated';
 
 export default {
   components: {
     Translated,
   },
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions(['changeLanguage']),
     changeLocal(locale) {
       this.changeLanguage(locale);
     },
-    handleChange(event) {
-      console.log(event.target.value);
-    },
   },
-  computed: {
-    ...mapGetters(['language']),
-  },
+  computed: {},
 };
 </script>
 

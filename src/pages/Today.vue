@@ -51,7 +51,6 @@ export default {
     OvalArtwork,
     AreaChart,
     PieChart,
-    Translated,
     SmilesOverview,
     Translated,
   },

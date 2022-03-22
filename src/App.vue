@@ -33,6 +33,7 @@ export default {
 <style lang="scss">
 @import 'styles/reset';
 @import 'styles/datepicker';
+@import 'styles/scrollbar';
 
 :root {
   --smile-green: #00a86b;
@@ -46,6 +47,7 @@ export default {
   --stat-red: #f9585a;
   --stat-grey: #b0b0b2;
   --stat-background: #2d3038;
+  --stat-background-success: rgba(39, 41, 46, 1);
   --settings-text: rgba(255, 255, 255, 0.5);
   --settings-text-light: rgba(255, 255, 255, 0.7);
   --settings-border: rgba(255, 255, 255, 0.2);
@@ -60,6 +62,7 @@ export default {
 [data-theme='light'] {
   --background-black: #ececec;
   --stat-background: #dddddd;
+  --stat-background-success: #dad6d2;
   --settings-text-light: rgba(0, 0, 0, 0.85);
   --settings-text: rgba(0, 0, 0, 0.85);
   --settings-border: rgba(0, 0, 0, 0.3);

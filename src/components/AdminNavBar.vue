@@ -1,15 +1,13 @@
 <template>
   <div class="admin">
     <div class="picture">
-      <img src="../../public/assets/profile-picture.jpg" alt="" />
+      <img src="../../public/assets/profile-picture.jpg" alt="profile-picture" />
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {},
-};
+export default {};
 </script>
 
 <style scoped lang="scss">

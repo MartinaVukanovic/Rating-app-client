@@ -93,15 +93,9 @@
         <LanguageSwitch></LanguageSwitch>
       </div>
       <div class="theme">
-        <div class="themePart">
-          <p class="switchTxt"><Translated text="ChangeThemeAdmin"></Translated></p>
-          <ToggleSwitch @click="toggleTheme" :theme="this.theme" class="switches"> </ToggleSwitch>
-        </div>
-        <div class="themePart">
-          <p class="switchTxt"><Translated text="ChangeThemeUser"></Translated></p>
-          <ToggleSwitch @click="toggleThemeUser" :theme="this.themeUser" class="switches">
-          </ToggleSwitch>
-        </div>
+        <p class="switchTxt"><Translated text="ChangeThemeUser"></Translated></p>
+        <ToggleSwitch @click="toggleThemeUser" :theme="this.themeUser" class="switches">
+        </ToggleSwitch>
       </div>
     </div>
   </div>
@@ -190,19 +184,16 @@ export default {
         this.toggleModal();
       }
     },
-    toggleTheme() {
-      this.theme = this.theme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', this.theme);
-      localStorage.setItem('theme', this.theme);
-    },
+
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
       localStorage.setItem('themeUser', this.themeUser);
+    },
     toggleModal() {
       this.showModal = !this.showModal;
       setTimeout(() => {
         this.showModal = !this.showModal;
-      }, 1000);
+      }, 1500);
     },
   },
   computed: {
@@ -226,7 +217,6 @@ export default {
     this.theme = localStorage.getItem('theme');
     this.themeUser = localStorage.getItem('themeUser');
     document.documentElement.setAttribute('data-theme', this.theme);
-    this.numberOfEmotions = this.emotionNumber;
     this.debouncedSubmit = debounce(this.submit, 2000);
   },
 };
@@ -236,7 +226,9 @@ export default {
 /* Modal */
 
 .modal {
+  height: 180px;
   position: absolute;
+  padding: 20px;
   top: 50px;
   z-index: 10;
 }
@@ -451,13 +443,16 @@ hr {
   .settings {
     width: 60vw !important;
   }
+  .theme {
+    gap: 0px !important;
+  }
 }
 .pickContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 50px;
-  width: 52vw;
+  width: 55vw;
 }
 
 .theme {

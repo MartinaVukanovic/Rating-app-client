@@ -26,8 +26,7 @@
         </router-link>
       </div>
       <div class="down">
-        <!-- <ToggleSwitch class="themeSwitch" @click="toggleTheme" :theme="this.theme">
-        </ToggleSwitch> -->
+        <ToggleSwitch class="themeSwitch" @click="toggleTheme" :theme="this.theme"> </ToggleSwitch>
         <router-link to="/settings" class="navigation settings">
           <img
             src="../../public/assets/settings.svg"
@@ -52,10 +51,12 @@
 </template>
 <script>
 import Translated from './Translated';
+import ToggleSwitch from './ToggleSwitch';
 
 export default {
   components: {
     Translated,
+    ToggleSwitch,
   },
   data() {
     return {
@@ -247,6 +248,5 @@ export default {
 .themeSwitch {
   margin-bottom: 75px;
   transform: rotate(90deg);
-  width: 100px;
 }
 </style>

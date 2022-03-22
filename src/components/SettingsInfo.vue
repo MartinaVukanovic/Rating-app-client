@@ -1,6 +1,6 @@
 <template>
-  <div class="info-wrapper" @click.self="toggleInfo">
-    <div class="info">
+  <div class="info-wrapper" @click.self="toggleInfo" ref="infoAround">
+    <div class="info" ref="info">
       <div class="title">
         <h1><Translated text="CurrentSettings"></Translated></h1>
         <button @click="toggleInfo">x</button>
@@ -115,6 +115,11 @@ hr {
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 570px) {
+  .info {
+    padding: 20px 20px !important;
   }
 }
 </style>
