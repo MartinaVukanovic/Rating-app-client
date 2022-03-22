@@ -35,5 +35,5 @@ export default {
   Su: 'रविवार',
   english: 'english',
   bosnian: 'bosnian',
-  hindi: 'hindi',
+  hindi: 'Hindi',
 };
