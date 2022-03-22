@@ -12,8 +12,8 @@ export default {
   smiles(state) {
     return state.smiles;
   },
-  language(state) {
-    return state.language;
+  translation(state) {
+    return state.translation;
   },
   getTranslation(state) {
     return (value) => {
