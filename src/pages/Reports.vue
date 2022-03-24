@@ -71,6 +71,9 @@ export default {
     submit(date1, date2) {
       const startDate = this.convertTime(date1);
       const endDate = this.convertTime(date2);
+      if (startDate === endDate) {
+        return;
+      }
       this.reportsPost({ startDate, endDate });
     },
   },
