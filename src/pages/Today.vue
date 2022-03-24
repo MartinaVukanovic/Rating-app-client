@@ -5,14 +5,15 @@
         <div class="title">
           <p>
             <b>
-              <p><Translated text="TodayTitle"></Translated></p
+              <p><Translated class="today-title" text="TodayTitle"></Translated></p
             ></b>
           </p>
         </div>
         <div class="subtitle">
           <p>
-            <Translated text="TodaySubTitleFirst"></Translated> {{ emotionsSum
-            }}<Translated text="TodaySubTitleSecond"></Translated>
+            <Translated class="today-subtitle" text="TodaySubTitleFirst"></Translated>
+            {{ emotionsSum
+            }}<Translated class="today-subtitle" text="TodaySubTitleSecond"></Translated>
           </p>
         </div>
       </div>
@@ -34,7 +35,12 @@
         :names="checkNames"
       ></PieChart>
     </div>
-    <SmilesOverview :sum="todaySum" v-if="!checkData" :names="checkNames"></SmilesOverview>
+    <SmilesOverview
+      class="smiles-overview"
+      :sum="todaySum"
+      v-if="!checkData"
+      :names="checkNames"
+    ></SmilesOverview>
   </div>
 </template>
 <script>

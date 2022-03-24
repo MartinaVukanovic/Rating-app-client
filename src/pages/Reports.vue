@@ -31,6 +31,7 @@
       ></PieChart>
     </div>
     <SmilesOverview
+      class="smiles-overview"
       :key="reportsSum"
       :sum="reportsSum"
       v-if="!checkData"

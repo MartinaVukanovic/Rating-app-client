@@ -14,7 +14,7 @@
             @click="toggleInfo"
           />
           <transition>
-            <SettingsInfo v-if="getInfo"></SettingsInfo>
+            <SettingsInfo v-if="getInfo" class="settings-info"></SettingsInfo>
           </transition>
         </div>
         <p class="settingsTxt x" @click="$router.go(-1)">x</p>
@@ -51,9 +51,7 @@
             v-model="thankYouMessage"
             :class="{ inputError: thankYouMessageError }"
           />
-          <label class="txt" @click="focusMessageInput"
-            ><Translated text="MessagePlaceholder"></Translated
-          ></label>
+          <label class="txt"><Translated text="MessagePlaceholder"></Translated></label>
           <p class="error" v-if="thankYouMessageError">
             <Translated text="MessageError"></Translated>
           </p>
@@ -86,9 +84,7 @@
             v-model="messageTimeout"
             :class="{ inputError: messageTimeoutError }"
           />
-          <label class="txt" @click="focusTimeoutInput"
-            ><Translated text="MessageTimeoutPlaceholder"></Translated>
-          </label>
+          <label class="txt"><Translated text="MessageTimeoutPlaceholder"></Translated> </label>
           <p class="error" v-if="messageTimeoutError">
             <Translated text="MessageTimeoutError"></Translated>
           </p>
@@ -145,12 +141,6 @@ export default {
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
     ...mapActions(['toggleSpin']),
-    focusMessageInput() {
-      this.$refs.thankYouMessage.focus();
-    },
-    focusTimeoutInput() {
-      this.$refs.messageTimeout.focus();
-    },
     blurthankYouMessage() {
       this.$refs.thankYouMessage.blur();
     },
@@ -161,7 +151,7 @@ export default {
       this.$refs.messageTimeout.blur();
     },
     submit(value) {
-      if (!value) {
+      if (!value && value !== 0) {
         return;
       }
       if (value === this.thankYouMessage) {
@@ -369,6 +359,7 @@ hr {
     left: 8px;
     position: absolute;
     font-size: 16px;
+    pointer-events: none;
   }
   .txtUnder {
     color: var(--settings-text);
