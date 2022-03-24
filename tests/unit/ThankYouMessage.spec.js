@@ -9,9 +9,6 @@ const state = { message };
 describe('thank you message', () => {
   it('thank you message', () => {
     const wrapper = shallowMount(ThankYouMessage, {
-      propsData: {
-        text: 'Settings',
-      },
       computed: {
         thankYouMessage() {
           return state.message;
@@ -20,11 +17,13 @@ describe('thank you message', () => {
     });
 
     // containes div, image and paragraph
+
     expect(wrapper.find('div').isVisible()).toBe(true);
     expect(wrapper.find('img').isVisible()).toBe(true);
     expect(wrapper.find('p').isVisible()).toBe(true);
 
     // returns given value from state
+
     expect(wrapper.text()).toContain(message);
   });
 });

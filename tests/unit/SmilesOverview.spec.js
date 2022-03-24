@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import SmilesOverview from '../../src/components/SmilesOverview';
 
-// SmilesOverview component
+// SmilesOverview component (same for AreaChart and PieChart components)
 
 describe('smiles overview', () => {
   it('smiles overview', async () => {
@@ -12,7 +12,7 @@ describe('smiles overview', () => {
       },
     });
 
-    // exists with no data
+    // exists with valid sent props with zero data
     const table = wrapper.find({ ref: 'table' });
     expect(wrapper.isVisible()).toBe(true);
   });
