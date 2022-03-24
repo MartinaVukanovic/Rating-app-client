@@ -21,6 +21,7 @@ export default {
   Settings: 'समायोजन',
   Emotion: 'इमोटिकॉन',
   Count: 'गणना',
+  Success: 'सफलता',
   very_satisfied: 'बहुत संतुष्ट',
   satisfied: 'संतुष्ट',
   dissatisfied: 'असंतुष्ट',
@@ -33,7 +34,7 @@ export default {
   Fr: 'शुक्रवार',
   Sa: 'शनिवार',
   Su: 'रविवार',
-  english: 'english',
-  bosnian: 'bosnian',
-  hindi: 'Hindi',
+  english: 'अंग्रेज़ी',
+  bosnian: 'बोस्नियाई',
+  hindi: 'हिन्दी',
 };

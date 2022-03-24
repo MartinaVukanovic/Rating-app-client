@@ -33,9 +33,9 @@ describe('translated', () => {
     const span = wrapper.find('span');
     expect(span.exists()).toBe(true);
 
-    // language set to bosnian, change of props from "Settings" to "HomeScreenMessage"
-
     expect(wrapper.text()).toContain('Postavke');
+
+    // language set to bosnian, change of props from "Settings" to "HomeScreenMessage"
 
     await wrapper.setProps({ text: 'HomeScreenMessage' });
     expect(wrapper.text()).toContain('Ocijenite našu uslugu!');
@@ -58,9 +58,9 @@ describe('translated', () => {
     const span = wrapperEn.find('span');
     expect(span.exists()).toBe(true);
 
-    // language set to english, change of props from "Settings" to "HomeScreenMessage"
-
     expect(wrapperEn.text()).toContain('Settings');
+
+    // language set to english, change of props from "Settings" to "HomeScreenMessage"
 
     await wrapperEn.setProps({ text: 'HomeScreenMessage' });
     expect(wrapperEn.text()).toContain('Rate our service!');

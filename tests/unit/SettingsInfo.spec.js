@@ -1,5 +1,3 @@
-// Cannot read properties of undefined (reading 'dispatch') state toggleInfo?
-
 import { shallowMount } from '@vue/test-utils';
 import SettingsInfo from '../../src/components/SettingsInfo';
 
@@ -14,18 +12,17 @@ describe('settings info', () => {
   it('settings info', async () => {
     const wrapper = shallowMount(SettingsInfo, {
       computed: {
-        thankYouMessage(state) {
-          console.log(state.message);
+        thankYouMessage() {
           return state.message;
         },
-        MessageTime(state) {
+        MessageTime() {
           return state.messageTime;
         },
-        emotionNumber(state) {
+        emotionNumber() {
           return state.numberOfEmotions;
         },
-        toggleInfo(state) {
-          console.log(state);
+        toggleInfo() {
+          return state.info;
         },
       },
     });
@@ -34,11 +31,9 @@ describe('settings info', () => {
     expect(infoAround.exists()).toBe(true);
 
     const info = wrapper.find({ ref: 'info' });
-    expect(info.isVisible()).toBe(true);
+    expect(info.exists()).toBe(true);
 
     await infoAround.trigger('click');
     expect(info.isVisible()).toBe(true);
-
-    expect(wrapper.isVisible()).toBe(true);
   });
 });

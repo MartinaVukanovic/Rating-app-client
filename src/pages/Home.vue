@@ -12,10 +12,11 @@
         :key="emotion.name"
         :type="emotion.name"
         :color="emotion.color"
+        class="SmileyFace"
       ></SmileyFace>
     </div>
     <transition name="fade">
-      <ThankYouMessage v-if="welcomePage"></ThankYouMessage>
+      <ThankYouMessage v-if="welcomePage" class="ThankYouMessage"></ThankYouMessage>
     </transition>
   </div>
 </template>

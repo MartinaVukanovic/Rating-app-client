@@ -5,15 +5,15 @@
       <div class="dropdown-content">
         <div class="languageContainer" @click="changeLocal('en')" ref="english">
           <Translated text="english"></Translated>
-          <img src="../../public/assets/american-flag.png" style="width 15px; height: 15px;" />
+          <img src="../../public/assets/american-flag.png" style="width: 30px; height: 15px" />
         </div>
         <div class="languageContainer bosnian" @click="changeLocal('ba')" ref="bosnian">
           <Translated text="bosnian"></Translated>
-          <img src="../../public/assets/bosnian-flag.png" style="width 15px; height: 15px;" />
+          <img src="../../public/assets/bosnian-flag.png" style="width: 30px; height: 15px" />
         </div>
-        <div class="languageContainer" @click="changeLocal('hi')">
+        <div class="languageContainer" @click="changeLocal('hi')" ref="hindi">
           <Translated text="hindi"></Translated>
-          <img src="../../public/assets/indian-flag.svg" style="width 15px; height: 15px;" />
+          <img src="../../public/assets/indian-flag.png" style="width: 30px; height: 15px" />
         </div>
       </div>
     </div>
@@ -41,8 +41,7 @@ export default {
 <style lang="scss" scoped>
 .languageContainer {
   display: flex !important;
-  justify-content: center;
-  gap: 30px;
+  justify-content: space-evenly;
   align-items: center;
 }
 button {
