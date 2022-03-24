@@ -4,13 +4,15 @@
 .dp__calendar_header_separator {
   height: 0px;
 }
-
+.dp__menu {
+  margin-left: 1vw;
+}
 .dp__input {
   background-color: var(--background-black);
   color: var(--settings-text-light);
   border: 1px solid var(--settings-border);
   border-radius: 4px;
-  width: 90%;
+  width: 87%;
   margin-left: 30px;
 }
 .dp__overlay_cell_active {
@@ -43,9 +45,12 @@
   padding-left: 12px;
 }
 .dp__input_icons {
-  padding: 6px 2px;
+  display: none;
+  pointer-events: none;
+  padding: 6px 0px;
 }
 .dp__input_icon {
+  display: block;
   height: 21px !important;
   width: 21px;
 }
