@@ -2,8 +2,24 @@
   <div class="stats-count">
     <ul>
       <li>
-        <div class="list-field list-field-title"><Translated text="Emotion"></Translated></div>
-        <div class="list-field list-field-title"><Translated text="Count"></Translated></div>
+        <div class="list-field list-field-title">
+          <Translated text="Emotion"></Translated
+          ><img
+            @click="sortNames"
+            class="arrow-down"
+            :class="{ dark: this.theme == 'light' }"
+            src="../../public/assets/arrow-down.svg"
+          />
+        </div>
+        <div class="list-field list-field-title">
+          <Translated text="Count"></Translated
+          ><img
+            @click="sortSum"
+            class="arrow-down"
+            :class="{ dark: this.theme == 'light' }"
+            src="../../public/assets/arrow-down.svg"
+          />
+        </div>
       </li>
       <li v-for="smile in smiles" :key="smile.type" ref="table">
         <div class="list-field">{{ smile.name }}</div>
@@ -27,10 +43,36 @@ export default {
         { name: this.names[3], sum: this.sum[3] },
         { name: this.names[4], sum: this.sum[4] },
       ],
+      theme: '',
+      sortByNames: true,
+      sortBySum: true,
     };
   },
   components: {
     Translated,
+  },
+  methods: {
+    sortSum() {
+      if (this.sortBySum === true) {
+        this.smiles.sort((a, b) => b.sum - a.sum);
+        this.sortBySum = false;
+      } else {
+        this.smiles.sort((a, b) => a.sum - b.sum);
+        this.sortBySum = true;
+      }
+    },
+    sortNames() {
+      if (this.sortByNames === true) {
+        this.smiles.sort((a, b) => b.name.localeCompare(a.name));
+        this.sortByNames = false;
+      } else {
+        this.smiles.sort((a, b) => a.name.localeCompare(b.name));
+        this.sortByNames = true;
+      }
+    },
+  },
+  mounted() {
+    this.sortSum();
   },
 };
 </script>
@@ -65,6 +107,15 @@ ul {
     }
     .list-field-title {
       background-color: var(--stat-background);
+      display: flex;
+      align-items: center;
+
+      .arrow-down {
+        margin-left: 20px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.7);
+        filter: invert(0.5);
+      }
     }
   }
 }
