@@ -13,6 +13,7 @@
         :type="emotion.name"
         :color="emotion.color"
         class="SmileyFace"
+        @click="playSound"
       ></SmileyFace>
     </div>
     <transition name="fade">
@@ -26,6 +27,7 @@ import { mapActions, mapGetters } from 'vuex';
 import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
 import Translated from '../components/Translated';
+import sound from '../../public/mp3/smile-click.wav';
 
 export default {
   components: {
@@ -46,6 +48,11 @@ export default {
       setTimeout(() => {
         this.toggleWelcomePage();
       }, this.MessageTime);
+    },
+    playSound() {
+      const audio = new Audio(sound);
+      console.log(audio);
+      audio.play();
     },
   },
   computed: {
