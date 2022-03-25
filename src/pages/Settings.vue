@@ -92,6 +92,13 @@
         </div>
       </div>
     </div>
+    <br />
+    <br />
+    <p class="songTxt" style="margin-bottom: 0px"><Translated text="Song"></Translated></p>
+    <div class="numberSelect musicPicker">
+      <input class="inp songInp" type="text" required="required" />
+      <label class="txt songTxt"><Translated text="MusicPlaceHolder"></Translated> </label>
+    </div>
     <div class="pickContainer">
       <div class="lang">
         <LanguageSwitch></LanguageSwitch>
@@ -310,6 +317,21 @@ export default {
   font-size: 12px;
   top: -11px;
 }
+
+.songInp:valid + .songTxt {
+  font-size: 12px;
+  top: -11px;
+  background-color: var(--stat-background);
+  z-index: 2;
+}
+
+.songInp:focus + .songTxt {
+  font-size: 12px;
+  top: -11px;
+  z-index: 2;
+  transition: 0.4s;
+}
+
 select option {
   background-color: var(--stat-background);
 }
@@ -347,6 +369,7 @@ hr {
     border: none !important;
   }
 }
+
 .numberSelect {
   margin-top: 20px;
   position: relative;
@@ -412,6 +435,9 @@ hr {
   .pickContainer {
     align-items: center;
   }
+  .musicPicker {
+    margin-top: 20px !important;
+  }
   .settings {
     margin-top: 50px;
     padding: 0px !important;
@@ -471,5 +497,14 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.musicPicker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.songTxt {
+  color: var(--settings-text);
 }
 </style>

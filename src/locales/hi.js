@@ -16,6 +16,8 @@ export default {
   CurrentSettings: 'वर्तमान सेटिंग्स',
   ChangeThemeAdmin: 'व्यवस्थापक के लिए विषय बदलें',
   ChangeThemeUser: 'उपयोगकर्ता के लिए विषय बदलें',
+  Song: 'होम स्क्रीन के लिए संगीत चुनें',
+  MusicPlaceHolder: 'यूट्यूब लिंक',
   Today: 'आज',
   Reports: 'रिपोर्टों',
   Settings: 'समायोजन',

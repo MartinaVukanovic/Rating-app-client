@@ -16,6 +16,8 @@ export default {
   CurrentSettings: 'Current settings',
   ChangeThemeAdmin: 'Change theme for admin',
   ChangeThemeUser: 'Change theme for user',
+  Song: 'Choose music for the home screen',
+  MusicPlaceHolder: 'youtube link',
   Success: 'success',
   Today: 'Today',
   Reports: 'Reports',
