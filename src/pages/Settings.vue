@@ -176,7 +176,7 @@ export default {
       } else if (value === this.messageTimeout) {
         if (utils.validateNumber(value, 0, 11)) {
           this.messageTimeoutError = '';
-          this.settingsPost({ type: 'messageTime', value });
+          this.settingsPost({ type: 'messageDelay', value });
           this.messageTimeout = null;
           this.blurmessageTimeout();
           this.toggleModal();
@@ -184,7 +184,7 @@ export default {
           this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
-        this.settingsPost({ type: 'numberOfEmotions', value });
+        this.settingsPost({ type: 'numberOfEmoji', value });
         this.blurnumberOfEmotions();
         this.toggleModal();
         this.numberOfEmotions = null;

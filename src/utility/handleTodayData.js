@@ -20,10 +20,10 @@ export default function handleTodayData(objs) {
     for (let i = 0; i < 24; i += 2) {
       if (
         // prettier-ignore
-        new Date(obj.createdAt).getHours() === i
-        || (new Date(obj.createdAt).getHours() > i && new Date(obj.createdAt).getHours() === i + 1)
+        new Date(obj.datetime).getHours() === i
+        || (new Date(obj.datetime).getHours() > i && new Date(obj.datetime).getHours() === i + 1)
       ) {
-        sum[i][obj.name] += 1;
+        sum[i][obj.emoji.name] += 1;
       }
     }
   });
