@@ -2,6 +2,7 @@
 import ba from '../locales/ba';
 import en from '../locales/en';
 import hi from '../locales/hi';
+/* import findLanguage from '../locales/index'; */
 
 function findLanguage(language) {
   if (language == 'ba') {

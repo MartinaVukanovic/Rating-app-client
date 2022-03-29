@@ -23,15 +23,7 @@
       <div class="emojiPreview other">
         <div>
           <p class="emotionsTxt"><Translated text="EmotionPreview"></Translated></p>
-          <div class="smileyFaceContainer light" v-if="this.theme == 'light'">
-            <SmileyFace
-              class="smiley-face"
-              :type="emotion.name"
-              v-for="emotion in emotionList"
-              :key="emotion.name"
-            ></SmileyFace>
-          </div>
-          <div class="smileyFaceContainer" v-else>
+          <div class="smileyFaceContainer light" :class="{ dark: this.theme == 'light' }">
             <SmileyFace
               class="smiley-face"
               :type="emotion.name"
@@ -265,9 +257,6 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-.light {
-  filter: invert(1);
 }
 .dark {
   filter: invert(0.8) !important;

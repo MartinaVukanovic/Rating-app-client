@@ -83,6 +83,7 @@ export default {
   flex-wrap: wrap;
   gap: 50px;
   margin-bottom: 10vh;
+  padding: 0px 40px;
 }
 
 .welcomeText {

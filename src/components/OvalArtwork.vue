@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="oval">
-      <div class="artwork"></div>
+      <div class="oval oval2">
+        <div class="artwork"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +56,9 @@ export default {};
   .wrapper {
     .oval {
       background-image: url('../../public/assets/Oval-copy.svg');
+    }
+    .oval2 {
+      height: 95%;
     }
   }
 }

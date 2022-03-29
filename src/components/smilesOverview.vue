@@ -4,21 +4,11 @@
       <li>
         <div class="list-field list-field-title">
           <Translated text="Emotion"></Translated
-          ><img
-            @click="sortNames"
-            class="arrow-down"
-            :class="{ dark: this.theme == 'light' }"
-            src="../../public/assets/arrow-down.svg"
-          />
+          ><img @click="sortNames" class="arrow-down" src="../../public/assets/arrow-down.svg" />
         </div>
         <div class="list-field list-field-title">
           <Translated text="Count"></Translated
-          ><img
-            @click="sortSum"
-            class="arrow-down"
-            :class="{ dark: this.theme == 'light' }"
-            src="../../public/assets/arrow-down.svg"
-          />
+          ><img @click="sortSum" class="arrow-down" src="../../public/assets/arrow-down.svg" />
         </div>
       </li>
       <li v-for="smile in smiles" :key="smile.type" ref="table">
@@ -123,7 +113,7 @@ ul {
 @media all and (max-width: 1024px) {
   .stats-count {
     justify-content: center !important;
-    margin-left: -40px;
+    margin-left: -20px;
   }
 }
 </style>

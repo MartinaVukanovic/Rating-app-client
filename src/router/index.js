@@ -27,6 +27,11 @@ export default createRouter({
       meta: { transition: 'route-up' },
     },
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import(/* webpackChunkName: "home" */ '@/pages/Login'),
+    },
+    {
       path: '/admin',
       redirect: '/today',
     },
