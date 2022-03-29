@@ -34,7 +34,6 @@ export default {
       this.changeLanguage(locale);
     },
   },
-  computed: {},
 };
 </script>
 
