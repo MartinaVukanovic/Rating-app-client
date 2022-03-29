@@ -51,7 +51,6 @@ export default {
     },
     playSound() {
       const audio = new Audio(sound);
-      console.log(audio);
       audio.play();
     },
   },

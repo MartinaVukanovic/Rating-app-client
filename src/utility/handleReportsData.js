@@ -17,8 +17,8 @@ export default function handleReportsData(objs) {
     };
   }
   objs.forEach((obj) => {
-    const day = new Date(obj.createdAt).getDay();
-    sum[day][obj.name] = sum[day][obj.name] + 1 || 1;
+    const day = new Date(obj.datetime).getDay();
+    sum[day][obj.emoji.name] = sum[day][obj.emoji.name] + 1 || 1;
   });
 
   Object.values(sum).forEach((value) => {

@@ -80,7 +80,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('admin', ['todayPost']),
+    ...mapActions('admin', ['todayGet']),
     ...mapActions(['toggleSpin']),
   },
   computed: {
@@ -105,9 +105,9 @@ export default {
     this.theme = localStorage.getItem('theme');
     document.documentElement.setAttribute('data-theme', this.theme);
     const today = new Date();
-    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const date = today.toISOString();
     this.toggleSpin();
-    this.todayPost(date);
+    this.todayGet(date);
     this.toggleSpin();
   },
 };

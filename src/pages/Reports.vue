@@ -64,9 +64,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions('admin', ['reportsPost']),
+    ...mapActions('admin', ['reportsGet']),
     convertTime(date) {
-      return date.toISOString().slice(0, 10);
+      return date.toISOString();
     },
     submit(date1, date2) {
       const startDate = this.convertTime(date1);
@@ -74,7 +74,7 @@ export default {
       if (startDate === endDate) {
         return;
       }
-      this.reportsPost({ startDate, endDate });
+      this.reportsGet({ startDate, endDate });
     },
   },
   computed: {
@@ -105,7 +105,7 @@ export default {
   },
   mounted() {
     this.endDate = new Date();
-    this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 7));
+    this.startDate = new Date(new Date().setDate(this.endDate.getDate() - 6));
     this.date = [this.startDate, this.endDate];
     this.submit(this.startDate, this.endDate);
   },

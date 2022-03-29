@@ -2,16 +2,16 @@
 import {
   fetchSettings,
   postSettings,
-  postToday,
-  postReports,
+  getToday,
+  getReports,
 } from '../../../api/index';
 
 export default {
-  async settingsGet({ commit, dispatch }) {
+  async settingsGet({ commit }) {
     try {
       const response = await fetchSettings();
-      commit('settingsGet', response.data[0]);
-      dispatch('smilesGet', response.data[0].numberOfEmotions, { root: true });
+      commit('settingsGet', response.data);
+      commit('smilesGet', response.data.emojis, { root: true });
     } catch (error) {
       console.log(error);
     }
@@ -24,17 +24,17 @@ export default {
       console.log(error);
     }
   },
-  async todayPost({ commit }, date) {
+  async todayGet({ commit }, date) {
     try {
-      const response = await postToday(date);
+      const response = await getToday(date);
       commit('todayPost', response.data);
     } catch (error) {
       console.log(error);
     }
   },
-  async reportsPost({ commit }, { startDate, endDate }) {
+  async reportsGet({ commit }, { startDate, endDate }) {
     try {
-      const response = await postReports(startDate, endDate);
+      const response = await getReports(startDate, endDate);
       commit('reportsPost', response.data);
     } catch (error) {
       console.log(error);
