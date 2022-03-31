@@ -49,8 +49,10 @@ button {
   background-color: var(--stat-background);
   color: var(--settings-text);
   width: 150px;
-  height: 55px;
+  height: 40px;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
 }
 .dropbtn {
   background-color: var(--stat-background);

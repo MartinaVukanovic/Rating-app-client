@@ -3,6 +3,7 @@ import validateNumber from './validateNumber';
 import validateString from './validateString';
 import handleTodayData from './handleTodayData';
 import handleReportsData from './handleReportsData';
+import validateYoutubeLink from './validateYoutubeLink';
 
 export default {
   hexToRGB,
@@ -10,4 +11,5 @@ export default {
   validateString,
   handleTodayData,
   handleReportsData,
+  validateYoutubeLink,
 };
