@@ -7,6 +7,7 @@
         </router-link>
         <div v-if="mobile" class="profile">
           <img src="../../public/assets/profile-picture.jpg" />
+          <LogOut></LogOut>
         </div>
         <router-link to="/today" class="navigation" @click="closeNav">
           <img
@@ -51,12 +52,14 @@
 </template>
 <script>
 import Translated from './Translated';
+import LogOut from './LogOut';
 import ToggleSwitch from './ToggleSwitch';
 
 export default {
   components: {
     Translated,
     ToggleSwitch,
+    LogOut,
   },
   data() {
     return {
@@ -160,7 +163,8 @@ export default {
 .profile {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  flex-direction: column;
+  margin-bottom: 20px;
 
   img {
     border-radius: 50%;

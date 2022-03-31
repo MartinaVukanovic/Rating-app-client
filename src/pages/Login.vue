@@ -1,14 +1,21 @@
 <template>
   <div class="loginContainer">
-    <button @click="handleSignIn" class="login">log in with google</button>
+    <button @click="handleSignIn" class="login">
+      <Translated text="Login"></Translated>
+    </button>
     <img src="../../public/assets/googlelogo.png" alt="google icon" class="icon" />
   </div>
 </template>
 
 <script>
 import { inject } from 'vue';
+import { mapActions } from 'vuex';
+import Translated from '../components/Translated';
 
 export default {
+  components: {
+    Translated,
+  },
   data() {
     return {
       Vue3GoogleOath: inject('Vue3GoogleOauth'),
@@ -16,9 +23,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['setUser']),
     async handleSignIn() {
       try {
         const authCode = await this.$gAuth.getAuthCode();
+        localStorage.setItem('authCode', authCode);
+        this.setUser();
+        this.$router.push('/today');
         return authCode;
       } catch (error) {
         console.log(error);

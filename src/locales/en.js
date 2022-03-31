@@ -18,6 +18,8 @@ export default {
   ChangeThemeAdmin: 'Change theme for admin',
   ChangeThemeUser: 'Change theme for user',
   Song: 'Choose music for the home screen',
+  Login: 'Log in with google',
+  Logout: 'Log out',
   MusicPlaceHolder: 'youtube link',
   MusicPlaceHolderActive: 'Video in progress...',
   Success: 'success',

@@ -15,4 +15,7 @@ export default {
   changeLanguage({ commit }, language) {
     commit('changeLanguage', language);
   },
+  setUser({ commit }) {
+    commit('setUser');
+  },
 };

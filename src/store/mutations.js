@@ -31,4 +31,7 @@ export default {
     localStorage.setItem('translation', translation);
     state.translation = JSON.parse(JSON.stringify(newLanguage));
   },
+  setUser(state) {
+    state.user = localStorage.getItem('authCode');
+  },
 };
