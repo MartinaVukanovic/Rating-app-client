@@ -44,6 +44,7 @@
   </div>
 </template>
 <script>
+import utils from '@/utility';
 import { mapActions, mapGetters } from 'vuex';
 import OvalArtwork from '../components/OvalArtwork';
 import AreaChart from '../components/AreaChart';
@@ -92,13 +93,7 @@ export default {
       return this.todaySum.every((item) => item === 0);
     },
     checkNames() {
-      if (localStorage.getItem('translation') === 'ba') {
-        return ['Jako zadovoljan', 'Zadovoljan', 'Nezadovoljan', 'Jako nezadovoljan', 'Razočaran'];
-      }
-      if (localStorage.getItem('translation') === 'hi') {
-        return ['बहुत संतुष्ट', 'संतुष्ट', 'असंतुष्ट', 'बहुत असंतुष्ट', 'निराश'];
-      }
-      return ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'];
+      return utils.grafTranslation();
     },
   },
   mounted() {

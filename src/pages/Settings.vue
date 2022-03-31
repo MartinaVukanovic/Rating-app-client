@@ -188,7 +188,9 @@ export default {
       } else if (value === this.messageTimeout) {
         if (utils.validateNumber(value, 0, 11)) {
           this.messageTimeoutError = '';
+          this.toggleSpin();
           this.settingsPost({ type: 'messageDelay', value });
+          this.toggleSpin();
           this.messageTimeout = null;
           this.blurmessageTimeout();
           this.toggleModal();
@@ -196,16 +198,18 @@ export default {
           this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
+        this.toggleSpin();
         this.settingsPost({ type: 'numberOfEmoji', value });
+        this.toggleSpin();
+        this.numberOfEmotions = null;
         this.blurnumberOfEmotions();
         this.toggleModal();
-        this.numberOfEmotions = null;
       } else if (value === this.videoURL) {
         if (utils.validateYoutubeLink(value)) {
           const videoId = value.split('v=')[1].substring(0, 11);
           localStorage.setItem('video', videoId);
+          this.videoPlaying = videoId;
           this.videoURL = '';
-          this.videoPlaying = localStorage.getItem('video');
           this.blurvideo();
         } else {
           this.youtubeError = 'NOT valid youtube link';

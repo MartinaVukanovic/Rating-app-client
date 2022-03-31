@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import utils from '@/utility';
 import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css';
 import { mapActions, mapGetters } from 'vuex';
@@ -89,13 +90,7 @@ export default {
       return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     },
     checkNames() {
-      if (localStorage.getItem('translation') === 'ba') {
-        return ['Jako zadovoljan', 'Zadovoljan', 'Nezadovoljan', 'Jako nezadovoljan', 'Razočaran'];
-      }
-      if (localStorage.getItem('translation') === 'hi') {
-        return ['बहुत संतुष्ट', 'संतुष्ट', 'असंतुष्ट', 'बहुत असंतुष्ट', 'निराश'];
-      }
-      return ['Very satisfied', 'Satisfied', 'Dissatisfied', 'Very dissatisfied', 'Bad'];
+      return utils.grafTranslation();
     },
   },
   watch: {
