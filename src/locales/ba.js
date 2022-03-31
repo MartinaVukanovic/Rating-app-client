@@ -18,6 +18,8 @@ export default {
   ChangeThemeUser: 'Promijenite temu za korisnika',
   Song: 'Izaberite glazbu za početni ekran',
   MusicPlaceHolder: 'youtube poveznica',
+  Login: 'Prijavite se s google-om',
+  Logout: 'Odjavite se',
   labelInp: 'ds',
   Success: 'uspjeh',
   Today: 'Danas',

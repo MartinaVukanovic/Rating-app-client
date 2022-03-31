@@ -9,7 +9,7 @@
         :enableTimePicker="false"
         dark
         noToday
-        maxRange="6"
+        maxRange="5"
       >
       </Datepicker>
     </div>
