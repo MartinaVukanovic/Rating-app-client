@@ -13,6 +13,7 @@ export default {
   NotFoundError: 'page not found',
   MessageTimeoutError: 'message timeout needs to be number between 0 and 10',
   MessageError: 'message needs to be between 3 and 120 characters long',
+  YoutubeError: 'NOT valid youtube link',
   CurrentSettings: 'Current settings',
   ChangeThemeAdmin: 'Change theme for admin',
   ChangeThemeUser: 'Change theme for user',
@@ -20,6 +21,7 @@ export default {
   Login: 'Log in with google',
   Logout: 'Log out',
   MusicPlaceHolder: 'youtube link',
+  MusicPlaceHolderActive: 'Video in progress...',
   Success: 'success',
   Today: 'Today',
   Reports: 'Reports',
@@ -29,4 +31,5 @@ export default {
   english: 'English',
   bosnian: 'Bosnian',
   hindi: 'Hindi',
+  DeleteVideo: 'Delete video',
 };

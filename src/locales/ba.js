@@ -13,6 +13,7 @@ export default {
   NotFoundError: 'stranica nije pronađena',
   MessageTimeoutError: 'vrijeme isteka poruke mora biti između 0 i 10',
   MessageError: 'poruka mora imati između 3 i 120 znakova',
+  YoutubeError: 'youtube link nije ispravan',
   CurrentSettings: 'Trenutne postavke',
   ChangeThemeAdmin: 'Promijenite temu za admina',
   ChangeThemeUser: 'Promijenite temu za korisnika',
@@ -20,6 +21,7 @@ export default {
   MusicPlaceHolder: 'youtube poveznica',
   Login: 'Prijavite se s google-om',
   Logout: 'Odjavite se',
+  MusicPlaceHolderActive: 'Video u tijeku...',
   labelInp: 'ds',
   Success: 'uspjeh',
   Today: 'Danas',
@@ -30,4 +32,5 @@ export default {
   english: 'engleski',
   bosnian: 'bosanski',
   hindi: 'hindi',
+  DeleteVideo: 'Ukloni video',
 };

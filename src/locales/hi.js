@@ -13,6 +13,7 @@ export default {
   NotFoundError: 'पृष्ठ नहीं मिला',
   MessageTimeoutError: 'संदेश समाप्ति समय 0 और 10 . के बीच होना चाहिए',
   MessageError: 'संदेश 3 और 120 वर्णों के बीच लंबा होना चाहिए',
+  YoutubeError: 'मान्य यूट्यूब लिंक नहीं',
   CurrentSettings: 'वर्तमान सेटिंग्स',
   ChangeThemeAdmin: 'व्यवस्थापक के लिए विषय बदलें',
   ChangeThemeUser: 'उपयोगकर्ता के लिए विषय बदलें',
@@ -30,6 +31,7 @@ export default {
   dissatisfied: 'असंतुष्ट',
   very_dissatisfied: 'बहुत असंतुष्ट',
   Logout: 'लॉग आउट',
+  MusicPlaceHolderActive: 'वीडियो चल रहा है',
   bad: 'निराश',
   Mo: 'सोमवार',
   Tu: 'मंगलवार',
@@ -41,4 +43,5 @@ export default {
   english: 'अंग्रेज़ी',
   bosnian: 'बोस्नियाई',
   hindi: 'हिन्दी',
+  DeleteVideo: 'वीडियो हटाएं',
 };

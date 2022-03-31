@@ -34,7 +34,7 @@
         </div>
         <div class="numberSelect thankYou">
           <input
-            :disabled="messageTimeout > 0 || numberOfEmotions"
+            :disabled="messageTimeout > 0 || numberOfEmotions || videoURL.length"
             class="inp"
             type="text"
             maxlength="120"
@@ -50,14 +50,14 @@
         </div>
       </div>
 
-      <div class="other">
+      <div class="other bottom">
         <div class="numberSelect first">
           <select
             class="inp"
             required="required"
             v-model="numberOfEmotions"
             ref="numberOfEmotions"
-            :disabled="thankYouMessage.length || messageTimeout > 0"
+            :disabled="thankYouMessage.length || messageTimeout > 0 || videoURL.length"
           >
             <option value="3" selected>3</option>
             <option value="4">4</option>
@@ -68,7 +68,7 @@
         </div>
         <div class="numberSelect second">
           <input
-            :disabled="thankYouMessage.length || numberOfEmotions"
+            :disabled="thankYouMessage.length || numberOfEmotions || videoURL.length"
             class="inp"
             type="number"
             ref="messageTimeout"
@@ -86,17 +86,31 @@
     </div>
     <br />
     <br />
-    <p class="songTxt" style="margin-bottom: 0px"><Translated text="Song"></Translated></p>
-    <div class="numberSelect musicPicker">
-      <input class="inp songInp" type="text" required="required" />
-      <label class="txt songTxt"><Translated text="MusicPlaceHolder"></Translated> </label>
-    </div>
     <div class="pickContainer">
       <div class="lang">
         <LanguageSwitch></LanguageSwitch>
       </div>
+      <div class="numberSelect thankYou">
+        <input
+          :disabled="messageTimeout > 0 || numberOfEmotions || thankYouMessage.length"
+          class="inp"
+          type="text"
+          required="required"
+          ref="video"
+          v-model="videoURL"
+        />
+        <label class="txt songTxt"
+          ><Translated v-if="!videoCheck" text="MusicPlaceHolder"></Translated>
+          <Translated v-if="videoCheck" text="MusicPlaceHolderActive"></Translated>
+        </label>
+        <p class="error" v-if="youtubeError">
+          <Translated text="YoutubeError"></Translated>
+        </p>
+        <button @click="deleteVideo" class="delete-video">
+          <Translated text="DeleteVideo"></Translated>
+        </button>
+      </div>
       <div class="theme">
-        <p class="switchTxt"><Translated text="ChangeThemeUser"></Translated></p>
         <ToggleSwitch @click="toggleThemeUser" :theme="this.themeUser" class="switches">
         </ToggleSwitch>
       </div>
@@ -127,6 +141,9 @@ export default {
       theme: '',
       themeUser: '',
       showModal: false,
+      videoURL: '',
+      videoPlaying: localStorage.getItem('video'),
+      youtubeError: '',
     };
   },
   components: {
@@ -148,6 +165,9 @@ export default {
     },
     blurmessageTimeout() {
       this.$refs.messageTimeout.blur();
+    },
+    blurvideo() {
+      this.$refs.video.blur();
     },
     submit(value) {
       if (!value && value !== 0) {
@@ -180,7 +200,21 @@ export default {
         this.blurnumberOfEmotions();
         this.toggleModal();
         this.numberOfEmotions = null;
+      } else if (value === this.videoURL) {
+        if (utils.validateYoutubeLink(value)) {
+          const videoId = value.split('v=')[1].substring(0, 11);
+          localStorage.setItem('video', videoId);
+          this.videoURL = '';
+          this.videoPlaying = localStorage.getItem('video');
+          this.blurvideo();
+        } else {
+          this.youtubeError = 'NOT valid youtube link';
+        }
       }
+    },
+    deleteVideo() {
+      localStorage.removeItem('video');
+      this.videoPlaying = localStorage.getItem('video');
     },
     toggleThemeUser() {
       this.themeUser = this.themeUser === 'light' ? 'dark' : 'light';
@@ -196,6 +230,12 @@ export default {
   computed: {
     ...mapGetters(['emotionList']),
     ...mapGetters('admin', ['emotionNumber', 'getInfo']),
+    videoCheck() {
+      if (this.videoPlaying) {
+        return true;
+      }
+      return false;
+    },
   },
   watch: {
     messageTimeout(value) {
@@ -207,6 +247,10 @@ export default {
       this.debouncedSubmit(value);
     },
     numberOfEmotions(value) {
+      this.debouncedSubmit(value);
+    },
+    videoURL(value) {
+      this.youtubeError = '';
       this.debouncedSubmit(value);
     },
   },
@@ -261,9 +305,6 @@ export default {
 .dark {
   filter: invert(0.8) !important;
 }
-.theme {
-  margin-bottom: 10vh;
-}
 .error {
   font-size: 12px;
   letter-spacing: 1px;
@@ -306,7 +347,6 @@ export default {
   font-size: 12px;
   top: -11px;
 }
-
 .songInp:valid + .songTxt {
   font-size: 12px;
   top: -11px;
@@ -331,7 +371,7 @@ hr {
   padding: 0;
 }
 .emojiPreview {
-  margin-top: -30px;
+  margin-top: -10px;
 }
 .fisrtTxt {
   display: flex;
@@ -346,8 +386,11 @@ hr {
 .other {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  margin-top: -8px;
+}
+.other.bottom {
+  margin-top: 25px;
 }
 .smileyFaceContainer {
   display: flex;
@@ -360,7 +403,6 @@ hr {
 }
 
 .numberSelect {
-  margin-top: 20px;
   position: relative;
   .txt {
     cursor: pointer;
@@ -417,12 +459,42 @@ hr {
 .smiley-face {
   pointer-events: none;
 }
+.delete-video {
+  border: 1px solid var(--settings-text);
+  background: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: var(--settings-text);
+  margin-top: 20px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+.pickContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  max-width: 65vw;
+  margin-bottom: 50px;
+  min-width: 220px;
+}
+input.inp.songInp {
+  height: 55px;
+}
+.youtube-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (max-width: 842px) {
   .theme {
     margin-top: 0px !important;
-  }
-  .pickContainer {
-    align-items: center;
   }
   .musicPicker {
     margin-top: 20px !important;
@@ -436,8 +508,11 @@ hr {
     justify-content: center;
     margin-top: -17px;
   }
+  .other.bottom {
+    margin-top: 0px;
+  }
   .numberSelect {
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   .second {
@@ -449,8 +524,7 @@ hr {
   .pickContainer {
     display: flex;
     flex-direction: column;
-    gap: 30px !important;
-    margin-top: 55px !important;
+    align-items: center;
   }
 }
 @media only screen and (max-width: 550px) {
@@ -463,14 +537,13 @@ hr {
 }
 .pickContainer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 30px;
   width: 55vw;
+  margin-top: 20px;
 }
 
 .theme {
-  margin-top: 50px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
