@@ -4,6 +4,7 @@ import validateString from './validateString';
 import handleTodayData from './handleTodayData';
 import handleReportsData from './handleReportsData';
 import validateYoutubeLink from './validateYoutubeLink';
+import grafTranslation from './grafTranslation';
 
 export default {
   hexToRGB,
@@ -12,4 +13,5 @@ export default {
   handleTodayData,
   handleReportsData,
   validateYoutubeLink,
+  grafTranslation,
 };
