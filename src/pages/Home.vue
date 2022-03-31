@@ -16,6 +16,7 @@
         @click="playSound"
       ></SmileyFace>
     </div>
+    <YoutubeLink v-if="videoCheck"></YoutubeLink>
     <transition name="fade">
       <ThankYouMessage v-if="welcomePage" class="ThankYouMessage"></ThankYouMessage>
     </transition>
@@ -28,12 +29,14 @@ import SmileyFace from '../components/SmileyFace';
 import ThankYouMessage from '../components/ThankYouMessage';
 import Translated from '../components/Translated';
 import sound from '../../public/mp3/smile-click.wav';
+import YoutubeLink from '../components/YoutubeLink';
 
 export default {
   components: {
     SmileyFace,
     ThankYouMessage,
     Translated,
+    YoutubeLink,
   },
   data() {
     return {
@@ -57,6 +60,12 @@ export default {
   computed: {
     ...mapGetters(['emotionList', 'welcomePage']),
     ...mapGetters('admin', ['MessageTime']),
+    videoCheck() {
+      if (localStorage.getItem('video')) {
+        return true;
+      }
+      return false;
+    },
   },
   mounted() {
     const localTheme = localStorage.getItem('themeUser');
@@ -65,7 +74,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: 0.4s ease;
