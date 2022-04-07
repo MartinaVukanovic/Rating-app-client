@@ -1,5 +1,6 @@
 <template>
   <div class="settingsContainer">
+    <Error50x v-if="getError"></Error50x>
     <transition name="modal">
       <SettingsModal class="modal" v-if="showModal"></SettingsModal>
     </transition>
@@ -128,6 +129,7 @@ import SettingsInfo from '../components/SettingsInfo';
 import LanguageSwitch from '../components/LanguageSwitch';
 import Translated from '../components/Translated';
 import SettingsModal from '../components/SettingsModal';
+import Error50x from '../components/Error50x';
 
 export default {
   data() {
@@ -153,6 +155,7 @@ export default {
     LanguageSwitch,
     Translated,
     SettingsModal,
+    Error50x,
   },
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
@@ -225,15 +228,19 @@ export default {
       localStorage.setItem('themeUser', this.themeUser);
     },
     toggleModal() {
-      this.showModal = !this.showModal;
-      setTimeout(() => {
+      if (this.getError) {
+        this.showModal = false;
+      } else if (!this.getError) {
         this.showModal = !this.showModal;
-      }, 1500);
+        setTimeout(() => {
+          this.showModal = !this.showModal;
+        }, 1500);
+      }
     },
   },
   computed: {
     ...mapGetters(['emotionList']),
-    ...mapGetters('admin', ['emotionNumber', 'getInfo']),
+    ...mapGetters('admin', ['emotionNumber', 'getInfo', 'getError']),
     videoCheck() {
       if (this.videoPlaying) {
         return true;

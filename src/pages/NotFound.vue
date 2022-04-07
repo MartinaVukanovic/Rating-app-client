@@ -1,9 +1,21 @@
 <template>
   <div class="container">
-    <div>
-      <SmileyFace type="very_dissatisfied" :class="{ dark: this.theme == 'light' }"></SmileyFace>
+    <div class="notFound">
+      <p class="text" :class="{ darkText: this.theme == 'light' }">4</p>
+      <transition name="bounce" appear>
+        <SmileyFace
+          type="very_dissatisfied"
+          :class="{ dark: this.theme == 'light' }"
+          class="imgS"
+        ></SmileyFace
+      ></transition>
+      <p class="text" :class="{ darkText: this.theme == 'light' }">4</p>
     </div>
-    <div>404 - <Translated text="NotFoundError"></Translated></div>
+    <div class="sub-text"><Translated text="NotFoundError"></Translated></div>
+    <div class="redirect-text-one"><Translated text="NotFoundTry"></Translated></div>
+    <div class="redirect-text-two" @click="goToMainScreen">
+      <Translated text="MainScreen"></Translated>
+    </div>
   </div>
 </template>
 
@@ -20,6 +32,11 @@ export default {
     return {
       theme: '',
     };
+  },
+  methods: {
+    goToMainScreen() {
+      this.$router.push('/');
+    },
   },
   mounted() {
     this.theme = localStorage.getItem('theme');
@@ -40,18 +57,58 @@ export default {
   height: 100vh;
   width: 100%;
   color: var(--settings-text);
-}
-.smiley {
-  margin-top: -40px;
-}
-.dark {
-  margin-top: -40px;
-  filter: invert(1);
+  .imgS {
+    width: 115px !important;
+    height: 190px !important;
+  }
+  .darkText {
+    color: #777777;
+  }
+  .sub-text {
+    margin-top: -60px;
+    text-align: center;
+  }
+  .redirect-text-one {
+    margin-top: 25px;
+  }
+  .redirect-text-two {
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--settings-text-light);
+    margin-top: 8px;
+  }
+  .dark {
+    filter: invert(3);
+  }
+  .notFound {
+    display: flex;
+    margin-top: -100px;
+    .text {
+      font-size: 85px;
+      font-weight: bold;
+    }
+  }
 }
 
 @media all and (max-width: 760px) {
   .container {
     font-size: 20px;
+  }
+}
+
+.bounce-enter-active {
+  animation: bounce-in 1.8s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  95% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>

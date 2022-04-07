@@ -6,7 +6,7 @@ describe('settings page', () => {
   });
 
   it('thank you message focus behavior', () => {
-    cy.get('div.thankYou input.inp').click().type('ov');
+    cy.get('div.thankYou input.inp').eq(0).click().type('ov');
     cy.get('div.numberSelect select').should('be.disabled');
     cy.get('div.second input.inp').should('be.disabled');
     cy.get('div.thankYou p.error').should('be.visible');
@@ -30,7 +30,7 @@ describe('settings page', () => {
   });
 
   it('thank you message submit', () => {
-    cy.get('div.thankYou input.inp').click().type('thank you for rating!');
+    cy.get('div.thankYou input.inp').eq(0).click().type('thank you for rating!');
     cy.get('div.numberSelect select').should('be.disabled');
     cy.get('div.second input.inp').should('be.disabled');
     cy.get('div.thankYou p.error').should('not.be.visible');

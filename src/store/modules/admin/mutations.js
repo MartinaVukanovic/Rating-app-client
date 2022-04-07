@@ -13,4 +13,19 @@ export default {
   toggleInfo(state) {
     state.info = !state.info;
   },
+  noError(state) {
+    state.errorExists = false;
+  },
+  error(state) {
+    state.errorExists = true;
+  },
+  accessToken(state, response) {
+    state.userRole = response.role;
+    console.log('user role: ', state.userRole);
+  },
+
+  notAuthorized(state) {
+    state.notAuthorized = true;
+    console.log(state.notAuthorized, 'nije admimn');
+  },
 };
