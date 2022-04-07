@@ -5,18 +5,31 @@
 </template>
 
 <script>
+import { inject } from 'vue';
+import { mapMutations } from 'vuex';
 import Translated from './Translated';
-import router from '../router';
 
 export default {
+  data() {
+    return {
+      Vue3GoogleOath: inject('Vue3GoogleOauth'),
+    };
+  },
   components: {
     Translated,
   },
   methods: {
+    ...mapMutations('admin', ['notAuthorized']),
     signout() {
-      localStorage.removeItem('authCode');
-      this.authCodeLocal = localStorage.getItem('authCode');
-      router.push('/');
+      try {
+        this.$gAuth.signOut();
+        localStorage.removeItem('user');
+        this.notAuthorized();
+        this.$router.push('/');
+        return null;
+      } catch (error) {
+        return null;
+      }
     },
   },
 };

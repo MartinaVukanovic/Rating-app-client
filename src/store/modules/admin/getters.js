@@ -32,4 +32,10 @@ export default {
     const { smilesSum } = utils.handleReportsData(state.reports);
     return smilesSum;
   },
+  getError(state) {
+    return state.errorExists;
+  },
+  notAuthorized(state) {
+    return state.notAuthorized;
+  },
 };
