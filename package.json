@@ -6,6 +6,7 @@
   "author": "NSoft",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve-production": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build --modern",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -22,6 +23,7 @@
     "chart.js": "^2.9.4",
     "chartkick": "^4.1.1",
     "core-js": "^3.6.5",
+    "http-server": "^14.1.0",
     "lodash": "^4.17.15",
     "numeral": "^2.0.6",
     "pusher-js": "^7.0.6",

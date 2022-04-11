@@ -1,0 +1,3 @@
+export default {
+  user: 'ya29.A0ARrdaM9_nEqX7FMKkxvCE4YWotDzrzrB2Qyrm-1ACLIu1ywS026bZ2u16S8b2WQsy100b91_ZYcmRO_yGpneqWLTK7qZCcqfL0ZsL30pwEauohamuDxzIiMlXU5E5Kd9646pfIl6b8cvNNLuuf-gPNeaUgYY',
+};

@@ -2,7 +2,6 @@
   <transition name="down" appear>
     <div class="error-505">
       <p class="error-number">401</p>
-
       <img src="../../public/assets/error-401.png" class="error" width="300px" />
       <p class="title"><Translated text="Error401tittle"></Translated></p>
       <p class="text-other"><Translated text="Error401fix"></Translated></p>

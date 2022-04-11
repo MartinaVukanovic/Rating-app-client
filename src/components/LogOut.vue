@@ -19,7 +19,6 @@ export default {
     Translated,
   },
   methods: {
-
     ...mapMutations('admin', ['NOT_AUTHORIZED']),
     ...mapActions('admin', ['logoutUser']),
     signout() {
@@ -27,8 +26,10 @@ export default {
         this.$gAuth.signOut();
         this.logoutUser(localStorage.getItem('user'));
         this.NOT_AUTHORIZED();
+        localStorage.removeItem('user');
         this.$router.push('/');
       } catch (error) {
+        // eslint-disable-next-line
         console.log(error);
       }
     },

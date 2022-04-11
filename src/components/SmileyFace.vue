@@ -53,6 +53,7 @@ export default {
           borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,
         };
       }
+      // eslint-disable-next-line
       return {
         backgroundColor: utils.hexToRGB(this.getCssVariable(this.color), 0.1),
         borderLeft: `3px ${utils.hexToRGB(this.getCssVariable(this.color), 1)} solid`,

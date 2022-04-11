@@ -28,19 +28,23 @@ export default {
   [NO_ERROR](state) {
     state.errorExists = false;
   },
-  /* error(state, errorNumber) {
+  [ERROR](state, errorNumber) {
     if (errorNumber === 429) {
       state.errorExists = errorNumber;
+      setTimeout(() => {
+        state.errorExists = false;
+      }, 10000); // 60 000 on backend
     } else {
       state.errorExists = 500;
-    } */
-  [ERROR](state) {
-    state.errorExists = true;
+    }
   },
   [ACCESS_TOKEN](state, response) {
     state.userRole = response.role;
   },
   [NOT_AUTHORIZED](state) {
     state.notAuthorized = true;
+    setTimeout(() => {
+      state.notAuthorized = false;
+    }, 10000);
   },
 };

@@ -12,7 +12,7 @@ privateRequest.interceptors.request.use((config) => {
   const token = localStorage.getItem('user');
   config.headers = {
     Authorization: `Bearer ${token}`,
-    'api-key': 5,
+    'api-key': token,
     'Content-Type': 'application/json',
   };
   return config;

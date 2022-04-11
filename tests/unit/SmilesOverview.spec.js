@@ -13,6 +13,7 @@ describe('smiles overview', () => {
     });
 
     // exists with valid sent props with zero data
+
     const table = wrapper.find({ ref: 'table' });
     expect(wrapper.isVisible()).toBe(true);
   });

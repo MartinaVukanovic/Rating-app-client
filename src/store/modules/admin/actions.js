@@ -37,9 +37,8 @@ export default {
       dispatch('settingsGet');
       commit('NO_ERROR');
     } catch (error) {
-     // const errorNumber = error.response.data.status;
-      // commit('error', errorNumber);
-     commit('ERROR');
+      const errorNumber = error.response.data.status;
+      commit('ERROR', errorNumber);
     }
   },
   async todayGet({ commit }, date) {
@@ -76,6 +75,5 @@ export default {
   async logoutUser(_, token) {
     await logoutUser(token);
     localStorage.removeItem('user');
-
   },
 };

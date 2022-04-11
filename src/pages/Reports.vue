@@ -85,10 +85,7 @@ export default {
       return this.reportsSum.every((item) => item === 0);
     },
     checkLanguage() {
-      if (localStorage.getItem('translation') === 'ba') {
-        return ['Po', 'Ut', 'Sr', 'Če', 'Pe', 'Su', 'Ne'];
-      }
-      return ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+      return utils.daysTranslated();
     },
     checkNames() {
       return utils.grafTranslation();
