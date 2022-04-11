@@ -10,6 +10,7 @@
         dark
         noToday
         maxRange="5"
+        :maxDate="new Date()"
       >
       </Datepicker>
     </div>

@@ -37,6 +37,7 @@ export default {
         const accesToken = auth.access_token;
 
         await this.userLogin(accesToken);
+        this.$router.push('/today');
         return googleUser;
       } catch (error) {
         console.log(error);

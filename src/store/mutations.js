@@ -2,6 +2,14 @@
 import ba from '../locales/ba';
 import en from '../locales/en';
 import hi from '../locales/hi';
+import {
+  GET_SMILES,
+  SUBMIT_EMOTION,
+  TOGGLE_SPIN,
+  TOGGLE_WELCOME_PAGE,
+  CHANGE_LANGUAGE,
+  SET_USER,
+} from './mutationTypes';
 
 function findLanguage(language) {
   if (language == 'ba') {
@@ -14,24 +22,24 @@ function findLanguage(language) {
 }
 
 export default {
-  submitEmotion(_, response) {
+  [SUBMIT_EMOTION](_, response) {
     console.log('emotion submited, ', response.data);
   },
-  smilesGet(state, response) {
+  [GET_SMILES](state, response) {
     state.smiles = response;
   },
-  toggleSpin(state) {
+  [TOGGLE_SPIN](state) {
     state.spin = !state.spin;
   },
-  toggleWelcomePage(state) {
+  [TOGGLE_WELCOME_PAGE](state) {
     state.showWelcomePage = !state.showWelcomePage;
   },
-  changeLanguage(state, translation) {
+  [CHANGE_LANGUAGE](state, translation) {
     const newLanguage = findLanguage(translation);
     localStorage.setItem('translation', translation);
     state.translation = JSON.parse(JSON.stringify(newLanguage));
   },
-  setUser(state) {
+  [SET_USER](state) {
     state.user = localStorage.getItem('authCode');
   },
 };

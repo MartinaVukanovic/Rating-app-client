@@ -19,18 +19,17 @@ export default {
     Translated,
   },
   methods: {
-    ...mapActions('admin', ['logout']),
-    ...mapMutations('admin', ['notAuthorized']),
+
+    ...mapMutations('admin', ['NOT_AUTHORIZED']),
+    ...mapActions('admin', ['logoutUser']),
     signout() {
       try {
         this.$gAuth.signOut();
-        localStorage.removeItem('user');
-        this.notAuthorized();
-        this.logout();
+        this.logoutUser(localStorage.getItem('user'));
+        this.NOT_AUTHORIZED();
         this.$router.push('/');
-        return null;
       } catch (error) {
-        return null;
+        console.log(error);
       }
     },
   },

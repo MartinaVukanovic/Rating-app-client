@@ -1,35 +1,46 @@
+// prettier-ignore
+import {
+  GET_SETTINGS,
+  POST_TODAY,
+  POST_REPORTS,
+  NO_ERROR,
+  ERROR,
+  TOGGLE_INFO,
+  ACCESS_TOKEN,
+  NOT_AUTHORIZED,
+} from '../../mutationTypes';
+
 export default {
-  settingsGet(state, response) {
+  [GET_SETTINGS](state, response) {
     state.message = response.message;
     state.messageTime = response.messageDelay;
     state.numberOfEmotions = response.numberOfEmoji;
   },
-  todayPost(state, data) {
+  [POST_TODAY](state, data) {
     state.today = data;
   },
-  reportsPost(state, data) {
+  [POST_REPORTS](state, data) {
     state.reports = data;
   },
-  toggleInfo(state) {
+  [TOGGLE_INFO](state) {
     state.info = !state.info;
   },
-  noError(state) {
+  [NO_ERROR](state) {
     state.errorExists = false;
   },
-  error(state, errorNumber) {
+  /* error(state, errorNumber) {
     if (errorNumber === 429) {
       state.errorExists = errorNumber;
     } else {
       state.errorExists = 500;
-    }
+    } */
+  [ERROR](state) {
+    state.errorExists = true;
   },
-  accessToken(state, response) {
+  [ACCESS_TOKEN](state, response) {
     state.userRole = response.role;
-    console.log('user role: ', state.userRole);
   },
-
-  notAuthorized(state) {
+  [NOT_AUTHORIZED](state) {
     state.notAuthorized = true;
-    console.log(state.notAuthorized, 'nije admimn');
   },
 };
