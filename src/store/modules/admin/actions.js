@@ -2,7 +2,14 @@
 /* eslint-disable */
 
 import Pusher from 'pusher-js';
-import { fetchSettings, postSettings, getToday, getReports, loginUser } from '../../../api/index';
+import {
+  fetchSettings,
+  postSettings,
+  getToday,
+  getReports,
+  loginUser,
+  logoutUser,
+} from '../../../api/index';
 
 const pusher = new Pusher('b37ae0c5a1d0b920420c', {
   cluster: 'eu',
@@ -13,30 +20,30 @@ export default {
     try {
       const channel = pusher.subscribe('RatingApp');
       const response = await fetchSettings();
-      commit('noError');
-      commit('settingsGet', response.data);
-      commit('smilesGet', response.data.emojis, { root: true });
+      commit('NO_ERROR');
+      commit('GET_SETTINGS', response.data);
+      commit('GET_SMILES', response.data.emojis, { root: true });
       channel.bind('Setting changes', function (data) {
-        commit('smilesGet', JSON.parse(data).emojis, { root: true });
-        commit('settingsGet', JSON.parse(data));
+        commit('GET_SMILES', JSON.parse(data).emojis, { root: true });
+        commit('GET_SETTINGS', JSON.parse(data));
       });
     } catch (error) {
-      commit('error');
+      commit('ERROR');
     }
   },
   async settingsPost({ dispatch, commit }, { type, value }) {
     try {
       await postSettings(type, value);
       dispatch('settingsGet');
-      commit('noError');
+      commit('NO_ERROR');
     } catch (error) {
-      commit('error');
+      commit('ERROR');
     }
   },
   async todayGet({ commit }, date) {
     try {
       const response = await getToday(date);
-      commit('todayPost', response.data);
+      commit('POST_TODAY', response.data);
     } catch (error) {
       console.log(error);
     }
@@ -44,24 +51,29 @@ export default {
   async reportsGet({ commit }, { startDate, endDate }) {
     try {
       const response = await getReports(startDate, endDate);
-      commit('reportsPost', response.data);
+      commit('POST_REPORTS', response.data);
     } catch (error) {
       console.log(error);
     }
   },
   toggleInfo({ commit }) {
-    commit('toggleInfo');
+    commit('TOGGLE_INFO');
   },
 
   async userLogin({ commit }, accesToken) {
     try {
-      const response = await loginUser(accesToken);
       localStorage.setItem('user', accesToken);
-      commit('accessToken', response.data);
+      const response = await loginUser(accesToken);
+      commit('ACCESS_TOKEN', response.data);
     } catch (error) {
       localStorage.removeItem('user');
-      commit('notAuthorized');
+      commit('NOT_AUTHORIZED');
       console.log(error);
     }
+  },
+
+  async logoutUser(_, token) {
+    await logoutUser(token);
+    localStorage.removeItem('user');
   },
 };

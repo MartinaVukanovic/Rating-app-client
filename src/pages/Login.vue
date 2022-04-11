@@ -36,6 +36,7 @@ export default {
         const auth = this.$gAuth.instance.currentUser.get().getAuthResponse();
         const accesToken = auth.access_token;
         await this.userLogin(accesToken);
+        this.$router.push('/today');
         return googleUser;
       } catch (error) {
         console.log(error);
