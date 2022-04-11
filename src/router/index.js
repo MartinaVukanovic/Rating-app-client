@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
@@ -42,3 +42,21 @@ export default createRouter({
     },
   ],
 });
+
+// prettier-ignore
+router.beforeEach((to, from, next) => {
+  if (
+    (to.name === 'Today' || to.name === 'Reports' || to.name === 'Settings')
+    && !localStorage.getItem('user')
+  ) {
+    next({ name: 'Login' });
+    return;
+  }
+  if (to.name === 'Login' && localStorage.getItem('user')) {
+    next({ name: 'Today' });
+    return;
+  }
+  next();
+});
+
+export default router;

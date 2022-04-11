@@ -160,6 +160,12 @@ export default {
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),
     ...mapActions(['toggleSpin']),
+    submitFunctions(setting, value) {
+      this.toggleSpin();
+      this.settingsPost({ type: setting, value });
+      this.toggleSpin();
+      this.toggleModal();
+    },
     blurthankYouMessage() {
       this.$refs.thankYouMessage.blur();
     },
@@ -179,34 +185,25 @@ export default {
       if (value === this.thankYouMessage) {
         if (utils.validateString(value, 3, 120)) {
           this.thankYouMessageError = '';
-          this.toggleSpin();
-          this.settingsPost({ type: 'message', value });
-          this.toggleSpin();
+          this.submitFunctions('message', value);
           this.thankYouMessage = '';
           this.blurthankYouMessage();
-          this.toggleModal();
         } else {
           this.thankYouMessageError = 'message needs to be between 3 and 120 characters long';
         }
       } else if (value === this.messageTimeout) {
         if (utils.validateNumber(value, 0, 11)) {
           this.messageTimeoutError = '';
-          this.toggleSpin();
-          this.settingsPost({ type: 'messageDelay', value });
-          this.toggleSpin();
+          this.submitFunctions('messageDelay', value);
           this.messageTimeout = null;
           this.blurmessageTimeout();
-          this.toggleModal();
         } else {
           this.messageTimeoutError = 'message timeout needs to be Integer between 0 and 10';
         }
       } else if (value === this.numberOfEmotions) {
-        this.toggleSpin();
-        this.settingsPost({ type: 'numberOfEmoji', value });
-        this.toggleSpin();
+        this.submitFunctions('numberOfEmoji', value);
         this.numberOfEmotions = null;
         this.blurnumberOfEmotions();
-        this.toggleModal();
       } else if (value === this.videoURL) {
         if (utils.validateYoutubeLink(value)) {
           const videoId = value.split('v=')[1].substring(0, 11);

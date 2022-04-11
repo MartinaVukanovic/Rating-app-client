@@ -3,19 +3,19 @@ import { emotionSubmit } from '../api/index';
 export default {
   async submitEmotion({ commit }, name) {
     const response = await emotionSubmit(name);
-    commit('submitEmotion', response);
+    commit('SUBMIT_EMOTION', response);
   },
 
   toggleWelcomePage({ commit }) {
-    commit('toggleWelcomePage');
+    commit('TOGGLE_WELCOME_PAGE');
   },
   toggleSpin({ commit }) {
-    commit('toggleSpin');
+    commit('TOGGLE_SPIN');
   },
   changeLanguage({ commit }, language) {
-    commit('changeLanguage', language);
+    commit('CHANGE_LANGUAGE', language);
   },
   setUser({ commit }) {
-    commit('setUser');
+    commit('SET_USER');
   },
 };
