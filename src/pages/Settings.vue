@@ -1,6 +1,7 @@
 <template>
   <div class="settingsContainer">
-    <Error50x v-if="getError"></Error50x>
+    <Error50x v-if="getError === 500"></Error50x>
+    <Error429 v-if="getError === 429"></Error429>
     <transition name="modal">
       <SettingsModal class="modal" v-if="showModal"></SettingsModal>
     </transition>
@@ -130,6 +131,7 @@ import LanguageSwitch from '../components/LanguageSwitch';
 import Translated from '../components/Translated';
 import SettingsModal from '../components/SettingsModal';
 import Error50x from '../components/Error50x';
+import Error429 from '../components/Error429';
 
 export default {
   data() {
@@ -156,6 +158,7 @@ export default {
     Translated,
     SettingsModal,
     Error50x,
+    Error429,
   },
   methods: {
     ...mapActions('admin', ['settingsPost', 'toggleInfo']),

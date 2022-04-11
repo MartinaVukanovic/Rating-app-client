@@ -5,7 +5,7 @@ export default {
   today: [],
   reports: [],
   info: false,
-  errorExists: false,
+  errorExists: 0,
   userRole: null,
   notAuthorized: false,
 };

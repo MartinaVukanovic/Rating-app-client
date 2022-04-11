@@ -28,6 +28,12 @@ export default {
   [NO_ERROR](state) {
     state.errorExists = false;
   },
+  /* error(state, errorNumber) {
+    if (errorNumber === 429) {
+      state.errorExists = errorNumber;
+    } else {
+      state.errorExists = 500;
+    } */
   [ERROR](state) {
     state.errorExists = true;
   },

@@ -20,10 +20,10 @@ export function loginUser(accessToken) {
 }
 
 export function postSettings(type, value) {
-  // admin
   const response = axios.privateRequest.patch('/setting', {
     [type]: value,
   });
+
   return response;
 }
 
@@ -48,5 +48,13 @@ export function logoutUser(token) {
   const response = axios.privateRequest.post('/auth/revoke', {
     accessToken: token,
   });
+  return response;
+}
+
+export function logoutUser() {
+  const response = axios.post('http://localhost:3030/revoke', {
+    accessToken: access,
+  });
+  console.log(access, 'poslan u post req');
   return response;
 }

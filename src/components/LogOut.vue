@@ -19,6 +19,7 @@ export default {
     Translated,
   },
   methods: {
+
     ...mapMutations('admin', ['NOT_AUTHORIZED']),
     ...mapActions('admin', ['logoutUser']),
     signout() {

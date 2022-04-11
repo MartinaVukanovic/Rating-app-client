@@ -12,6 +12,9 @@ export default {
   MessageTimeoutLimit: 'Može biti od 0 do 10',
   Error505tittle: 'Oprostite. Nije do Vas, do nas je.',
   Error505fix: 'Radimo na otklanjanju problema. Molimo pokušajte ponovo kasnije.',
+  Error429tittle: 'previše zahtjeva',
+  Error429fix:
+    'Poslano je previše zahtjeva u određenom vremenu. Molimo pokušajte ponovno za minut.',
   Error401tittle: 'neovlašteno',
   Error401fix: 'pristup je dopušten samo registriranim korisnicima',
   NotFoundError: 'stranica nije pronađena',
