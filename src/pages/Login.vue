@@ -35,6 +35,7 @@ export default {
         const googleUser = await this.$gAuth.signIn();
         const auth = this.$gAuth.instance.currentUser.get().getAuthResponse();
         const accesToken = auth.access_token;
+
         await this.userLogin(accesToken);
         return googleUser;
       } catch (error) {

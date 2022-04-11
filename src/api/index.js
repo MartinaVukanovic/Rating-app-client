@@ -24,7 +24,7 @@ export function postSettings(type, value) {
     {
       headers: {
         Authorization: `Bearer ${access}`,
-        'api-key': 5,
+        'api-key': access,
         'Content-Type': 'application/json',
       },
     }
@@ -40,7 +40,6 @@ export function getToday(date) {
     },
     params: { dateFrom: date },
   });
-  console.log(date);
   return response;
 }
 export function getReports(startDate, endDate) {
@@ -58,5 +57,13 @@ export function loginUser(accessToken) {
   const response = axios.post('http://localhost:3030/api/auth', {
     accessToken,
   });
+  return response;
+}
+
+export function logoutUser() {
+  const response = axios.post('http://localhost:3030/revoke', {
+    accessToken: access,
+  });
+  console.log(access, 'poslan u post req');
   return response;
 }

@@ -13,6 +13,8 @@ export default {
   YoutubeError: 'Please enter a valid youtube link',
   Error401tittle: 'unathorized',
   Error401fix: 'access is only allowed for registered users',
+  Error429tittle: 'too many requests',
+  Error429fix: 'Too many requests sent in a given time. Please try again in a minute.',
   Error505tittle: "Sorry. It's not you. It's us.",
   Error505fix: 'We are working on fixing the problem. Please try again later.',
   NotFoundError: 'Oops, this page does not exist!',

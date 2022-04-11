@@ -2,7 +2,14 @@
 /* eslint-disable */
 
 import Pusher from 'pusher-js';
-import { fetchSettings, postSettings, getToday, getReports, loginUser } from '../../../api/index';
+import {
+  fetchSettings,
+  postSettings,
+  getToday,
+  getReports,
+  loginUser,
+  logoutUser,
+} from '../../../api/index';
 
 const pusher = new Pusher('b37ae0c5a1d0b920420c', {
   cluster: 'eu',
@@ -30,7 +37,8 @@ export default {
       dispatch('settingsGet');
       commit('noError');
     } catch (error) {
-      commit('error');
+      const errorNumber = error.response.data.status;
+      commit('error', errorNumber);
     }
   },
   async todayGet({ commit }, date) {
@@ -57,11 +65,22 @@ export default {
     try {
       const response = await loginUser(accesToken);
       localStorage.setItem('user', accesToken);
+
+      console.log(accesToken);
       commit('accessToken', response.data);
     } catch (error) {
       localStorage.removeItem('user');
       commit('notAuthorized');
       console.log(error);
+    }
+  },
+
+  async logout() {
+    try {
+      const respone = await logoutUser();
+      console.log(respone, 'dobiveni response');
+    } catch (error) {
+      console.log(error, 'dobiveni error');
     }
   },
 };

@@ -6,7 +6,7 @@
 
 <script>
 import { inject } from 'vue';
-import { mapMutations } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import Translated from './Translated';
 
 export default {
@@ -19,12 +19,14 @@ export default {
     Translated,
   },
   methods: {
+    ...mapActions('admin', ['logout']),
     ...mapMutations('admin', ['notAuthorized']),
     signout() {
       try {
         this.$gAuth.signOut();
         localStorage.removeItem('user');
         this.notAuthorized();
+        this.logout();
         this.$router.push('/');
         return null;
       } catch (error) {

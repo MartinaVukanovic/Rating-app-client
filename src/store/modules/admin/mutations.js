@@ -16,8 +16,12 @@ export default {
   noError(state) {
     state.errorExists = false;
   },
-  error(state) {
-    state.errorExists = true;
+  error(state, errorNumber) {
+    if (errorNumber === 429) {
+      state.errorExists = errorNumber;
+    } else {
+      state.errorExists = 500;
+    }
   },
   accessToken(state, response) {
     state.userRole = response.role;
