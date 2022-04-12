@@ -46,12 +46,16 @@ export default {
   },
   methods: {
     ...mapActions(['toggleWelcomePage']),
+
+    // toggle welcome page screen
     myMethod() {
       this.toggleWelcomePage();
       setTimeout(() => {
         this.toggleWelcomePage();
       }, this.MessageTime);
     },
+
+    // playing sound on smile click
     playSound() {
       const audio = new Audio(sound);
       audio.play();
@@ -60,6 +64,8 @@ export default {
   computed: {
     ...mapGetters(['emotionList', 'welcomePage']),
     ...mapGetters('admin', ['MessageTime']),
+
+    // checks for video presence
     videoCheck() {
       if (localStorage.getItem('video')) {
         return true;
@@ -68,6 +74,7 @@ export default {
     },
   },
   mounted() {
+    // set theme for user
     const localTheme = localStorage.getItem('themeUser');
     document.documentElement.setAttribute('data-theme', localTheme);
   },

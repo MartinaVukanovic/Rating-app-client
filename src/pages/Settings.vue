@@ -177,6 +177,7 @@ export default {
     blurvideo() {
       this.$refs.video.blur();
     },
+    // submit settings changes
     submit(value) {
       if (!value && value !== 0) {
         return;

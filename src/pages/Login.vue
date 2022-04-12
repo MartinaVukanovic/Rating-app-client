@@ -32,6 +32,7 @@ export default {
     ...mapActions('admin', ['userLogin']),
     async handleSignIn() {
       try {
+        // get access token from google oAuth 2.0
         const googleUser = await this.$gAuth.signIn();
         const auth = this.$gAuth.instance.currentUser.get().getAuthResponse();
         const accesToken = auth.access_token;
@@ -39,7 +40,6 @@ export default {
         this.$router.push('/today');
         return googleUser;
       } catch (error) {
-        // console.log(error);
         return null;
       }
     },
