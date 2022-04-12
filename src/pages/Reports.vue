@@ -70,6 +70,7 @@ export default {
     convertTime(date) {
       return date.toISOString();
     },
+    // post request for reports
     submit(date1, date2) {
       const startDate = this.convertTime(date1);
       const endDate = this.convertTime(date2);
@@ -81,6 +82,7 @@ export default {
   },
   computed: {
     ...mapGetters('admin', ['reportsValues', 'reportsSum']),
+    // mount the grafs after data loads
     checkData() {
       return this.reportsSum.every((item) => item === 0);
     },

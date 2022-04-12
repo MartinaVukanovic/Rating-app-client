@@ -29,7 +29,6 @@ export default {
         localStorage.removeItem('user');
         this.$router.push('/');
       } catch (error) {
-        // eslint-disable-next-line
         console.log(error);
       }
     },
