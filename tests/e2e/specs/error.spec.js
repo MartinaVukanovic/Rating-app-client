@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
-/* import user from './user'; */
+import { user } from './user';
+const userAuth = user();
 
 describe('settings page', () => {
   it('thank you message focus behavior', () => {
-    // localStorage.setItem('user', user);
-    localStorage.setItem(
-      'user',
-      'ya29.A0ARrdaM9_nEqX7FMKkxvCE4YWotDzrzrB2Qyrm-1ACLIu1ywS026bZ2u16S8b2WQsy100b91_ZYcmRO_yGpneqWLTK7qZCcqfL0ZsL30pwEauohamuDxzIiMlXU5E5Kd9646pfIl6b8cvNNLuuf-gPNeaUgYY'
-    );
+    localStorage.setItem('user', userAuth);
+
     cy.visit('http://localhost:8080/settings');
     cy.wait(1000);
 
@@ -20,7 +18,7 @@ describe('settings page', () => {
       cy.wait(2500);
     }
 
-    // check if rate limit (429) error is displayed
+    // check if limit of requests (429) error is displayed
 
     cy.get('div.error429').should('be.visible');
     cy.wait(10000);

@@ -22,9 +22,6 @@ function findLanguage(language) {
 }
 
 export default {
-  [SUBMIT_EMOTION](_, response) {
-    console.log('emotion submited, ', response.data);
-  },
   [GET_SMILES](state, response) {
     state.smiles = response;
   },
