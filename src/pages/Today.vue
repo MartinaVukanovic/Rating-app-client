@@ -167,11 +167,9 @@ export default {
 /*media querry*/
 @media all and (min-width: 769px) {
   .today {
-    padding-left: 100px;
-    padding-top: 64px;
-    padding-right: 64px;
+    padding: 64px 64px 0px 100px;
     .text-content {
-      padding: 0 15px 50px 80px;
+      padding: 0 15px 50px 60px;
       .title {
         p {
           text-align: left;

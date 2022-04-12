@@ -1,6 +1,11 @@
 /* eslint-disable no-undef */
+
+import { user } from './user';
+const userAuth = user();
+
 describe('today page', () => {
   beforeEach(() => {
+    localStorage.setItem('user', userAuth);
     cy.visit('http://localhost:8080/today');
     cy.wait(1000);
   });

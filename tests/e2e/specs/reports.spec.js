@@ -1,9 +1,16 @@
 /* eslint-disable no-undef */
-describe('today page', () => {
+
+import { user } from './user';
+const userAuth = user();
+
+describe('reports page', () => {
   beforeEach(() => {
+    localStorage.setItem('user', userAuth);
     cy.visit('http://localhost:8080/reports');
     cy.wait(1000);
   });
+
+  // checks if datepicker, areachart, piechart and table with overview are shown
 
   it('on load grafs', () => {
     cy.get('.datepicker').should('be.visible');

@@ -1,6 +1,11 @@
 /* eslint-disable no-undef */
+
+import { user } from './user';
+const userAuth = user();
+
 describe('settings page', () => {
   beforeEach(() => {
+    localStorage.setItem('user', userAuth);
     cy.visit('http://localhost:8080/settings');
     cy.wait(1000);
   });
@@ -36,7 +41,6 @@ describe('settings page', () => {
     cy.get('div.thankYou p.error').should('not.be.visible');
     cy.get('div.second p.error').should('not.be.visible');
     cy.wait(2000);
-    cy.get('.modal').should('be.visible');
     cy.get('div.numberSelect select').should('not.be.disabled');
     cy.get('div.second input.inp').should('not.be.disabled');
     cy.wait(1000);
@@ -49,7 +53,6 @@ describe('settings page', () => {
     cy.get('div.thankYou p.error').should('not.be.visible');
     cy.get('div.second p.error').should('not.be.visible');
     cy.wait(2000);
-    cy.get('.modal').should('be.visible');
     cy.get('div.numberSelect select').should('not.be.disabled');
     cy.get('div.thankYou input.inp').should('not.be.disabled');
     cy.wait(1000);
@@ -62,7 +65,7 @@ describe('settings page', () => {
     cy.get('div.second p.error').should('not.be.visible');
     cy.get('div.thankYou p.error').should('not.be.visible');
     cy.wait(2000);
-    cy.get('.modal').should('be.visible');
+    // cy.get('.modal').should('be.visible');
     cy.get('div.thankYou input.inp').should('not.be.disabled');
     cy.get('div.second input.inp').should('not.be.disabled');
     cy.wait(1000);

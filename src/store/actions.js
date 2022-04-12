@@ -1,9 +1,8 @@
 import { emotionSubmit } from '../api/index';
 
 export default {
-  async submitEmotion({ commit }, name) {
-    const response = await emotionSubmit(name);
-    commit('SUBMIT_EMOTION', response);
+  async submitEmotion(_, name) {
+    await emotionSubmit(name);
   },
 
   toggleWelcomePage({ commit }) {

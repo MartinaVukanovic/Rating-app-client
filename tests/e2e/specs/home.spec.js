@@ -1,4 +1,6 @@
 describe('home screen test', () => {
+  // click on emoji shows thank you message
+
   it('home screen test', () => {
     cy.visit('http://localhost:8080/');
     cy.get('.SmileyFace').first().click();

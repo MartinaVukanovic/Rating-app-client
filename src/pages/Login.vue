@@ -35,12 +35,11 @@ export default {
         const googleUser = await this.$gAuth.signIn();
         const auth = this.$gAuth.instance.currentUser.get().getAuthResponse();
         const accesToken = auth.access_token;
-
         await this.userLogin(accesToken);
         this.$router.push('/today');
         return googleUser;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         return null;
       }
     },
@@ -87,7 +86,7 @@ export default {
       transform: translateY(2px);
     }
     .icon {
-      margin-left: 12px;
+      margin: -90px 0px 0px 12px;
       height: 44px;
       width: 44px;
     }
@@ -96,7 +95,7 @@ export default {
 @media only screen and (min-width: 406px) {
   .icon {
     margin-left: 12px;
-    margin-top: -5px;
+    margin-top: -5px !important;
   }
 }
 </style>

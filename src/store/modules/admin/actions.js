@@ -15,6 +15,8 @@ const pusher = new Pusher('b37ae0c5a1d0b920420c', {
   cluster: 'eu',
 });
 
+// settings
+
 export default {
   async settingsGet({ commit }) {
     try {
@@ -28,7 +30,7 @@ export default {
         commit('GET_SETTINGS', JSON.parse(data));
       });
     } catch (error) {
-      commit('ERROR');
+      commit('ERROR', error);
     }
   },
   async settingsPost({ dispatch, commit }, { type, value }) {
@@ -37,17 +39,22 @@ export default {
       dispatch('settingsGet');
       commit('NO_ERROR');
     } catch (error) {
-     // const errorNumber = error.response.data.status;
-      // commit('error', errorNumber);
-     commit('ERROR');
+      commit('ERROR', error);
     }
   },
+
+  toggleInfo({ commit }) {
+    commit('TOGGLE_INFO');
+  },
+
+  // statistics (today and reports)
+
   async todayGet({ commit }, date) {
     try {
       const response = await getToday(date);
       commit('POST_TODAY', response.data);
     } catch (error) {
-      console.log(error);
+      commit('ERROR', error);
     }
   },
   async reportsGet({ commit }, { startDate, endDate }) {
@@ -55,12 +62,11 @@ export default {
       const response = await getReports(startDate, endDate);
       commit('POST_REPORTS', response.data);
     } catch (error) {
-      console.log(error);
+      commit('ERROR', error);
     }
   },
-  toggleInfo({ commit }) {
-    commit('TOGGLE_INFO');
-  },
+
+  // user login and logout
 
   async userLogin({ commit }, accesToken) {
     try {
@@ -70,12 +76,11 @@ export default {
     } catch (error) {
       localStorage.removeItem('user');
       commit('NOT_AUTHORIZED');
-      console.log(error);
     }
   },
+
   async logoutUser(_, token) {
     await logoutUser(token);
     localStorage.removeItem('user');
-
   },
 };

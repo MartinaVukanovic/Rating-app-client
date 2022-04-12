@@ -1,9 +1,6 @@
 import axios from './interceptors/index';
 
-export function fetchSettings() {
-  const response = axios.publicRequest.get('/setting');
-  return response;
-}
+// submiting an emotion
 
 export function emotionSubmit(name) {
   const response = axios.publicRequest.post('/rating', {
@@ -12,10 +9,26 @@ export function emotionSubmit(name) {
   return response;
 }
 
+// login and logout
+
 export function loginUser(accessToken) {
   const response = axios.publicRequest.post('/auth', {
     accessToken,
   });
+  return response;
+}
+
+export function logoutUser(token) {
+  const response = axios.privateRequest.post('/auth/revoke', {
+    accessToken: token,
+  });
+  return response;
+}
+
+// settings
+
+export function fetchSettings() {
+  const response = axios.publicRequest.get('/setting');
   return response;
 }
 
@@ -27,8 +40,9 @@ export function postSettings(type, value) {
   return response;
 }
 
+// statistics - today and reports
+
 export function getToday(date) {
-  // admin
   const response = axios.privateRequest.get('/rating', {
     params: { dateFrom: date },
   });
@@ -36,25 +50,8 @@ export function getToday(date) {
 }
 
 export function getReports(startDate, endDate) {
-  // admin
   const response = axios.privateRequest.get('/rating', {
     params: { dateFrom: startDate, dateTo: endDate },
   });
-  return response;
-}
-
-export function logoutUser(token) {
-  // admin
-  const response = axios.privateRequest.post('/auth/revoke', {
-    accessToken: token,
-  });
-  return response;
-}
-
-export function logoutUser() {
-  const response = axios.post('http://localhost:3030/revoke', {
-    accessToken: access,
-  });
-  console.log(access, 'poslan u post req');
   return response;
 }
