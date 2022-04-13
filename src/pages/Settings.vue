@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="other bottom">
+      <div class="other bottom" :class="{ startAlign: messageTimeoutError }">
         <div class="numberSelect first">
           <select
             class="inp"
@@ -411,6 +411,9 @@ hr {
 }
 .other.bottom {
   margin-top: 25px;
+}
+.startAlign {
+  align-items: start;
 }
 .smileyFaceContainer {
   display: flex;
